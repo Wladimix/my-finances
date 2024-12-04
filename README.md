@@ -12,7 +12,7 @@
 | :--- | :--- |
 | [Electron.JS](https://www.electronjs.org/) | Взаимодействие с ОС, связь с frontend и упаковка приложения производятся посредством фреймворка Electron.JS.  |
 | [React](https://react.dev/) | Визуальные компоненты процесса рендеринга написаны на React. |
-| [Redux](https://redux.js.org/) | В качестве менеджера состояний используется Redux. |
+| [Effector](https://effector.dev/) | В качестве менеджера состояний используется Effector. |
 | [UIkit](https://getuikit.com/) | Для стилизации компонентов использован модульный CSS-фреймворк UIkit. |
 | [Knex.js](https://knexjs.org/) | Данные хранятся в базе данных Sqlite. Запросы осуществляются с помощью построителя SQL запросов Knex.js. |
 | [Webpack](https://webpack.js.org/) | Готовые для запуска файлы (бек и фронт) упаковываются сборщиком Webpack. |
