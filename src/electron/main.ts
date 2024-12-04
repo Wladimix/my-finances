@@ -1,7 +1,8 @@
-import path from "path";
-import StartApplication from "./StartApplication";
+import path from "path"
+import seed from './seed'
 
-import { app, BrowserWindow } from "electron";
+import { app, BrowserWindow } from "electron"
+import { createTablesIfNotExist, createRouter } from './start'
 
 const isDev = !app.isPackaged;
 
@@ -22,17 +23,18 @@ function createWindow() {
         win.loadFile("index.html")
     } else {
         win.loadFile(path.join(app.getAppPath(), "/build/index.html"));
-    };
-};
+    }
+}
 
 app.whenReady().then(async () => {
     console.log("Запуск приложения");
 
-    await StartApplication.createTablesIfNotExist();
-    StartApplication.createRouter();
+    await createTablesIfNotExist();
+    createRouter();
+
     if (process.env.SEED === "true") {
-        await StartApplication.runSeed();
-    };
+        await seed();
+    }
 
     createWindow();
 });

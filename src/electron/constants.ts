@@ -1,5 +1,5 @@
-export const VALUE_MISSING = "-"
-export const NOT_DEFINE = "———"
+export const VALUE_MISSING = "-";
+export const NOT_DEFINE = "———";
 
 export enum TablesNames {
     DISTRIBUTION_OF_FINANCES_TABLE_NAME = "distribution_of_finances",

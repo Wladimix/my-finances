@@ -1,9 +1,9 @@
-import knex from "../connectionDB";
+import knex from "../connectionDB"
 
-import { Knex } from "knex";
-import { makeDateSearchOptions } from "../lib/utils";
-import { Note } from "../Note/NoteModel";
-import { NOT_DEFINE, TablesNames, TransactionTypes } from "../constants";
+import { Knex } from "knex"
+import { makeDateSearchOptions } from "../lib/utils"
+import { Note } from "../Note/NoteModel"
+import { NOT_DEFINE, TablesNames, TransactionTypes } from "../constants"
 
 class TransactionModel {
 
@@ -20,7 +20,7 @@ class TransactionModel {
                 table.string("transaction_type", 7).notNullable();
                 table.boolean("to_calculate_inflation").defaultTo(false).notNullable();
             });
-    };
+    }
 
     getAll(note: string, page: number): Knex.QueryBuilder {
         return knex
@@ -51,14 +51,14 @@ class TransactionModel {
             .whereLike(`${TablesNames.NOTES_TABLE}.name`, `%${note}%`)
             .orderBy(`${TablesNames.FINANCIAL_TRANSACTIONS_TABLE_NAME}.date`, "desc")
             .orderBy(`${TablesNames.FINANCIAL_TRANSACTIONS_TABLE_NAME}.id`, "desc");
-    };
+    }
 
     getCount(note: string): Knex.QueryBuilder {
         return knex(TablesNames.FINANCIAL_TRANSACTIONS_TABLE_NAME)
             .count(`${TablesNames.FINANCIAL_TRANSACTIONS_TABLE_NAME}.id as count`)
             .join(TablesNames.NOTES_TABLE, `${TablesNames.FINANCIAL_TRANSACTIONS_TABLE_NAME}.note_id`, "=", `${TablesNames.NOTES_TABLE}.id`)
             .whereLike(`${TablesNames.NOTES_TABLE}.name`, `%${note}%`);
-    };
+    }
 
     async getOne(id: number): Promise<Transaction> {
         return await knex
@@ -75,14 +75,14 @@ class TransactionModel {
             .from(TablesNames.FINANCIAL_TRANSACTIONS_TABLE_NAME)
             .first()
             .where({ id });
-    };
+    }
 
     async getAllDates(): Promise<Dates> {
         return await knex
             .select("date")
             .from(TablesNames.FINANCIAL_TRANSACTIONS_TABLE_NAME)
             .orderBy(`${TablesNames.FINANCIAL_TRANSACTIONS_TABLE_NAME}.date`, "asc");
-    };
+    }
 
     async getNotes(transactionId: number | null = null): Promise<Note[]> {
         const transactionIdColumn = `${TablesNames.FINANCIAL_TRANSACTIONS_TABLE_NAME}.id`;
@@ -94,7 +94,7 @@ class TransactionModel {
             .from(TablesNames.FINANCIAL_TRANSACTIONS_TABLE_NAME)
             .join(TablesNames.NOTES_TABLE, `${TablesNames.FINANCIAL_TRANSACTIONS_TABLE_NAME}.note_id`, "=", `${TablesNames.NOTES_TABLE}.id`)
             .where(queryWhere);
-    };
+    }
 
     getAmountOfExpensesByCategory(): Knex.QueryBuilder {
         return knex
@@ -104,7 +104,7 @@ class TransactionModel {
             .join(TablesNames.SPENDING_CATEGORIES_TABLE_NAME, `${TablesNames.FINANCIAL_TRANSACTIONS_TABLE_NAME}.spending_category_id`, "=", `${TablesNames.SPENDING_CATEGORIES_TABLE_NAME}.id`)
             .where({ transaction_type: TransactionTypes.FINANCIAL_EXPENCE })
             .groupBy("purchase");
-    };
+    }
 
     getTotalAmount(transactionType: TransactionTypes): Knex.QueryBuilder {
         return knex
@@ -112,7 +112,7 @@ class TransactionModel {
             .sum({ amount: "amount" })
             .from(TablesNames.FINANCIAL_TRANSACTIONS_TABLE_NAME)
             .where({ transaction_type: transactionType });
-    };
+    }
 
     async getRecordsForInflation(year: number): Promise<RecordForInflation[]> {
         return await knex
@@ -128,7 +128,7 @@ class TransactionModel {
             .andWhereBetween(`${TablesNames.FINANCIAL_TRANSACTIONS_TABLE_NAME}.date`, makeDateSearchOptions(String(year), NOT_DEFINE))
             .orderBy(`${TablesNames.FINANCIAL_TRANSACTIONS_TABLE_NAME}.date`, "asc")
             .orderBy(`${TablesNames.FINANCIAL_TRANSACTIONS_TABLE_NAME}.id`, "asc");
-    };
+    }
 
     async add(transaction: AddedTransaction): Promise<number> {
         return await knex(TablesNames.FINANCIAL_TRANSACTIONS_TABLE_NAME)
@@ -142,7 +142,7 @@ class TransactionModel {
                 transaction_type: transaction.transactionType,
                 to_calculate_inflation: transaction.toCalculateInflation
             });
-    };
+    }
 
     async edit(transaction: EditableTransaction): Promise<0 | 1> {
         return await knex(TablesNames.FINANCIAL_TRANSACTIONS_TABLE_NAME)
@@ -157,15 +157,15 @@ class TransactionModel {
                 transaction_type: transaction.transactionType,
                 to_calculate_inflation: transaction.toCalculateInflation
             });
-    };
+    }
 
     delete(id: number): Promise<0 | 1> {
         return knex(TablesNames.FINANCIAL_TRANSACTIONS_TABLE_NAME)
             .where({ id })
             .del();
-    };
+    }
 
-};
+}
 
 export default new TransactionModel();
 
@@ -178,7 +178,7 @@ export type Transaction = {
     noteId: number,
     amount: number,
     transactionType: string
-};
+}
 
 type AddedTransaction = {
     date: Date
@@ -189,7 +189,7 @@ type AddedTransaction = {
     amount: number
     transactionType: string,
     toCalculateInflation: boolean
-};
+}
 
 type EditableTransaction = {
     id: number
@@ -201,15 +201,15 @@ type EditableTransaction = {
     amount: number
     transactionType: string,
     toCalculateInflation: boolean
-};
+}
 
 type Dates = {
     date: number
-}[];
+}[]
 
 export type RecordForInflation = {
     id: number
     date: Date,
     note: string,
     amount: number
-};
+}

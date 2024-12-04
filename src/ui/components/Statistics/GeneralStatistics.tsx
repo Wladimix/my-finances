@@ -1,15 +1,15 @@
-import CalculationService from "../../services/CalculationService";
+import CalculationService from "../../services/CalculationService"
 
-import { convertAmountToNumber } from "../../../electron/lib/utils";
-import { useAppSelector } from "../../storage/store";
-import { useEffect, useState } from "react";
+import { convertAmountToNumber } from "../../../electron/lib/utils"
+import { useAppSelector } from "../../storage/store"
+import { useEffect, useState } from "react"
 
 type GeneralStatisticsProps = {
     date: {
         selectedYear: string
         selectedMonth: string
     }
-};
+}
 
 export default function GeneralStatistics({ date }: GeneralStatisticsProps) {
     const transactions = useAppSelector(state => state.data.transactions);
@@ -30,8 +30,8 @@ export default function GeneralStatistics({ date }: GeneralStatisticsProps) {
             return "uk-text-large uk-text-danger";
         } else {
             return "uk-text-large";
-        };
-    };
+        }
+    }
 
     const savingsClass = makeSavingsClass(totalStatistics.savings);
 
@@ -53,4 +53,4 @@ export default function GeneralStatistics({ date }: GeneralStatisticsProps) {
             </tbody>
         </table>
     );
-};
+}

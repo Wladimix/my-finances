@@ -1,6 +1,6 @@
-import knex from "../connectionDB";
+import knex from "../connectionDB"
 
-import { VALUE_MISSING, TablesNames } from "../constants";
+import { VALUE_MISSING, TablesNames } from "../constants"
 
 class NoteModel {
 
@@ -12,7 +12,7 @@ class NoteModel {
 
                 table.unique("name");
             });
-    };
+    }
 
     async findMatches(name: string) {
         return await knex
@@ -21,7 +21,7 @@ class NoteModel {
             .whereNot({ id: 1 })
             .whereLike("name", `%${name}%`)
             .orderBy("name", "asc");
-    };
+    }
 
     async getOne(name: string): Promise<Note | undefined> {
         return await knex
@@ -29,13 +29,13 @@ class NoteModel {
             .from(TablesNames.NOTES_TABLE)
             .first()
             .where({ name })
-    };
+    }
 
     async add(name: string): Promise<number> {
         return (await knex(TablesNames.NOTES_TABLE)
             .insert({name })
         )[0];
-    };
+    }
 
     async delete(id: number, name: string): Promise<0 | 1> {
         if (name !== VALUE_MISSING) {
@@ -45,9 +45,9 @@ class NoteModel {
         };
 
         return 0;
-    };
+    }
 
-};
+}
 
 export default new NoteModel();
 

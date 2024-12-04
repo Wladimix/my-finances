@@ -1,11 +1,11 @@
-import ErrorHandling from "../lib/ErrorHandling";
-import TransactionService from "./TransactionService";
+import ErrorHandling from "../lib/ErrorHandling"
+import TransactionService from "./TransactionService"
 
-import { RequestStatuses } from "../constants";
+import { RequestStatuses } from "../constants"
 
-class TransactionController implements ITransactionController {
+class TransactionController {
 
-    async getAllTransactions(event, filter: TransactionFilter): Promise<ResponceData<GetTransactionDTO[]>> {
+    async getAllTransactions(filter: TransactionFilter): Promise<ResponceData<GetTransactionDTO[]>> {
         try {
             const allTransactions = await TransactionService.getAll(filter);
 
@@ -19,9 +19,9 @@ class TransactionController implements ITransactionController {
                 data: null,
                 status: RequestStatuses.ERROR,
                 message: await ErrorHandling.makeErrorMessage(error as Error, "Ошибка получения финансовых транзакций")
-            };
-        };
-    };
+            }
+        }
+    }
 
     async getAllTransactionDates(): Promise<ResponceData<GetDatesDTO>> {
         try {
@@ -31,17 +31,17 @@ class TransactionController implements ITransactionController {
                 data: allDates,
                 status: RequestStatuses.SUCCESS,
                 message: "Получены даты транзакций"
-            };
+            }
         } catch (error) {
             return {
                 data: null,
                 status: RequestStatuses.ERROR,
                 message: await ErrorHandling.makeErrorMessage(error as Error, "Ошибка получения дат транзакций")
-            };
-        };
-    };
+            }
+        }
+    }
 
-    async getNumberOfTransactions(event, filter: TransactionFilter): Promise<ResponceData<number>> {
+    async getNumberOfTransactions(filter: TransactionFilter): Promise<ResponceData<number>> {
         try {
             const numberOfTransactions = await TransactionService.getCount(filter);
 
@@ -49,17 +49,17 @@ class TransactionController implements ITransactionController {
                 data: numberOfTransactions,
                 status: RequestStatuses.SUCCESS,
                 message: "Получено количество транзакций"
-            };
+            }
         } catch (error) {
             return {
                 data: null,
                 status: RequestStatuses.ERROR,
                 message: await ErrorHandling.makeErrorMessage(error as Error, "Ошибка получения количества транзакций")
-            };
-        };
-    };
+            }
+        }
+    }
 
-    async addTransaction(event, transaction: AddTransactionDTO): Promise<ResponceData<number>> {
+    async addTransaction(transaction: AddTransactionDTO): Promise<ResponceData<number>> {
         try {
             const transactionId = await TransactionService.add(transaction);
 
@@ -67,17 +67,17 @@ class TransactionController implements ITransactionController {
                 data: transactionId,
                 status: RequestStatuses.SUCCESS,
                 message: "Добавлена финансовая транзакция"
-            };
+            }
         } catch (error) {
             return {
                 data: null,
                 status: RequestStatuses.ERROR,
                 message: await ErrorHandling.makeErrorMessage(error as Error, "Ошибка добавления финансовой транзакции")
-            };
-        };
-    };
+            }
+        }
+    }
 
-    async editTransaction(event, transaction: EditTransactionDTO): Promise<ResponceData<boolean>> {
+    async editTransaction(transaction: EditTransactionDTO): Promise<ResponceData<boolean>> {
         try {
             const isSuccess = await TransactionService.edit(transaction);
 
@@ -85,17 +85,17 @@ class TransactionController implements ITransactionController {
                 data: isSuccess,
                 status: RequestStatuses.SUCCESS,
                 message: "Отредактирована финансовая транзакция"
-            };
+            }
         } catch (error) {
             return {
                 data: null,
                 status: RequestStatuses.ERROR,
                 message: await ErrorHandling.makeErrorMessage(error as Error, "Ошибка редактирования финансовой транзакции")
-            };
-        };
-    };
+            }
+        }
+    }
 
-    async deleteTransaction(event, transaction: DeleteTransactionDTO): Promise<ResponceData<boolean>> {
+    async deleteTransaction(transaction: DeleteTransactionDTO): Promise<ResponceData<boolean>> {
         try {
             const isSuccess = await TransactionService.delete(transaction);
 
@@ -103,17 +103,17 @@ class TransactionController implements ITransactionController {
                 data: isSuccess,
                 status: RequestStatuses.SUCCESS,
                 message: "Удалена финансовая транзакция"
-            };
+            }
         } catch (error) {
             return {
                 data: null,
                 status: RequestStatuses.ERROR,
                 message: await ErrorHandling.makeErrorMessage(error as Error, "Ошибка удаления финансовой транзакции")
-            };
-        };
+            }
+        }
 
-    };
+    }
 
-};
+}
 
 export default new TransactionController();

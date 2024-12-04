@@ -1,31 +1,36 @@
-import { ipcRenderer, contextBridge } from "electron";
+import { ipcRenderer, contextBridge } from "electron"
 
-const api: ElectronApi = {
+function ipcInvoke<Channel extends keyof EventPayloadMapping>(
+    key: Channel,
+    payload?: EventPayloadMapping[Channel][0]
+): EventPayloadMapping[Channel][1] {
+    return ipcRenderer.invoke(key, payload)
+}
 
-    getAllDistributionTypes: () => ipcRenderer.invoke("getAllDistributionTypes"),
-    addDistributionType: (distributionType: AddDistributionTypeDTO) => ipcRenderer.invoke("addDistributionType", distributionType),
-    editDistributionType: (distributionType: EditDistributionTypeDTO) => ipcRenderer.invoke("editDistributionType", distributionType),
-    deleteDistributionType: (distributionType: DeleteDistributionTypeDTO) => ipcRenderer.invoke("deleteDistributionType", distributionType),
+contextBridge.exposeInMainWorld("electron", {
 
-    getAllCategories: () => ipcRenderer.invoke("getAllCategories"),
-    addSpendingCategory: (spendingCategory: AddSpendingCategoryDTO) => ipcRenderer.invoke("addSpendingCategory", spendingCategory),
-    editSpendingCategory: (spendingCategory: EditSpendingCategoryDTO) => ipcRenderer.invoke("editSpendingCategory", spendingCategory),
-    deleteSpendingCategory: (spendingCategory: DeleteSpendingCategoryDTO) => ipcRenderer.invoke("deleteSpendingCategory", spendingCategory),
+    getAllDistributionTypes: () => ipcInvoke("getAllDistributionTypes"),
+    addDistributionType: (distributionType: AddDistributionTypeDTO) => ipcInvoke("addDistributionType", distributionType),
+    editDistributionType: (distributionType: EditDistributionTypeDTO) => ipcInvoke("editDistributionType", distributionType),
+    deleteDistributionType: (distributionType: DeleteDistributionTypeDTO) => ipcInvoke("deleteDistributionType", distributionType),
 
-    getAllTransactions: (filter: TransactionFilter) => ipcRenderer.invoke("getAllTransactions", filter),
-    getAllTransactionDates: () => ipcRenderer.invoke("getAllTransactionDates"),
-    getNumberOfTransactions: (filter: TransactionFilter) => ipcRenderer.invoke("getNumberOfTransactions", filter),
-    addTransaction: (transaction: AddTransactionDTO) => ipcRenderer.invoke("addTransaction", transaction),
-    editTransaction: (transaction: EditTransactionDTO) => ipcRenderer.invoke("editTransaction", transaction),
-    deleteTransaction: (transaction: DeleteTransactionDTO) => ipcRenderer.invoke("deleteTransaction", transaction),
+    getAllCategories: () => ipcInvoke("getAllCategories"),
+    addSpendingCategory: (spendingCategory: AddSpendingCategoryDTO) => ipcInvoke("addSpendingCategory", spendingCategory),
+    editSpendingCategory: (spendingCategory: EditSpendingCategoryDTO) => ipcInvoke("editSpendingCategory", spendingCategory),
+    deleteSpendingCategory: (spendingCategory: DeleteSpendingCategoryDTO) => ipcInvoke("deleteSpendingCategory", spendingCategory),
 
-    getNotes: (substring: string) => ipcRenderer.invoke("getNotes", substring),
+    getAllTransactions: (filter: TransactionFilter) => ipcInvoke("getAllTransactions", filter),
+    getAllTransactionDates: () => ipcInvoke("getAllTransactionDates"),
+    getNumberOfTransactions: (filter: TransactionFilter) => ipcInvoke("getNumberOfTransactions", filter),
+    addTransaction: (transaction: AddTransactionDTO) => ipcInvoke("addTransaction", transaction),
+    editTransaction: (transaction: EditTransactionDTO) => ipcInvoke("editTransaction", transaction),
+    deleteTransaction: (transaction: DeleteTransactionDTO) => ipcInvoke("deleteTransaction", transaction),
 
-    getCapital: () => ipcRenderer.invoke("getCapital"),
-    getTotalAmount: (date: DateDTO) => ipcRenderer.invoke("getTotalAmount", date),
-    getStatisticsOnExpenses: (date: DateDTO) => ipcRenderer.invoke("getStatisticsOnExpenses", date),
-    getInflationData: (year: number) => ipcRenderer.invoke("getInflationData", year)
+    getNotes: (substring: string) => ipcInvoke("getNotes", substring),
 
-};
+    getCapital: () => ipcInvoke("getCapital"),
+    getTotalAmount: (date: DateDTO) => ipcInvoke("getTotalAmount", date),
+    getStatisticsOnExpenses: (date: DateDTO) => ipcInvoke("getStatisticsOnExpenses", date),
+    getInflationData: (year: number) => ipcInvoke("getInflationData", year)
 
-contextBridge.exposeInMainWorld("electron", api);
+} satisfies Window["electron"]);

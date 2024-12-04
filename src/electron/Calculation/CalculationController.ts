@@ -1,9 +1,9 @@
-import CalculationService from "./CalculationService";
-import ErrorHandling from "../lib/ErrorHandling";
+import CalculationService from "./CalculationService"
+import ErrorHandling from "../lib/ErrorHandling"
 
-import { RequestStatuses } from "../constants";
+import { RequestStatuses } from "../constants"
 
-class CalculationController implements ICalculationController {
+class CalculationController {
 
     async getCapital(): Promise<ResponceData<string>> {
         try {
@@ -19,11 +19,11 @@ class CalculationController implements ICalculationController {
                 data: null,
                 status: RequestStatuses.ERROR,
                 message: await ErrorHandling.makeErrorMessage(error as Error, "Ошибка получения капитала")
-            };
-        };
-    };
+            }
+        }
+    }
 
-    async getTotalAmount(event, date: DateDTO): Promise<ResponceData<TotalStatisticsDTO>> {
+    async getTotalAmount(date: DateDTO): Promise<ResponceData<TotalStatisticsDTO>> {
         try {
             const totalAmount = await CalculationService.getTotalAmount(date);
 
@@ -37,11 +37,11 @@ class CalculationController implements ICalculationController {
                 data: null,
                 status: RequestStatuses.ERROR,
                 message: await ErrorHandling.makeErrorMessage(error as Error, "Ошибка получения общей статистики")
-            };
-        };
-    };
+            }
+        }
+    }
 
-    async getStatisticsOnExpenses(event, date: DateDTO): Promise<ResponceData<AmountOfExpenses[]>> {
+    async getStatisticsOnExpenses(date: DateDTO): Promise<ResponceData<AmountOfExpenses[]>> {
         try {
             const statisticsOnExpenses = await CalculationService.getStatisticsOnExpenses(date);
 
@@ -55,11 +55,11 @@ class CalculationController implements ICalculationController {
                 data: null,
                 status: RequestStatuses.ERROR,
                 message: await ErrorHandling.makeErrorMessage(error as Error, "Ошибка получения статистики по расходам")
-            };
-        };
-    };
+            }
+        }
+    }
 
-    async getInflationData(event, year: number): Promise<ResponceData<InflationDTO>> {
+    async getInflationData(year: number): Promise<ResponceData<InflationDTO>> {
         try {
             const inflationData = await CalculationService.calculateInflation(year);
 
@@ -73,10 +73,10 @@ class CalculationController implements ICalculationController {
                 data: null,
                 status: RequestStatuses.ERROR,
                 message: await ErrorHandling.makeErrorMessage(error as Error, "Ошибка получения данных по инфляции")
-            };
-        };
-    };
+            }
+        }
+    }
 
-};
+}
 
 export default new CalculationController();

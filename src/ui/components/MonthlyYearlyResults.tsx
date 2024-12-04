@@ -1,5 +1,5 @@
-import MonthlyResultsCard from "./Cards/MonthlyResultsCard";
-import YearlyResultsCard from "./Cards/YearlyResultsCard";
+import MonthlyResultsCard from "./Cards/MonthlyResultsCard"
+import YearlyResultsCard from "./Cards/YearlyResultsCard"
 
 export default function MonthlyYearlyResults() {
     return (
@@ -12,4 +12,4 @@ export default function MonthlyYearlyResults() {
             </div>
         </div>
     );
-};
+}

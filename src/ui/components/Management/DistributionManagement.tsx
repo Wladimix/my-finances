@@ -1,8 +1,8 @@
-import DistributionCard from "../Cards/DistributionCard";
-import DistributionService from '../../services/DistributionService';
-import React, { useState } from "react";
+import DistributionCard from "../Cards/DistributionCard"
+import DistributionService from '../../services/DistributionService'
+import React, { useState } from "react"
 
-import { useAppDispatch, useAppSelector } from "../../storage/store";
+import { useAppDispatch, useAppSelector } from "../../storage/store"
 
 export default function DistributionManagement() {
     const distribytionTypes = useAppSelector(state => state.data.distributionFinancesTypes);
@@ -20,13 +20,13 @@ export default function DistributionManagement() {
         distributionService.addDistributionType(name, amount);
         setName("");
         setAmount("");
-    };
+    }
 
     const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
         if (e.key === "Enter" && distributionService.checkDistributionType(name, amount)) {
             addDistributionTypeEvent();
         };
-    };
+    }
 
     return (
         <>
@@ -77,4 +77,4 @@ export default function DistributionManagement() {
             </div>
         </>
     );
-};
+}

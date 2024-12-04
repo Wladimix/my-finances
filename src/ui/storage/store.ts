@@ -1,11 +1,11 @@
-import dataReducer from "./dataSlice";
-import dateReducer from "./dateSlice";
-import inflationReducer from "./inflationSlice";
-import paginationReducer from './paginationSlice';
-import transactionReducer from "./transactionSlice";
+import dataReducer from "./dataSlice"
+import dateReducer from "./dateSlice"
+import inflationReducer from "./inflationSlice"
+import paginationReducer from './paginationSlice'
+import transactionReducer from "./transactionSlice"
 
-import { configureStore } from "@reduxjs/toolkit";
-import { TypedUseSelectorHook, useDispatch, useSelector } from "react-redux";
+import { configureStore } from "@reduxjs/toolkit"
+import { TypedUseSelectorHook, useDispatch, useSelector } from "react-redux"
 
 export const store = configureStore({
     reducer: {

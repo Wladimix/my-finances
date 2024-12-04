@@ -1,16 +1,16 @@
-import DistributionModel from "../DustributionFinances/DustributionModel";
-import ObjectEditing from "../lib/ObjectEditing";
-import TransactionModel, { RecordForInflation } from "../Transaction/TransactionModel";
+import DistributionModel from "../DustributionFinances/DustributionModel"
+import ObjectEditing from "../lib/ObjectEditing"
+import TransactionModel, { RecordForInflation } from "../Transaction/TransactionModel"
 
-import { convertAmountToString, filterOutUniqueValues, makeDateSearchOptions } from "../lib/utils";
-import { TablesNames, TransactionTypes, NOT_DEFINE, VALUE_MISSING } from '../constants';
+import { convertAmountToString, filterOutUniqueValues, makeDateSearchOptions } from "../lib/utils"
+import { TablesNames, TransactionTypes, NOT_DEFINE, VALUE_MISSING } from '../constants'
 
 class CalculationService {
 
     async getCapital(): Promise<string> {
         const capital = await DistributionModel.getSumDistributiontypes();
         return convertAmountToString(capital);
-    };
+    }
 
     async getTotalAmount(date): Promise<TotalAmount> {
         const totalIncomeAmountQuery = TransactionModel.getTotalAmount(TransactionTypes.FINANCIAL_INCOME);
@@ -31,12 +31,12 @@ class CalculationService {
         console.info("Получена общая статистика");
 
         return totalStatistics;
-    };
+    }
 
     async getStatisticsOnExpenses(date: DateDTO): Promise<AmountOfExpenses> {
         if (date.year === NOT_DEFINE) {
             return [];
-        };
+        }
 
         const amountOfExpensesQuery = TransactionModel.getAmountOfExpensesByCategory();
         const { year, month } = date;
@@ -47,7 +47,7 @@ class CalculationService {
         return amountOfExpenses.map(expenses =>
             new ObjectEditing(expenses).changeProperty("amount", convertAmountToString).getResult()
         ) as AmountOfExpenses;
-    };
+    }
 
     async calculateInflation(year: number): Promise<InflationDTO> {
         const recordsForPrevYear = await TransactionModel.getRecordsForInflation(year - 1);
@@ -64,7 +64,7 @@ class CalculationService {
             return inflationForProduct !== VALUE_MISSING ? { ...acc, [note]: inflationForProduct } : { ...acc };
 
         }, {});
-    };
+    }
 
     calculateInflationForEntity(recordsForPrevYear: RecordForInflation[], records: RecordForInflation[]): number | typeof VALUE_MISSING {
         let firstRecord: RecordForInflation[];
@@ -80,9 +80,9 @@ class CalculationService {
         }
 
         return VALUE_MISSING;
-    };
+    }
 
-};
+}
 
 export default new CalculationService();
 
@@ -90,9 +90,9 @@ type TotalAmount = {
     totalIncomeAmount: string
     totalExpenceAmount: string
     savings: string
-};
+}
 
 type AmountOfExpenses = {
     purchase: string
     amount: string
-}[];
+}[]

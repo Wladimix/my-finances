@@ -1,8 +1,8 @@
-import TransactionFormService from "../../services/Transaction/TransactionFormService";
+import TransactionFormService from "../../services/Transaction/TransactionFormService"
 
-import { ModifierId } from "../../constants";
-import { setTransactionData } from "../../storage/transactionSlice";
-import { useAppDispatch, useAppSelector } from "../../storage/store";
+import { ModifierId } from "../../constants"
+import { setTransactionData } from "../../storage/transactionSlice"
+import { useAppDispatch, useAppSelector } from "../../storage/store"
 
 export default function AddressOrCategoryInput() {
     const transactionData = useAppSelector(state => state.transaction.transactionData);
@@ -18,7 +18,7 @@ export default function AddressOrCategoryInput() {
             ...transactionFormService.identifyAndGetAddressOrCategoryToSend(e.target.value),
             toCalculateInflation: false
         }));
-    };
+    }
 
     return (
         <div className="uk-margin">
@@ -60,4 +60,4 @@ export default function AddressOrCategoryInput() {
             </div>
         </div>
     );
-};
+}

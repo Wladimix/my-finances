@@ -1,11 +1,11 @@
-import SpendingCategoryService from "../../services/SpendingCategoryService";
+import SpendingCategoryService from "../../services/SpendingCategoryService"
 
-import { useAppDispatch, useAppSelector } from "../../storage/store";
-import { useState } from "react";
+import { useAppDispatch, useAppSelector } from "../../storage/store"
+import { useState } from "react"
 
 type CategoryCardProps = {
     spendingCategory: GetCategoryDTO
-};
+}
 
 export default function CategoryCard({ spendingCategory }: CategoryCardProps) {
     const date = useAppSelector(state => state.date);
@@ -34,7 +34,7 @@ export default function CategoryCard({ spendingCategory }: CategoryCardProps) {
         );
 
         setName("");
-    };
+    }
 
     const deleteSpendingCategoryEvent = (): void => {
         spendingCategoryService.deleteSpendingCategory(
@@ -47,7 +47,7 @@ export default function CategoryCard({ spendingCategory }: CategoryCardProps) {
                 page: currentPage
             }
         );
-    };
+    }
 
     return (
         <div>
@@ -81,4 +81,4 @@ export default function CategoryCard({ spendingCategory }: CategoryCardProps) {
             </div>
         </div>
     );
-};
+}

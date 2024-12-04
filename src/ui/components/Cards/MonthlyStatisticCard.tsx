@@ -1,8 +1,8 @@
-import ExpenditureStatistics from "../Statistics/ExpenditureStatistics";
-import monthsDictionary from "../../lib/monthsDictionary";
+import ExpenditureStatistics from "../Statistics/ExpenditureStatistics"
+import monthsDictionary from "../../lib/monthsDictionary"
 
-import { NOT_DEFINE } from "../../constants";
-import { useAppSelector } from "../../storage/store";
+import { NOT_DEFINE } from "../../constants"
+import { useAppSelector } from "../../storage/store"
 
 export default function MonthlyStatisticCard() {
     const date = useAppSelector(state => state.date);
@@ -24,4 +24,4 @@ export default function MonthlyStatisticCard() {
 
         </div>
     );
-};
+}

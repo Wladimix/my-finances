@@ -1,9 +1,9 @@
-import NoteService from '../../services/NoteService';
-import TransactionFormService from "../../services/Transaction/TransactionFormService";
+import NoteService from '../../services/NoteService'
+import TransactionFormService from "../../services/Transaction/TransactionFormService"
 
-import { setTransactionData } from "../../storage/transactionSlice";
-import { useAppDispatch, useAppSelector } from "../../storage/store";
-import { useState } from 'react';
+import { setTransactionData } from "../../storage/transactionSlice"
+import { useAppDispatch, useAppSelector } from "../../storage/store"
+import { useState } from 'react'
 
 export default function NoteInput() {
     const transactionData = useAppSelector(state => state.transaction.transactionData);
@@ -28,7 +28,7 @@ export default function NoteInput() {
         setTimerId(setTimeout(() => {
             noteService.loadNotes(e.target.value.toLowerCase().trim().replace(/ +/g, ' '));
         }, 800));
-    };
+    }
 
     const changeNoteButtonEvent = (note: string) => {
         dispatch(setTransactionData(
@@ -36,7 +36,7 @@ export default function NoteInput() {
         ));
 
         noteService.loadNotes(note.toLowerCase().trim().replace(/ +/g, ' '));
-    };
+    }
 
     return (
         <>
@@ -70,4 +70,4 @@ export default function NoteInput() {
 
         </>
     );
-};
+}

@@ -1,17 +1,17 @@
-import CalculationService from "../../services/CalculationService";
+import CalculationService from "../../services/CalculationService"
 
-import { ChartEvent, LegendElement, LegendItem } from "chart.js";
-import { DELETED_PARAMS_REGULAR } from "../../constants";
-import { Doughnut } from "react-chartjs-2";
-import { useAppSelector } from "../../storage/store";
-import { useEffect, useState } from "react";
+import { ChartEvent, LegendElement, LegendItem } from "chart.js"
+import { DELETED_PARAMS_REGULAR } from "../../constants"
+import { Doughnut } from "react-chartjs-2"
+import { useAppSelector } from "../../storage/store"
+import { useEffect, useState } from "react"
 
 type ExpenditureStatisticsProps = {
     date: {
         selectedYear: string
         selectedMonth: string
     }
-};
+}
 
 export default function ExpenditureStatistics({ date }: ExpenditureStatisticsProps) {
     const transactions = useAppSelector(state => state.data.transactions);
@@ -33,7 +33,7 @@ export default function ExpenditureStatistics({ date }: ExpenditureStatisticsPro
             colors[index] = index === item.index || color.length === 9 ? color : color + "4D";
         });
         legend.chart.update();
-    };
+    }
 
     const handleLeave = (evt: ChartEvent, item: LegendItem, legend: LegendElement<"doughnut">): void => {
         const backgroundColor = legend.chart.data.datasets[0].backgroundColor as string[];
@@ -41,7 +41,7 @@ export default function ExpenditureStatistics({ date }: ExpenditureStatisticsPro
             colors[index] = color.length === 9 ? color.slice(0, -2) : color;
         });
         legend.chart.update();
-    };
+    }
 
     const chart = <Doughnut
         data={{
@@ -83,4 +83,4 @@ export default function ExpenditureStatistics({ date }: ExpenditureStatisticsPro
             }
         </>
     );
-};
+}

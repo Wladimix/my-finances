@@ -1,6 +1,6 @@
-import knex from "./connectionDB";
+import knex from "./connectionDB"
 
-import { TablesNames, TransactionTypes } from "./constants";
+import { TablesNames, TransactionTypes } from "./constants"
 
 export default async function seed() {
 
@@ -33,7 +33,7 @@ export default async function seed() {
         ...makeTransactions(2024)
     ]);
 
-};
+}
 
 function makeTransactions(year: number): Object[] {
     let transactions: Object[] = [];
@@ -60,7 +60,7 @@ function makeTransactions(year: number): Object[] {
                 transaction_type: TransactionTypes.FINANCIAL_EXPENCE
             });
         };
-    };
+    }
 
     return transactions;
-};
+}

@@ -1,5 +1,5 @@
-import { setTransactionData } from "../../storage/transactionSlice";
-import { useAppDispatch, useAppSelector } from "../../storage/store";
+import { setTransactionData } from "../../storage/transactionSlice"
+import { useAppDispatch, useAppSelector } from "../../storage/store"
 
 export default function SourceOfTransactionInput() {
     const transactionData = useAppSelector(state => state.transaction.transactionData);
@@ -13,7 +13,7 @@ export default function SourceOfTransactionInput() {
             sourceOfTransactionId: Number(e.target.value),
             toCalculateInflation: false
         }));
-    };
+    }
 
     return (
         <div className="uk-margin">
@@ -43,4 +43,4 @@ export default function SourceOfTransactionInput() {
             </div>
         </div>
     );
-};
+}

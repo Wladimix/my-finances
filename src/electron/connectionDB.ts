@@ -1,7 +1,7 @@
-import knex from "knex";
-import path from "path";
+import knex from "knex"
+import path from "path"
 
-import { app } from "electron";
+import { app } from "electron"
 
 export const DATABASE_PATH = path.join(app.getPath("home"), "my_finances_data");
 export const DATABASE_NAME = "my_finances_db.sqlite3";

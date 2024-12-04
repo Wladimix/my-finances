@@ -1,9 +1,9 @@
-import DistributionService from "./DistributionService";
-import ErrorHandling from "../lib/ErrorHandling";
+import DistributionService from "./DistributionService"
+import ErrorHandling from "../lib/ErrorHandling"
 
-import { RequestStatuses } from "../constants";
+import { RequestStatuses } from "../constants"
 
-class DistributionController implements IDistributionController {
+class DistributionController {
 
     async getAllDistributionTypes(): Promise<ResponceData<GetDistributionTypeDTO[]>> {
         try {
@@ -19,11 +19,11 @@ class DistributionController implements IDistributionController {
                 data: null,
                 status: RequestStatuses.ERROR,
                 message: await ErrorHandling.makeErrorMessage(error as Error, "Ошибка получения типов распределения финансов")
-            };
-        };
-    };
+            }
+        }
+    }
 
-    async addDistributionType(event, distributionType: AddDistributionTypeDTO): Promise<ResponceData<number>> {
+    async addDistributionType(distributionType: AddDistributionTypeDTO): Promise<ResponceData<number>> {
         try {
             const distributionId = await DistributionService.add(distributionType);
 
@@ -31,17 +31,17 @@ class DistributionController implements IDistributionController {
                 data: distributionId,
                 status: RequestStatuses.SUCCESS,
                 message: "Добавлен тип распределения финансов"
-            };
+            }
         } catch (error) {
             return {
                 data: null,
                 status: RequestStatuses.ERROR,
                 message: await ErrorHandling.makeErrorMessage(error as Error, "Ошибка добавления типа распределения финансов")
-            };
-        };
-    };
+            }
+        }
+    }
 
-    async editDistributionType(event, distributionType: EditDistributionTypeDTO): Promise<ResponceData<boolean>> {
+    async editDistributionType(distributionType: EditDistributionTypeDTO): Promise<ResponceData<boolean>> {
         try {
             const isSuccess = await DistributionService.edit(distributionType);
 
@@ -49,17 +49,17 @@ class DistributionController implements IDistributionController {
                 data: isSuccess,
                 status: RequestStatuses.SUCCESS,
                 message: "Отредактирован тип распределения финансов"
-            };
+            }
         } catch (error) {
             return {
                 data: null,
                 status: RequestStatuses.ERROR,
                 message: await ErrorHandling.makeErrorMessage(error as Error, "Ошибка редактирования типа распределения финансов")
-            };
-        };
-    };
+            }
+        }
+    }
 
-    async deleteDistributionType(event, distributionType: DeleteDistributionTypeDTO): Promise<ResponceData<boolean>> {
+    async deleteDistributionType(distributionType: DeleteDistributionTypeDTO): Promise<ResponceData<boolean>> {
         try {
             const isSuccess = await DistributionService.delete(distributionType);
 
@@ -67,16 +67,16 @@ class DistributionController implements IDistributionController {
                 data: isSuccess,
                 status: RequestStatuses.SUCCESS,
                 message: "Удалён тип распределения финансов"
-            };
+            }
         } catch (error) {
             return {
                 data: null,
                 status: RequestStatuses.ERROR,
                 message: await ErrorHandling.makeErrorMessage(error as Error, "Ошибка удаления типа распределения финансов")
-            };
-        };
-    };
+            }
+        }
+    }
 
-};
+}
 
 export default new DistributionController();

@@ -1,16 +1,16 @@
-import SpendingCategoryService from "../services/SpendingCategoryService";
-import DistributionAndCategoryModal from "./Modals/DistributionAndCategoryModal";
-import DistributionService from "../services/DistributionService";
-import EditTransactionModal from "./Modals/EditTransactionModal";
-import MonthlyYearlyResults from "./MonthlyYearlyResults";
-import TotalCard from "./Cards/TotalCard";
-import Transactions from "./Transactions";
-import TransactionService from '../services/Transaction/TransactionService';
-import Statistics from "./Statistics";
+import SpendingCategoryService from "../services/SpendingCategoryService"
+import DistributionAndCategoryModal from "./Modals/DistributionAndCategoryModal"
+import DistributionService from "../services/DistributionService"
+import EditTransactionModal from "./Modals/EditTransactionModal"
+import MonthlyYearlyResults from "./MonthlyYearlyResults"
+import TotalCard from "./Cards/TotalCard"
+import Transactions from "./Transactions"
+import TransactionService from '../services/Transaction/TransactionService'
+import Statistics from "./Statistics"
 
-import { Chart, CategoryScale } from "chart.js/auto";
-import { useAppDispatch, useAppSelector } from "../storage/store";
-import { useEffect } from "react";
+import { Chart, CategoryScale } from "chart.js/auto"
+import { useAppDispatch, useAppSelector } from "../storage/store"
+import { useEffect } from "react"
 
 Chart.register(CategoryScale);
 
@@ -33,7 +33,7 @@ export default function App() {
             note: transaction.requiredNote,
             page: currentPage
         });
-    };
+    }
 
     useEffect(() => { loadAllData() }, []);
 
@@ -60,4 +60,4 @@ export default function App() {
             <DistributionAndCategoryModal />
         </>
     );
-};
+}

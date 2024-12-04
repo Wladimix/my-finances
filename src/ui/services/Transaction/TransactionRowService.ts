@@ -1,5 +1,5 @@
-import { makeDate } from "../../lib/utils";
-import { DELETED_PARAMS_REGULAR, NOT_DEFINE, TransactionsTypes } from "../../constants";
+import { makeDate } from "../../lib/utils"
+import { DELETED_PARAMS_REGULAR, NOT_DEFINE, TransactionsTypes } from "../../constants"
 
 export default class TransactionRowService {
 
@@ -7,7 +7,7 @@ export default class TransactionRowService {
 
     constructor(transaction: GetTransactionDTO) {
         this.transaction = transaction;
-    };
+    }
 
     makeTransactionParamsToShow() {
         const date = makeDate(this.transaction.date);
@@ -22,7 +22,7 @@ export default class TransactionRowService {
             [String(TransactionsTypes.FINANCIAL_EXPENCE)]: "uk-text-large uk-text-bold uk-text-danger",
             [String(TransactionsTypes.PRICE_MONITORING)]: "uk-text-large uk-text-bold",
             [NOT_DEFINE]: "uk-text-large uk-text-bold",
-        };
+        }
 
         const sourceOfTransactionClass = DELETED_PARAMS_REGULAR.test(sourceOfTransaction) ? "uk-text-danger" : "";
         const addressOrCategoryClass = DELETED_PARAMS_REGULAR.test(addressOrCategory) ? "uk-text-danger" : "";
@@ -44,19 +44,19 @@ export default class TransactionRowService {
                 amount: amountClass
             },
             thereDeletedParameters
-        };
-    };
+        }
+    }
 
     private identifyAddressOrCategoryToShow(): string {
         if (this.transaction.transactionAddressId !== 1 && this.transaction.spendingCategoryId === 1) {
             return this.transaction.transactionAddressName;
-        };
+        }
 
         if (this.transaction.transactionAddressId === 1 && this.transaction.spendingCategoryId !== 1) {
             return this.transaction.spendingCategoryName;
-        };
+        }
 
         return "-";
-    };
+    }
 
-};
+}

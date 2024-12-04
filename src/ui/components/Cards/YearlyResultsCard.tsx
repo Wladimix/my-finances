@@ -1,11 +1,11 @@
-import GeneralStatistics from "../Statistics/GeneralStatistics";
-import InflationService from "../../services/InflationService";
-import TransactionService from "../../services/Transaction/TransactionService";
+import GeneralStatistics from "../Statistics/GeneralStatistics"
+import InflationService from "../../services/InflationService"
+import TransactionService from "../../services/Transaction/TransactionService"
 
-import { NOT_DEFINE } from "../../constants";
-import { selectMonth, selectYear } from "../../storage/dateSlice";
-import { setPage } from "../../storage/paginationSlice";
-import { useAppDispatch, useAppSelector } from "../../storage/store";
+import { NOT_DEFINE } from "../../constants"
+import { selectMonth, selectYear } from "../../storage/dateSlice"
+import { setPage } from "../../storage/paginationSlice"
+import { useAppDispatch, useAppSelector } from "../../storage/store"
 
 export default function YearlyResultsCard() {
     const date = useAppSelector(state => state.date);
@@ -22,7 +22,7 @@ export default function YearlyResultsCard() {
         dispatch(selectYear(e.target.value));
         dispatch(selectMonth(NOT_DEFINE));
         dispatch(setPage(0));
-    };
+    }
 
     return (
         <div className="uk-card uk-card-default uk-card-body uk-background-muted">
@@ -54,4 +54,4 @@ export default function YearlyResultsCard() {
             }
         </div>
     );
-};
+}

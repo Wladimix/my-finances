@@ -1,12 +1,12 @@
-import CalculationService from "../services/CalculationService";
-import InflationService from "../services/InflationService";
-import MonthlyStatisticCard from "./Cards/MonthlyStatisticCard";
-import YearlyStatisticCard from "./Cards/YearlyStatisticCard";
+import CalculationService from "../services/CalculationService"
+import InflationService from "../services/InflationService"
+import MonthlyStatisticCard from "./Cards/MonthlyStatisticCard"
+import YearlyStatisticCard from "./Cards/YearlyStatisticCard"
 
-import { Bar } from "react-chartjs-2";
-import { NOT_DEFINE } from "../constants";
-import { useAppSelector } from "../storage/store";
-import { useEffect, useState } from "react";
+import { Bar } from "react-chartjs-2"
+import { NOT_DEFINE } from "../constants"
+import { useAppSelector } from "../storage/store"
+import { useEffect, useState } from "react"
 
 export default function Statistics() {
     const selectedYear = useAppSelector(state => state.date.selectedYear);
@@ -74,4 +74,4 @@ export default function Statistics() {
             </div>
         </>
     );
-};
+}

@@ -1,14 +1,14 @@
-import TransactionRowService from '../../services/Transaction/TransactionRowService';
-import TransactionService from '../../services/Transaction/TransactionService';
+import TransactionRowService from '../../services/Transaction/TransactionRowService'
+import TransactionService from '../../services/Transaction/TransactionService'
 
-import { setEventType, setTransactionData, setTransactionId } from '../../storage/transactionSlice';
-import { NOT_DEFINE, TransactionEvent } from '../../constants';
-import { useAppDispatch, useAppSelector } from '../../storage/store';
-import { setNotes } from '../../storage/dataSlice';
+import { setEventType, setTransactionData, setTransactionId } from '../../storage/transactionSlice'
+import { NOT_DEFINE, TransactionEvent } from '../../constants'
+import { useAppDispatch, useAppSelector } from '../../storage/store'
+import { setNotes } from '../../storage/dataSlice'
 
 type TransactionsTableRowProps = {
     transaction: GetTransactionDTO
-};
+}
 
 export default function TransactionsTableRow({ transaction }: TransactionsTableRowProps) {
     const date = useAppSelector(state => state.date);
@@ -37,7 +37,7 @@ export default function TransactionsTableRow({ transaction }: TransactionsTableR
             amount: transaction.amount,
             toCalculateInflation: transaction.toCalculateInflation
         }));
-    };
+    }
 
     const transactionService = new TransactionService(dispatch);
     const deleteTransactionEvent = (): void => {transactionService.deleteTransaction(
@@ -48,7 +48,7 @@ export default function TransactionsTableRow({ transaction }: TransactionsTableR
             note: requiredNote,
             page: currentPage
         }
-    )};
+    )}
 
     return (
         <>
@@ -82,4 +82,4 @@ export default function TransactionsTableRow({ transaction }: TransactionsTableR
             </tr>
         </>
     );
-};
+}

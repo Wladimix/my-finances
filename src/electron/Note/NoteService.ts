@@ -1,7 +1,7 @@
-import NoteModel, { Note } from "./NoteModel";
-import TransactionModel from "../Transaction/TransactionModel";
+import NoteModel, { Note } from "./NoteModel"
+import TransactionModel from "../Transaction/TransactionModel"
 
-import { TablesNames } from "../constants";
+import { TablesNames } from "../constants"
 
 class NoteService {
 
@@ -10,7 +10,7 @@ class NoteService {
         console.info(`Получены данные из таблицы "${TablesNames.NOTES_TABLE}"`);
 
         return notes;
-    };
+    }
 
     async findOrAdd(name: string): Promise<Note> {
         console.info(`Поиск примечания в таблице "${TablesNames.NOTES_TABLE}"`);
@@ -25,8 +25,8 @@ class NoteService {
             console.info(`Добавлено примечание в таблицу "${TablesNames.NOTES_TABLE}"`);
             const requiredNote = await NoteModel.getOne(name) as Note;
             return requiredNote;
-        };
-    };
+        }
+    }
 
     async deleteExtraNote(id: number, name: string) {
         const notesList = await TransactionModel.getNotes();
@@ -35,13 +35,13 @@ class NoteService {
         for (let note of notesList) {
             if (note.name === name) {
                 return;
-            };
+            }
         }
 
         const result = await NoteModel.delete(id, name);
         if (result) console.info("Удалено лишнее примечание");
-    };
+    }
 
-};
+}
 
 export default new NoteService();

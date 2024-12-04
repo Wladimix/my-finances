@@ -1,8 +1,8 @@
-import DistributionModel from "./DustributionModel";
-import ObjectEditing from "../lib/ObjectEditing";
+import DistributionModel from "./DustributionModel"
+import ObjectEditing from "../lib/ObjectEditing"
 
-import { convertAmountToNumber, convertAmountToString, removeSpaces } from "../lib/utils";
-import { TablesNames } from "../constants";
+import { convertAmountToNumber, convertAmountToString, removeSpaces } from "../lib/utils"
+import { TablesNames } from "../constants"
 
 class DistributionService {
 
@@ -13,7 +13,7 @@ class DistributionService {
         return distributionTypes.map(distributionType =>
             new ObjectEditing(distributionType).changeProperty("amount", convertAmountToString).getResult()
         ) as AllDistributionTypes;
-    };
+    }
 
     async add(distributionType: AddDistributionTypeDTO): Promise<number> {
         const name = removeSpaces(distributionType.name);
@@ -23,7 +23,7 @@ class DistributionService {
         console.info(`Запись "${name}" в таблице "${TablesNames.DISTRIBUTION_OF_FINANCES_TABLE_NAME}" создана`);
 
         return distributionId;
-    };
+    }
 
     async edit(distributionType: EditDistributionTypeDTO): Promise<boolean> {
         const id = distributionType.id;
@@ -34,7 +34,7 @@ class DistributionService {
         console.info(`Запись #${id} в таблице "${TablesNames.DISTRIBUTION_OF_FINANCES_TABLE_NAME}" отредактирована`);
 
         return isSuccess;
-    };
+    }
 
     async delete(distributionType: DeleteDistributionTypeDTO): Promise<boolean> {
         const id = distributionType.id;
@@ -43,7 +43,7 @@ class DistributionService {
 
         if (amount !== 0) {
             throw new Error("Удаление невозможно, сумма должна равняться 0");
-        };
+        }
 
         const currentDate = new Date().getFullYear() + "."
             + (new Date().getMonth() + 1) + "."
@@ -59,7 +59,7 @@ class DistributionService {
         console.info(`Запись #${id} в таблице "${TablesNames.DISTRIBUTION_OF_FINANCES_TABLE_NAME}" отмечена, как удалённая`);
 
         return isSuccess;
-    };
+    }
 
     async addAmountToDistribution(id: number, amount: number): Promise<void> {
         const distributionType = await DistributionModel.getOne(id);
@@ -67,7 +67,7 @@ class DistributionService {
         const newAmount = distributionType.amount + amount;
         await DistributionModel.edit(id, name, newAmount);
         console.info(`В записи "${name}" увеличена сумма`);
-    };
+    }
 
     async subtractAmountFromDistribution(id: number, amount: number): Promise<void> {
         const distributionType = await DistributionModel.getOne(id);
@@ -75,7 +75,7 @@ class DistributionService {
         const newAmount = distributionType.amount - amount;
         await DistributionModel.edit(id, name, newAmount);
         console.info(`В записи "${name}" уменьшена сумма`);
-    };
+    }
 };
 
 export default new DistributionService();
@@ -84,4 +84,4 @@ type AllDistributionTypes = {
     id: number
     name: string
     amount: string
-}[];
+}[]

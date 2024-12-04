@@ -1,11 +1,11 @@
-import { createSlice } from "@reduxjs/toolkit";
-import { NOT_DEFINE } from "../constants";
+import { createSlice } from "@reduxjs/toolkit"
+import { NOT_DEFINE } from "../constants"
 
 const initialState: dateState = {
     dates: {},
     selectedYear: NOT_DEFINE,
     selectedMonth: NOT_DEFINE
-};
+}
 
 const transactionSlice = createSlice({
     name: "date",

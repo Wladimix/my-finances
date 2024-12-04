@@ -1,10 +1,10 @@
-import DatePicker from "react-datepicker";
+import DatePicker from "react-datepicker"
 
-import { ru } from "date-fns/locale/ru";
-import { setTransactionData } from "../../storage/transactionSlice";
-import { useAppDispatch, useAppSelector } from "../../storage/store";
+import { ru } from "date-fns/locale/ru"
+import { setTransactionData } from "../../storage/transactionSlice"
+import { useAppDispatch, useAppSelector } from "../../storage/store"
 
-import "react-datepicker/dist/react-datepicker.css";
+import "react-datepicker/dist/react-datepicker.css"
 
 export default function DateInput() {
     const transactionData = useAppSelector(state => state.transaction.transactionData);
@@ -14,8 +14,8 @@ export default function DateInput() {
     const changeDateEvent = (date: Date | null): void => {
         if (date && date.getFullYear() <= new Date().getFullYear()) {
             dispatch(setTransactionData({ ...transactionData, date }));
-        };
-    };
+        }
+    }
 
     return (
         <div className="uk-margin">
@@ -35,4 +35,4 @@ export default function DateInput() {
             </div>
         </div>
     );
-};
+}

@@ -1,5 +1,5 @@
-import { setTransactionData } from "../../storage/transactionSlice";
-import { useAppDispatch, useAppSelector } from "../../storage/store";
+import { setTransactionData } from "../../storage/transactionSlice"
+import { useAppDispatch, useAppSelector } from "../../storage/store"
 
 export default function AmountInput() {
     const transactionData = useAppSelector(state => state.transaction.transactionData);
@@ -10,7 +10,7 @@ export default function AmountInput() {
         dispatch(setTransactionData(
             { ...transactionData, amount: e.target.value }
         ));
-    };
+    }
 
     return (
         <div className="uk-margin">
@@ -27,4 +27,4 @@ export default function AmountInput() {
             </div>
         </div>
     );
-};
+}

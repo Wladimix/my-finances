@@ -1,6 +1,6 @@
-import TransactionsTableRow from "./TransactionsTableRow";
+import TransactionsTableRow from "./TransactionsTableRow"
 
-import { useAppSelector } from "../../storage/store";
+import { useAppSelector } from "../../storage/store"
 
 export default function TransactionsTable() {
     const transactions = useAppSelector(state => state.data.transactions);
@@ -30,4 +30,4 @@ export default function TransactionsTable() {
             </tbody>
         </table>
     );
-};
+}

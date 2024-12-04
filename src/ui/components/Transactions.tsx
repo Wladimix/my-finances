@@ -1,13 +1,13 @@
-import Pagination from "./Pagination";
-import TransactionService from "../services/Transaction/TransactionService";
-import TransactionsTable from "./Tables/TransactionsTable";
+import Pagination from "./Pagination"
+import TransactionService from "../services/Transaction/TransactionService"
+import TransactionsTable from "./Tables/TransactionsTable"
 
-import { setEventType, setRequiredNote, setTransactionData } from "../storage/transactionSlice";
-import { setNotes } from "../storage/dataSlice";
-import { setPage } from "../storage/paginationSlice";
-import { TransactionEvent } from "../constants";
-import { useAppDispatch, useAppSelector } from "../storage/store";
-import { useState } from "react";
+import { setEventType, setRequiredNote, setTransactionData } from "../storage/transactionSlice"
+import { setNotes } from "../storage/dataSlice"
+import { setPage } from "../storage/paginationSlice"
+import { TransactionEvent } from "../constants"
+import { useAppDispatch, useAppSelector } from "../storage/store"
+import { useState } from "react"
 
 export default function Transactions() {
     const transaction = useAppSelector(state => state.transaction);
@@ -21,7 +21,7 @@ export default function Transactions() {
         dispatch(setEventType(TransactionEvent.ADD));
         dispatch(setNotes([]));
         dispatch(setTransactionData({ ...transaction.transactionData, date: new Date() }));
-    };
+    }
 
     const changeNoteEvent = (e: React.ChangeEvent<HTMLInputElement>) => {
         dispatch(setRequiredNote(e.target.value.toLowerCase().replace(/ +/g, ' ')));
@@ -38,7 +38,7 @@ export default function Transactions() {
             });
 
         }, 1000));
-    };
+    }
 
     return (
         <>
@@ -73,4 +73,4 @@ export default function Transactions() {
             <Pagination />
         </>
     );
-};
+}

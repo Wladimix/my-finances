@@ -1,11 +1,11 @@
-import NoteService from "./NoteService";
-import ErrorHandling from "../lib/ErrorHandling";
+import NoteService from "./NoteService"
+import ErrorHandling from "../lib/ErrorHandling"
 
-import { RequestStatuses } from "../constants";
+import { RequestStatuses } from "../constants"
 
-class NoteController implements INoteController {
+class NoteController {
 
-    async getNotes(event, substring: string): Promise<ResponceData<GetNoteDTO[]>> {
+    async getNotes(substring: string): Promise<ResponceData<GetNoteDTO[]>> {
         try {
             const notes = await NoteService.findMatches(substring);
 
@@ -19,10 +19,10 @@ class NoteController implements INoteController {
                 data: null,
                 status: RequestStatuses.ERROR,
                 message: await ErrorHandling.makeErrorMessage(error as Error, "Ошибка получения списка примечаний")
-            };
-        };
-    };
+            }
+        }
+    }
 
-};
+}
 
 export default new NoteController();

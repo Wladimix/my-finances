@@ -1,5 +1,5 @@
-import { NOT_DEFINE } from "../constants";
-import { showNotification } from "../lib/utils";
+import { NOT_DEFINE } from "../constants"
+import { showNotification } from "../lib/utils"
 
 class CalculationService {
 
@@ -11,12 +11,13 @@ class CalculationService {
             setCapital(capital.data);
         } else {
             setCapital("?");
-        };
-    };
+        }
+    }
 
     async getTotalAmount(setTotalStatistics: React.Dispatch<React.SetStateAction<TotalStatisticsDTO>>, date: DateDTO) {
         const totalStatistics = await window.electron.getTotalAmount(date);
         showNotification(totalStatistics, {onlyErrorChecking: true});
+
         if (totalStatistics.data) {
             setTotalStatistics(totalStatistics.data);
         } else {
@@ -25,8 +26,8 @@ class CalculationService {
                 totalExpenceAmount: "",
                 savings: ""
             });
-        };
-    };
+        }
+    }
 
     async getStatisticsOnExpenses(setAmountOfExpenses: React.Dispatch<React.SetStateAction<AmountOfExpenses[]>>, date: DateDTO) {
         const amountOfExpenses = await window.electron.getStatisticsOnExpenses(date);
@@ -36,8 +37,8 @@ class CalculationService {
             setAmountOfExpenses(amountOfExpenses.data);
         } else {
             setAmountOfExpenses([]);
-        };
-    };
+        }
+    }
 
     async calculatePageCount(setPageCount: React.Dispatch<React.SetStateAction<number>>, filter: TransactionFilter): Promise<void> {
         const numberOfTransactions = await window.electron.getNumberOfTransactions(filter);
@@ -47,8 +48,8 @@ class CalculationService {
             setPageCount(Math.ceil(numberOfTransactions.data / 30));
         } else {
             setPageCount(1);
-        };
-    };
+        }
+    }
 
     async getComparativeStatistics(setComparativeStatistics: React.Dispatch<React.SetStateAction<{ [key: keyof GetDatesDTO]: TotalStatisticsDTO }>>) {
         const dates = await window.electron.getAllTransactionDates();
@@ -62,10 +63,10 @@ class CalculationService {
             showNotification(totalAmount, { onlyErrorChecking: true });
 
             comparativeStatistics[year] = totalAmount.data as TotalStatisticsDTO;
-        };
+        }
 
         setComparativeStatistics(comparativeStatistics);
-    };
+    }
 
     async getInflationData(setInflation: React.Dispatch<React.SetStateAction<InflationDTO>>, year: number) {
         const inflation = await window.electron.getInflationData(year);
@@ -75,8 +76,8 @@ class CalculationService {
             setInflation(inflation.data);
         } else {
             setInflation({ "товар": 0 })
-        };
-    };
-};
+        }
+    }
+}
 
 export default new CalculationService();

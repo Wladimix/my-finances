@@ -1,5 +1,5 @@
-import { findSubString } from "./utils";
-import { getTablesNames } from "../connectionDB";
+import { findSubString } from "./utils"
+import { getTablesNames } from "../connectionDB"
 
 class ErrorService {
 
@@ -7,7 +7,7 @@ class ErrorService {
 
     constructor(errorsDictionary: Object) {
         this.errorsDictionary = errorsDictionary;
-    };
+    }
 
     async makeErrorMessage(errorObject: Error, commonErrorMessage: string): Promise<string> {
         console.error(commonErrorMessage + ":");
@@ -23,15 +23,15 @@ class ErrorService {
             : null;
 
         return resultErrorMessage ?? commonErrorMessage;
-    };
+    }
 
     parseTableName(targetString: string, tableName: string | false): string {
         return tableName
             ? targetString.replace("--table-name--", tableName)
             : targetString;
-    };
+    }
 
-};
+}
 
 export default new ErrorService({
     "SQLITE_ERROR: no such column":                               "Ошибка базы данных: обращение к несуществующей колонке",

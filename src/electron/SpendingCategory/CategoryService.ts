@@ -1,7 +1,7 @@
-import CategoryModel from "./CategoryModel";
+import CategoryModel from "./CategoryModel"
 
-import { removeSpaces } from "../lib/utils";
-import { TablesNames } from "../constants";
+import { removeSpaces } from "../lib/utils"
+import { TablesNames } from "../constants"
 
 class CategoryService {
 
@@ -10,7 +10,7 @@ class CategoryService {
         console.info(`Получены данные из таблицы "${TablesNames.SPENDING_CATEGORIES_TABLE_NAME}"`);
 
         return categories;
-    };
+    }
 
     async add(spendingCategory: AddSpendingCategoryDTO): Promise<number> {
         const name = removeSpaces(spendingCategory.name);
@@ -19,7 +19,7 @@ class CategoryService {
         console.info(`Запись "${name}" в таблице "${TablesNames.SPENDING_CATEGORIES_TABLE_NAME}" создана`);
 
         return spendingCategoryId;
-    };
+    }
 
     async edit(spendingCategory: EditSpendingCategoryDTO): Promise<boolean> {
         const id = spendingCategory.id;
@@ -29,7 +29,7 @@ class CategoryService {
         console.info(`Запись #${id} в таблице "${TablesNames.SPENDING_CATEGORIES_TABLE_NAME}" отредактирована`);
 
         return isSuccess;
-    };
+    }
 
     async delete(spendingCategory: DeleteSpendingCategoryDTO): Promise<boolean> {
         const id = spendingCategory.id;
@@ -48,12 +48,12 @@ class CategoryService {
         console.info(`Запись #${id} удалена из таблицы "${TablesNames.SPENDING_CATEGORIES_TABLE_NAME}"`);
 
         return isSuccess;
-    };
-};
+    }
+}
 
 export default new CategoryService();
 
 type AllSpendingCategoriesType = {
     id: number
     name: string
-}[];
+}[]

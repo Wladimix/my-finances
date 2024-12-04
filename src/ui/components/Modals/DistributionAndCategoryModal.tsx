@@ -1,5 +1,5 @@
-import CategoryManagement from "../Management/CategoryManagement";
-import DistributionManagement from "../Management/DistributionManagement";
+import CategoryManagement from "../Management/CategoryManagement"
+import DistributionManagement from "../Management/DistributionManagement"
 
 export default function DistributionAndCategoryModal() {
     return (
@@ -24,4 +24,4 @@ export default function DistributionAndCategoryModal() {
             </div>
         </div>
     );
-};
+}

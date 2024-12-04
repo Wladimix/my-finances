@@ -1,8 +1,8 @@
-import CategoryCard from "../Cards/CategoryCard";
-import SpendingCategoryService from "../../services/SpendingCategoryService";
+import CategoryCard from "../Cards/CategoryCard"
+import SpendingCategoryService from "../../services/SpendingCategoryService"
 
-import { useAppDispatch, useAppSelector } from "../../storage/store";
-import { useState } from "react";
+import { useAppDispatch, useAppSelector } from "../../storage/store"
+import { useState } from "react"
 
 export default function CategoryManagement() {
     const spendingCategories = useAppSelector(state => state.data.spendingCategories);
@@ -17,13 +17,13 @@ export default function CategoryManagement() {
     const addSpendingCategoryEvent = (): void => {
         categoryService.addSpendingCategory(name);
         setName("");
-    };
+    }
 
     const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
         if (e.key === "Enter" && categoryService.checkSpendingCategory(name)) {
             addSpendingCategoryEvent();
-        };
-    };
+        }
+    }
 
     return (
         <>
@@ -67,4 +67,4 @@ export default function CategoryManagement() {
             </div>
         </>
     );
-};
+}

@@ -1,6 +1,6 @@
-export const DELETED_PARAMS_REGULAR = /\(удалено.+\)/
-export const VALUE_MISSING = "-"
-export const NOT_DEFINE = "———"
+export const DELETED_PARAMS_REGULAR = /\(удалено.+\)/;
+export const VALUE_MISSING = "-";
+export const NOT_DEFINE = "———";
 
 export enum TransactionEvent {
     ADD, EDIT

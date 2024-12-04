@@ -1,7 +1,7 @@
-import CalculationService from "../../services/CalculationService";
+import CalculationService from "../../services/CalculationService"
 
-import { useAppSelector } from "../../storage/store";
-import { useEffect, useState } from "react";
+import { useAppSelector } from "../../storage/store"
+import { useEffect, useState } from "react"
 
 export default function TotalCard() {
     const distribytionTypes = useAppSelector(state => state.data.distributionFinancesTypes);
@@ -21,4 +21,4 @@ export default function TotalCard() {
             </table>
         </div>
     );
-};
+}

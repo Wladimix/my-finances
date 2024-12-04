@@ -1,13 +1,13 @@
-import DistributionService from "../DistributionService";
-import InflationService from "../InflationService";
+import DistributionService from "../DistributionService"
+import InflationService from "../InflationService"
 
-import { checkAmount, showNotification } from "../../lib/utils";
-import { dataState, setNotes } from "../../storage/dataSlice";
-import { Dispatch, ThunkDispatch, UnknownAction } from "@reduxjs/toolkit";
-import { NOT_DEFINE } from "../../constants";
-import { setTransactionLoader } from "../../storage/transactionSlice";
-import { setTransactions } from "../../storage/dataSlice";
-import { setDates } from "../../storage/dateSlice";
+import { checkAmount, showNotification } from "../../lib/utils"
+import { dataState, setNotes } from "../../storage/dataSlice"
+import { Dispatch, ThunkDispatch, UnknownAction } from "@reduxjs/toolkit"
+import { NOT_DEFINE } from "../../constants"
+import { setTransactionLoader } from "../../storage/transactionSlice"
+import { setTransactions } from "../../storage/dataSlice"
+import { setDates } from "../../storage/dateSlice"
 
 export default class TransactionService {
 
@@ -15,7 +15,7 @@ export default class TransactionService {
 
     constructor(dispatch: ThunkDispatch<{ data: dataState }, undefined, UnknownAction> & Dispatch<UnknownAction>) {
         this.dispatch = dispatch;
-    };
+    }
 
     async loadTransactions(filter: TransactionFilter): Promise<void> {
         this.dispatch(setTransactionLoader(true));
@@ -28,7 +28,7 @@ export default class TransactionService {
         showNotification(transactions, { onlyErrorChecking: true });
         this.dispatch(setTransactions(transactions.data));
         this.dispatch(setTransactionLoader(false));
-    };
+    }
 
     async addTransaction(transaction: AddTransactionDTO, filter: TransactionFilter): Promise<void> {
         const resultAdding = await window.electron.addTransaction(transaction);
@@ -39,7 +39,7 @@ export default class TransactionService {
         await new InflationService(this.dispatch).loadInflationData(filter.year);
 
         this.dispatch(setNotes([]));
-    };
+    }
 
     async editTransaction(id: number, transaction: AddTransactionDTO, filter: TransactionFilter): Promise<void> {
         const resultEditing = await window.electron.editTransaction({ id, ...transaction });
@@ -50,7 +50,7 @@ export default class TransactionService {
         await new InflationService(this.dispatch).loadInflationData(filter.year);
 
         this.dispatch(setNotes([]));
-    };
+    }
 
     async deleteTransaction(transaction: DeleteTransactionDTO, filter: TransactionFilter) {
         const resultdeleting = await window.electron.deleteTransaction(transaction);
@@ -61,10 +61,10 @@ export default class TransactionService {
         await new InflationService(this.dispatch).loadInflationData(filter.year);
 
         this.dispatch(setNotes([]));
-    };
+    }
 
     checkTransaction(transaction: AddTransactionDTO): boolean {
         return checkAmount(transaction.amount) && transaction.transactionType !== NOT_DEFINE;
-    };
+    }
 
-};
+}

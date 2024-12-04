@@ -1,10 +1,10 @@
-import CalculationService from "../services/CalculationService";
-import ReactPaginate from "react-paginate";
-import TransactionService from "../services/Transaction/TransactionService";
+import CalculationService from "../services/CalculationService"
+import ReactPaginate from "react-paginate"
+import TransactionService from "../services/Transaction/TransactionService"
 
-import { setPage } from "../storage/paginationSlice";
-import { useAppDispatch, useAppSelector } from "../storage/store";
-import { useEffect, useState } from "react";
+import { setPage } from "../storage/paginationSlice"
+import { useAppDispatch, useAppSelector } from "../storage/store"
+import { useEffect, useState } from "react"
 
 export default function Pagination() {
     const allTransactions = useAppSelector(state => state.data.transactions);
@@ -30,7 +30,7 @@ export default function Pagination() {
             note: transaction.requiredNote,
             page: selected
         });
-    };
+    }
 
     return (
         <ReactPaginate
@@ -47,4 +47,4 @@ export default function Pagination() {
             nextLabel={<span data-uk-pagination-next />}
         />
     );
-};
+}

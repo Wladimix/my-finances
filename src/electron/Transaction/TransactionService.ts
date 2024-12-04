@@ -1,13 +1,13 @@
-import AddingTransaction from "./ExecutionOfTransactions/AddingTransaction";
-import DeletingTransaction from "./ExecutionOfTransactions/DeletingTransaction";
-import DistributionModel from "../DustributionFinances/DustributionModel";
-import EditingTransaction from "./ExecutionOfTransactions/EditingTransaction";
-import NoteService from "../Note/NoteService";
-import ObjectEditing from "../lib/ObjectEditing";
-import TransactionModel from "./TransactionModel";
+import AddingTransaction from "./ExecutionOfTransactions/AddingTransaction"
+import DeletingTransaction from "./ExecutionOfTransactions/DeletingTransaction"
+import DistributionModel from "../DustributionFinances/DustributionModel"
+import EditingTransaction from "./ExecutionOfTransactions/EditingTransaction"
+import NoteService from "../Note/NoteService"
+import ObjectEditing from "../lib/ObjectEditing"
+import TransactionModel from "./TransactionModel"
 
-import { convertAmountToNumber, convertAmountToString, makeDateSearchOptions } from "../lib/utils";
-import { TablesNames } from "../constants";
+import { convertAmountToNumber, convertAmountToString, makeDateSearchOptions } from "../lib/utils"
+import { TablesNames } from "../constants"
 
 class TransactionService {
 
@@ -30,7 +30,7 @@ class TransactionService {
             return OE.getResult();
 
         }) as AllTransactions;
-    };
+    }
 
     async getAllDates(): Promise<Dates> {
         const dates = await TransactionModel.getAllDates();
@@ -45,14 +45,14 @@ class TransactionService {
                     ]
             ))
         }), {});
-    };
+    }
 
     async getCount(filter: TransactionFilter): Promise<number> {
         const numberOfTransactionsQuery = TransactionModel.getCount(filter.note);
         const result = (await numberOfTransactionsQuery.whereBetween(`${TablesNames.FINANCIAL_TRANSACTIONS_TABLE_NAME}.date`, makeDateSearchOptions(filter.year, filter.month)))[0].count;
         console.info(`Получено количество записей таблицы "${TablesNames.FINANCIAL_TRANSACTIONS_TABLE_NAME}"`);
         return result;
-    };
+    }
 
     async add(transaction: AddTransactionDTO): Promise<number> {
         const date = transaction.date;
@@ -85,7 +85,7 @@ class TransactionService {
         addingTransaction.realize();
 
         return transactionId;
-    };
+    }
 
     async edit(transaction: EditTransactionDTO): Promise<boolean> {
         const id = transaction.id;
@@ -134,12 +134,12 @@ class TransactionService {
 
         if (noteBeforeEditing.name !== noteForEditing.name) {
             await NoteService.deleteExtraNote(noteBeforeEditing.id, noteBeforeEditing.name);
-        };
+        }
 
         await editingTransaction.realize();
 
         return isSuccess;
-    };
+    }
 
     async delete(transaction: DeleteTransactionDTO): Promise<boolean> {
         const sourceOfTransaction = await DistributionModel.getOne(transaction.sourceOfTransactionId);
@@ -158,9 +158,9 @@ class TransactionService {
         await deletingTransaction.realize();
 
         return isSuccess;
-    };
+    }
 
-};
+}
 
 export default new TransactionService();
 
@@ -179,8 +179,8 @@ type AllTransactions = {
     amount: string,
     transactionType: string
     toCalculateInflation: boolean
-}[];
+}[]
 
 type Dates = {
     [key: string]: number[]
-};
+}

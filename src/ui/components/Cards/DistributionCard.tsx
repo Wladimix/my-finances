@@ -1,13 +1,13 @@
-import DistributionService from "../../services/DistributionService";
+import DistributionService from "../../services/DistributionService"
 
-import { useAppDispatch, useAppSelector } from "../../storage/store";
-import { useState } from "react";
-import { convertAmountToNumber } from '../../../electron/lib/utils';
-import { checkAmount } from '../../lib/utils';
+import { useAppDispatch, useAppSelector } from "../../storage/store"
+import { useState } from "react"
+import { convertAmountToNumber } from '../../../electron/lib/utils'
+import { checkAmount } from '../../lib/utils'
 
 type DistributionCardProps = {
     distributionType: GetDistributionTypeDTO
-};
+}
 
 export default function DistributionCard({ distributionType }: DistributionCardProps) {
     const date = useAppSelector(state => state.date);
@@ -41,7 +41,7 @@ export default function DistributionCard({ distributionType }: DistributionCardP
 
         setName("");
         setAmount("");
-    };
+    }
 
     const deleteDistributionTypeEvent = (): void => {
         distributionService.deleteDistributionType(
@@ -55,7 +55,7 @@ export default function DistributionCard({ distributionType }: DistributionCardP
                 page: currentPage
             }
         );
-    };
+    }
 
     return (
         <div>
@@ -97,4 +97,4 @@ export default function DistributionCard({ distributionType }: DistributionCardP
             </div>
         </div>
     );
-};
+}

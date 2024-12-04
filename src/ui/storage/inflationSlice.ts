@@ -1,6 +1,6 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice } from "@reduxjs/toolkit"
 
-const initialState: InflationState = {};
+const initialState: InflationState = {}
 
 const inflationSlice = createSlice({
     name: "inflation",

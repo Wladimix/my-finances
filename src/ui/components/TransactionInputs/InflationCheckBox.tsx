@@ -1,6 +1,6 @@
-import { setTransactionData } from "../../storage/transactionSlice";
-import { TransactionsTypes, VALUE_MISSING } from "../../constants";
-import { useAppDispatch, useAppSelector } from "../../storage/store";
+import { setTransactionData } from "../../storage/transactionSlice"
+import { TransactionsTypes, VALUE_MISSING } from "../../constants"
+import { useAppDispatch, useAppSelector } from "../../storage/store"
 
 export default function InflationCheckBox() {
     const transactionData = useAppSelector(state => state.transaction.transactionData);
@@ -11,7 +11,7 @@ export default function InflationCheckBox() {
         dispatch(setTransactionData(
             { ...transactionData, toCalculateInflation: !transactionData.toCalculateInflation }
         ));
-    };
+    }
 
     const isHidden = (transactionData.note && transactionData.note !== VALUE_MISSING) &&
         ((transactionData.transactionType === TransactionsTypes.FINANCIAL_EXPENCE) ||
@@ -32,4 +32,4 @@ export default function InflationCheckBox() {
             }
         </>
     );
-};
+}

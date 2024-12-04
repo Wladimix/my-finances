@@ -1,7 +1,7 @@
-import ExpenditureStatistics from "../Statistics/ExpenditureStatistics";
+import ExpenditureStatistics from "../Statistics/ExpenditureStatistics"
 
-import { NOT_DEFINE } from "../../constants";
-import { useAppSelector } from "../../storage/store";
+import { NOT_DEFINE } from "../../constants"
+import { useAppSelector } from "../../storage/store"
 
 export default function YearlyStatisticCard() {
     const date = useAppSelector(state => state.date);
@@ -23,4 +23,4 @@ export default function YearlyStatisticCard() {
 
         </div>
     );
-};
+}

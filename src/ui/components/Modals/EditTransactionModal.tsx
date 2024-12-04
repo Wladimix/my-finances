@@ -1,17 +1,17 @@
-import AddressOrCategoryInput from "../TransactionInputs/AddressOrCategoryInput";
-import AmountInput from "../TransactionInputs/AmountInput";
-import DateInput from "../TransactionInputs/DateInput";
-import InflationCheckBox from "../TransactionInputs/InflationCheckBox";
-import NoteInput from "../TransactionInputs/NoteInput";
-import SourceOfTransactionInput from "../TransactionInputs/SourceOfTransactionInput";
-import TransactionService from "../../services/Transaction/TransactionService";
+import AddressOrCategoryInput from "../TransactionInputs/AddressOrCategoryInput"
+import AmountInput from "../TransactionInputs/AmountInput"
+import DateInput from "../TransactionInputs/DateInput"
+import InflationCheckBox from "../TransactionInputs/InflationCheckBox"
+import NoteInput from "../TransactionInputs/NoteInput"
+import SourceOfTransactionInput from "../TransactionInputs/SourceOfTransactionInput"
+import TransactionService from "../../services/Transaction/TransactionService"
 
-import { NOT_DEFINE, TransactionEvent, TransactionsTypes } from "../../constants";
-import { useAppDispatch, useAppSelector } from "../../storage/store";
+import { NOT_DEFINE, TransactionEvent, TransactionsTypes } from "../../constants"
+import { useAppDispatch, useAppSelector } from "../../storage/store"
 
 type TransactionModalParams = {
     [key in TransactionEvent]: string
-};
+}
 
 export default function EditTransactionModal() {
     const date = useAppSelector(state => state.date);
@@ -21,7 +21,7 @@ export default function EditTransactionModal() {
     const windowHeaders: TransactionModalParams = {
         [TransactionEvent.ADD]: "Новая транзакция",
         [TransactionEvent.EDIT]: "Редактирование транзакции"
-    };
+    }
 
     const dispatch = useAppDispatch();
     const transactionService = new TransactionService(dispatch);
@@ -49,12 +49,12 @@ export default function EditTransactionModal() {
             }
         )}
 
-    };
+    }
 
     const buttonValues: TransactionModalParams = {
         [TransactionEvent.ADD]: "ДОБАВИТЬ",
         [TransactionEvent.EDIT]: "РЕДАКТИРОВАТЬ"
-    };
+    }
 
     const textClasses = {
         [String(TransactionsTypes.FINANCIAL_INCOME)]: "uk-text-center uk-text-large uk-text-success",
@@ -62,7 +62,7 @@ export default function EditTransactionModal() {
         [String(TransactionsTypes.FINANCIAL_EXPENCE)]: "uk-text-center uk-text-large uk-text-danger",
         [String(TransactionsTypes.PRICE_MONITORING)]: "uk-text-center uk-text-large",
         [NOT_DEFINE]: "uk-text-center uk-text-large",
-    };
+    }
 
     return (
         <div id="transaction" data-uk-modal data-container="false">
@@ -105,4 +105,4 @@ export default function EditTransactionModal() {
             </div>
         </div>
     );
-};
+}

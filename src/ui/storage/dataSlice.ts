@@ -1,11 +1,11 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice } from "@reduxjs/toolkit"
 
 const initialState: dataState = {
     distributionFinancesTypes: [],
     spendingCategories: [],
     transactions: [],
     notes: []
-};
+}
 
 const dataSlice = createSlice({
     name: "data",
@@ -26,4 +26,4 @@ export type dataState = {
     spendingCategories: GetCategoryDTO[],
     transactions: GetTransactionDTO[],
     notes: GetNoteDTO[]
-};
+}
