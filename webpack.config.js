@@ -9,20 +9,20 @@ module.exports = [
             rules: [
                 {
                     test: /\.ts$/,
-                    use: ["ts-loader"]
-                }
-            ]
+                    use: ["ts-loader"],
+                },
+            ],
         },
         output: {
             path: __dirname + "/build",
-            filename: "main.js"
+            filename: "main.js",
         },
         resolve: {
-            extensions: [".ts"]
+            extensions: [".ts"],
         },
         externals: {
-            knex: "commonjs knex"
-        }
+            knex: "commonjs knex",
+        },
     },
     {
         mode: process.env.MODE || "development",
@@ -32,14 +32,14 @@ module.exports = [
             rules: [
                 {
                     test: /\.ts$/,
-                    use: ["ts-loader"]
-                }
-            ]
+                    use: ["ts-loader"],
+                },
+            ],
         },
         output: {
             path: __dirname + "/build",
-            filename: "preload.js"
-        }
+            filename: "preload.js",
+        },
     },
     {
         mode: process.env.MODE || "development",
@@ -50,25 +50,25 @@ module.exports = [
             rules: [
                 {
                     test: /\.ts(x?)$/,
-                    use: ["ts-loader"]
+                    use: ["ts-loader"],
                 },
                 {
                     test: /\.css$/,
-                    use: ["style-loader", "css-loader"]
-                }
-            ]
+                    use: ["style-loader", "css-loader"],
+                },
+            ],
         },
         output: {
             path: __dirname + "/build",
-            filename: "index.js"
+            filename: "index.js",
         },
         resolve: {
-            extensions: [".js", ".ts", ".tsx"]
+            extensions: [".js", ".ts", ".tsx"],
         },
         plugins: [
             new HtmlWebpackPlugin({
-                template: "./src/ui/index.html"
-            })
-        ]
-    }
+                template: "./src/ui/index.html",
+            }),
+        ],
+    },
 ]
