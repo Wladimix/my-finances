@@ -65,12 +65,13 @@ export default function App() {
 
             <div className='uk-margin-bottom' data-uk-grid>
                 <div>
-                    <button
-                        className='uk-button uk-button-primary'
-                        uk-toggle='target: #statistic'
+                    <a
+                        className="uk-button uk-button-primary"
+                        href="#statistics"
+                        data-uk-scroll
                     >
                         СТАТИСТИКА
-                    </button>
+                    </a>
                 </div>
 
                 <div>
@@ -343,36 +344,12 @@ export default function App() {
                 </div>
             </div>
 
-            <h1 className='uk-heading-divider'><span>Общая статистика по годам</span></h1>
+            <h1 id='statistics' className='uk-heading-divider'><span>Статистика</span></h1>
 
-            <Bar
-                data={{
-                    labels: [2022, 2023, 2024],
-                    datasets: [
-                        {
-                            data: [100, 200, 300],
-                            label: 'Доходы',
-                            backgroundColor: 'rgba(50, 200, 100, 0.5)'
-                        },
-                        {
-                            data: [100, 200, 300],
-                            label: 'Расходы',
-                            backgroundColor: 'rgba(200, 50, 50, 0.5)'
-                        }
-                    ]
-                }}
-                options={{
-                    animation: {
-                        duration: 0
-                    }
-                }}
-            />
-
-            <div id='statistic' className='uk-modal-container' data-uk-modal>
-                <div className='uk-modal-dialog uk-modal-body'>
-                    <button className='uk-modal-close-default' data-uk-close></button>
-                    <h2 className='uk-modal-title'>Статистика за 2024 год</h2>
-                    <div className='uk-container uk-container-xsmall'>
+            <div className='uk-child-width-expand' data-uk-grid>
+                <div>
+                    <div className='uk-card uk-card-default uk-card-body uk-background-muted'>
+                        <h2>2024</h2>
                         <Doughnut
                             data={{
                                 labels: ['test1', 'test2'],
@@ -407,22 +384,97 @@ export default function App() {
                                 }
                             }}
                         />
-                    </div>
-                    <hr></hr>
-                    <div className='uk-grid-small' data-uk-grid>
-                        <div className='uk-width-expand uk-text-large' data-uk-leader>
-                            Продукты
+                        <div className='uk-grid-small' data-uk-grid>
+                            <div className='uk-width-expand uk-text-large' data-uk-leader>
+                                Продукты
+                            </div>
+                            <div className='uk-text-large'>500</div>
                         </div>
-                        <div className='uk-text-large'>500</div>
-                    </div>
-                    <div className='uk-grid-small' data-uk-grid>
-                        <div className='uk-width-expand uk-text-large' data-uk-leader>
-                            Одежда
+                        <div className='uk-grid-small' data-uk-grid>
+                            <div className='uk-width-expand uk-text-large' data-uk-leader>
+                                Одежда
+                            </div>
+                            <div className='uk-text-large'>500</div>
                         </div>
-                        <div className='uk-text-large'>500</div>
+                    </div>
+                </div>
+                <div>
+                    <div className='uk-card uk-card-default uk-card-body uk-background-muted'>
+                        <h2>Сентябрь</h2>
+                        <Doughnut
+                            data={{
+                                labels: ['test1', 'test2'],
+                                datasets: [{
+                                    data: [200, 400],
+                                    backgroundColor: ['#CB4335', '#1F618D', '#F1C40F', '#27AE60', '#884EA0', '#D35400']
+                                }]
+                            }}
+                            options={{
+                                animation: {
+                                    duration: 0
+                                },
+                                responsive: true,
+                                plugins: {
+                                    legend: {
+                                        position: 'bottom',
+                                        onHover: (evt, item, legend): void => {
+                                            const backgroundColor = legend.chart.data.datasets[0].backgroundColor as string[];
+                                            backgroundColor.forEach((color, index, colors) => {
+                                                colors[index] = index === item.index || color.length === 9 ? color : color + '4D';
+                                            });
+                                            legend.chart.update();
+                                        },
+                                        onLeave: (evt, item, legend): void => {
+                                            const backgroundColor = legend.chart.data.datasets[0].backgroundColor as string[];
+                                            backgroundColor.forEach((color, index, colors) => {
+                                                colors[index] = color.length === 9 ? color.slice(0, -2) : color;
+                                            });
+                                            legend.chart.update();
+                                        }
+                                    }
+                                }
+                            }}
+                        />
+                        <div className='uk-grid-small' data-uk-grid>
+                            <div className='uk-width-expand uk-text-large' data-uk-leader>
+                                Продукты
+                            </div>
+                            <div className='uk-text-large'>500</div>
+                        </div>
+                        <div className='uk-grid-small' data-uk-grid>
+                            <div className='uk-width-expand uk-text-large' data-uk-leader>
+                                Одежда
+                            </div>
+                            <div className='uk-text-large'>500</div>
+                        </div>
                     </div>
                 </div>
             </div>
+
+            <h1 className='uk-heading-divider'><span>Общая статистика по годам</span></h1>
+
+            <Bar
+                data={{
+                    labels: [2022, 2023, 2024],
+                    datasets: [
+                        {
+                            data: [100, 200, 300],
+                            label: 'Доходы',
+                            backgroundColor: 'rgba(50, 200, 100, 0.5)'
+                        },
+                        {
+                            data: [100, 200, 300],
+                            label: 'Расходы',
+                            backgroundColor: 'rgba(200, 50, 50, 0.5)'
+                        }
+                    ]
+                }}
+                options={{
+                    animation: {
+                        duration: 0
+                    }
+                }}
+            />
 
         </div>
     )
