@@ -5,6 +5,7 @@ import UIkit from 'uikit';
 import { createRoot } from 'react-dom/client';
 
 import './styles.css';
+import 'react-datepicker/dist/react-datepicker.css';
 import 'uikit/dist/css/uikit.css';
 
 UIkit.use(Icons);

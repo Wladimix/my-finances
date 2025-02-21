@@ -23,6 +23,7 @@ table {
     border: none;
     margin-bottom: 20px;
 }
+
 table thead th {
     font-weight: bold;
     text-align: left;
@@ -31,31 +32,50 @@ table thead th {
     background: #d8d8d8;
     font-size: 19px;
 }
+
 table thead tr th:first-child {
     border-radius: 8px 0 0 8px;
 }
+
 table thead tr th:last-child {
     border-radius: 0 8px 8px 0;
 }
+
 table tbody td {
     text-align: left;
+    justify-content: center;
     border: none;
     padding: 10px 15px;
     font-size: 19px;
     vertical-align: top;
 }
+
+table tbody td.datepicker {
+    width: 160px;
+}
+
 table tbody tr:nth-child(even){
     background: #f3f3f3;
 }
+
 table tbody tr td:first-child {
     border-radius: 8px 0 0 8px;
 }
+
 table tbody tr td:last-child {
     border-radius: 0 8px 8px 0;
 }
 
-.account-input,
-.category-input {
+.custom-input {
     border: none !important;
     background: none !important;
+}
+
+.react-datepicker-wrapper,
+.react-datepicker__input-container,
+.react-datepicker__input-container input {
+    width: 153px;
+    height: 23px;
+    margin: 0px;
+    padding: 0px;
 }

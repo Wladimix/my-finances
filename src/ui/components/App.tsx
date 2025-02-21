@@ -1,6 +1,9 @@
+import DatePicker from 'react-datepicker';
+
 import { Bar } from 'react-chartjs-2';
 import { Chart, CategoryScale } from 'chart.js/auto';
 import { Doughnut } from 'react-chartjs-2';
+import { ru } from 'date-fns/locale/ru';
 
 Chart.register(CategoryScale);
 
@@ -66,8 +69,8 @@ export default function App() {
             <div className='uk-margin-bottom' data-uk-grid>
                 <div>
                     <a
-                        className="uk-button uk-button-primary"
-                        href="#statistics"
+                        className='uk-button uk-button-primary'
+                        href='#statistics'
                         data-uk-scroll
                     >
                         СТАТИСТИКА
@@ -112,7 +115,16 @@ export default function App() {
                 </thead>
                 <tbody>
                     <tr>
-                        <td>25 сентября</td>
+                        <td className='datepicker'>
+                            <DatePicker
+                                className='custom-input uk-input'
+                                dateFormat='dd MMMM YYYY'
+                                locale={ru}
+                                onChange={() => {}}
+                                selected={new Date()}
+                                popperPlacement='bottom-end'
+                            />
+                        </td>
                         <td>Карта МИР Открытие</td>
                         <td>Карта МИР ВТБ</td>
                         <td>500 ₽</td>
@@ -125,7 +137,16 @@ export default function App() {
                         </td>
                     </tr>
                     <tr>
-                        <td>25 сентября</td>
+                        <td className='datepicker'>
+                            <DatePicker
+                                className='custom-input uk-input'
+                                dateFormat='dd MMMM YYYY'
+                                locale={ru}
+                                onChange={() => {}}
+                                selected={new Date()}
+                                popperPlacement='bottom-end'
+                            />
+                        </td>
                         <td>Карта МИР Открытие</td>
                         <td>Карта МИР ВТБ</td>
                         <td>500 ₽</td>
@@ -138,85 +159,16 @@ export default function App() {
                         </td>
                     </tr>
                     <tr>
-                        <td>25 сентября</td>
-                        <td>Карта МИР Открытие</td>
-                        <td>Карта МИР ВТБ</td>
-                        <td>500 ₽</td>
-                        <td>Молоко</td>
-                        <td className='uk-text-center'>
-                            <button
-                                className='uk-icon-link'
-                                data-uk-icon='icon: trash; ratio: 1.2'
+                        <td className='datepicker'>
+                            <DatePicker
+                                className='custom-input uk-input'
+                                dateFormat='dd MMMM YYYY'
+                                locale={ru}
+                                onChange={() => {}}
+                                selected={new Date()}
+                                popperPlacement='bottom-end'
                             />
                         </td>
-                    </tr>
-                    <tr>
-                        <td>25 сентября</td>
-                        <td>Карта МИР Открытие</td>
-                        <td>Карта МИР ВТБ</td>
-                        <td>500 ₽</td>
-                        <td>Молоко</td>
-                        <td className='uk-text-center'>
-                            <button
-                                className='uk-icon-link'
-                                data-uk-icon='icon: trash; ratio: 1.2'
-                            />
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>25 сентября</td>
-                        <td>Карта МИР Открытие</td>
-                        <td>Карта МИР ВТБ</td>
-                        <td>500 ₽</td>
-                        <td>Молоко</td>
-                        <td className='uk-text-center'>
-                            <button
-                                className='uk-icon-link'
-                                data-uk-icon='icon: trash; ratio: 1.2'
-                            />
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>25 сентября</td>
-                        <td>Карта МИР Открытие</td>
-                        <td>Карта МИР ВТБ</td>
-                        <td>500 ₽</td>
-                        <td>Молоко</td>
-                        <td className='uk-text-center'>
-                            <button
-                                className='uk-icon-link'
-                                data-uk-icon='icon: trash; ratio: 1.2'
-                            />
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>25 сентября</td>
-                        <td>Карта МИР Открытие</td>
-                        <td>Карта МИР ВТБ</td>
-                        <td>500 ₽</td>
-                        <td>Молоко</td>
-                        <td className='uk-text-center'>
-                            <button
-                                className='uk-icon-link'
-                                data-uk-icon='icon: trash; ratio: 1.2'
-                            />
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>25 сентября</td>
-                        <td>Карта МИР Открытие</td>
-                        <td>Карта МИР ВТБ</td>
-                        <td>500 ₽</td>
-                        <td>Молоко</td>
-                        <td className='uk-text-center'>
-                            <button
-                                className='uk-icon-link'
-                                data-uk-icon='icon: trash; ratio: 1.2'
-                            />
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>25 сентября</td>
                         <td>Карта МИР Открытие</td>
                         <td>Карта МИР ВТБ</td>
                         <td>500 ₽</td>
@@ -266,10 +218,10 @@ export default function App() {
                                 data-uk-icon='icon: trash; ratio: 1.2'
                             />
                         </div>
-                        <input className='account-input uk-input uk-text-large' value='Карта МИР ВТБ' />
+                        <input className='custom-input uk-input uk-text-large' value='Карта МИР ВТБ' />
                         <div className='uk-inline'>
                             <span className='uk-form-icon uk-form-icon-flip uk-text-large'>₽</span>
-                            <input className='account-input uk-input uk-text-large' value='10 000 000' />
+                            <input className='custom-input uk-input uk-text-large' value='10 000 000' />
                         </div>
                     </div>
                 </div>
@@ -281,10 +233,10 @@ export default function App() {
                                 data-uk-icon='icon: trash; ratio: 1.2'
                             />
                         </div>
-                        <input className='account-input uk-input uk-text-large' value='Карта МИР ВТБ' />
+                        <input className='custom-input uk-input uk-text-large' value='Карта МИР ВТБ' />
                         <div className='uk-inline'>
                             <span className='uk-form-icon uk-form-icon-flip uk-text-large'>₽</span>
-                            <input className='account-input uk-input uk-text-large' value='10 000 000' />
+                            <input className='custom-input uk-input uk-text-large' value='10 000 000' />
                         </div>
                     </div>
                 </div>
@@ -296,10 +248,10 @@ export default function App() {
                                 data-uk-icon='icon: trash; ratio: 1.2'
                             />
                         </div>
-                        <input className='account-input uk-input uk-text-large' value='Карта МИР ВТБ' />
+                        <input className='custom-input uk-input uk-text-large' value='Карта МИР ВТБ' />
                         <div className='uk-inline'>
                             <span className='uk-form-icon uk-form-icon-flip uk-text-large'>₽</span>
-                            <input className='account-input uk-input uk-text-large' value='10 000 000' />
+                            <input className='custom-input uk-input uk-text-large' value='10 000 000' />
                         </div>
                     </div>
                 </div>
@@ -320,7 +272,7 @@ export default function App() {
                             <tr>
                                 <td className='uk-text-large'>
                                     <input
-                                        className='category-input uk-input'
+                                        className='custom-input uk-input'
                                         value='Продукты'
                                     />
                                 </td>
@@ -331,7 +283,7 @@ export default function App() {
                             <tr>
                                 <td className='uk-text-large'>
                                     <input
-                                        className='category-input uk-input'
+                                        className='custom-input uk-input'
                                         value='Одежда'
                                     />
                                 </td>
@@ -455,17 +407,22 @@ export default function App() {
 
             <Bar
                 data={{
-                    labels: [2022, 2023, 2024],
+                    labels: [2022, 2023, 2024, 2022, 2023, 2024, 2022, 2023, 2024, 2022, 2023, 2024],
                     datasets: [
                         {
-                            data: [100, 200, 300],
+                            data: [100, 200, 300, 100, 200, 300, 100, 200, 300, 100, 200, 300, 100, 200, 300],
                             label: 'Доходы',
                             backgroundColor: 'rgba(50, 200, 100, 0.5)'
                         },
                         {
-                            data: [100, 200, 300],
+                            data: [100, 200, 300, 100, 200, 300, 100, 200, 300, 100, 200, 300, 100, 200, 300],
                             label: 'Расходы',
                             backgroundColor: 'rgba(200, 50, 50, 0.5)'
+                        },
+                        {
+                            data: [100, 200, 300, 100, 200, 300, 100, 200, 300, 100, 200, 300, 100, 200, 300],
+                            label: 'Экономия',
+                            backgroundColor: 'rgba(190, 200, 50, 0.5)'
                         }
                     ]
                 }}
