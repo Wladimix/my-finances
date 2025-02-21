@@ -115,7 +115,7 @@ export default function App() {
                 </thead>
                 <tbody>
                     <tr>
-                        <td className='datepicker'>
+                        <td className='datepicker-cell'>
                             <DatePicker
                                 className='custom-input uk-input'
                                 dateFormat='dd MMMM YYYY'
@@ -125,8 +125,19 @@ export default function App() {
                                 popperPlacement='bottom-end'
                             />
                         </td>
-                        <td>Карта МИР Открытие</td>
-                        <td>Карта МИР ВТБ</td>
+                        <td className='select-cell'>
+                            <select className='custom-select uk-select'>
+                                <option>Карта МИР Открытие Карта МИР Открытие</option>
+                                <option>Карта МИР ВТБ</option>
+                                <option>Карта МИР Альфа банк</option>
+                            </select>
+                        </td>
+                        <td className='select-cell'>
+                            <select className='custom-select uk-select'>
+                                <option>Карта МИР Открытие</option>
+                                <option>Карта МИР ВТБ</option>
+                            </select>
+                        </td>
                         <td>500 ₽</td>
                         <td>Молоко</td>
                         <td className='uk-text-center'>
@@ -147,8 +158,19 @@ export default function App() {
                                 popperPlacement='bottom-end'
                             />
                         </td>
-                        <td>Карта МИР Открытие</td>
-                        <td>Карта МИР ВТБ</td>
+                        <td className='select-cell'>
+                            <select className='custom-select uk-select'>
+                                <option>Карта МИР Открытие Карта МИР Открытие</option>
+                                <option>Карта МИР ВТБ</option>
+                                <option>Карта МИР Альфа банк</option>
+                            </select>
+                        </td>
+                        <td className='select-cell'>
+                            <select className='custom-select uk-select'>
+                                <option>Карта МИР Открытие</option>
+                                <option>Карта МИР ВТБ</option>
+                            </select>
+                        </td>
                         <td>500 ₽</td>
                         <td>Молоко</td>
                         <td className='uk-text-center'>
@@ -169,8 +191,19 @@ export default function App() {
                                 popperPlacement='bottom-end'
                             />
                         </td>
-                        <td>Карта МИР Открытие</td>
-                        <td>Карта МИР ВТБ</td>
+                        <td className='select-cell'>
+                            <select className='custom-select uk-select'>
+                                <option>Карта МИР Открытие Карта МИР Открытие</option>
+                                <option>Карта МИР ВТБ</option>
+                                <option>Карта МИР Альфа банк</option>
+                            </select>
+                        </td>
+                        <td className='select-cell'>
+                            <select className='custom-select uk-select'>
+                                <option>Карта МИР Открытие</option>
+                                <option>Карта МИР ВТБ</option>
+                            </select>
+                        </td>
                         <td>500 ₽</td>
                         <td>Молоко</td>
                         <td className='uk-text-center'>
