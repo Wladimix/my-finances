@@ -65,7 +65,12 @@ export default function App() {
 
             <div className='uk-margin-bottom' data-uk-grid>
                 <div>
-                    <button className='uk-button uk-button-primary' uk-toggle="target: #yearly-statistic">СТАТИСТИКА</button>
+                    <button
+                        className='uk-button uk-button-primary'
+                        uk-toggle='target: #statistic'
+                    >
+                        СТАТИСТИКА
+                    </button>
                 </div>
 
                 <div>
@@ -111,7 +116,7 @@ export default function App() {
                         <td>Карта МИР ВТБ</td>
                         <td>500 ₽</td>
                         <td>Молоко</td>
-                        <td>
+                        <td className='uk-text-center'>
                             <button
                                 className='uk-icon-link'
                                 data-uk-icon='icon: trash; ratio: 1.2'
@@ -124,7 +129,7 @@ export default function App() {
                         <td>Карта МИР ВТБ</td>
                         <td>500 ₽</td>
                         <td>Молоко</td>
-                        <td>
+                        <td className='uk-text-center'>
                             <button
                                 className='uk-icon-link'
                                 data-uk-icon='icon: trash; ratio: 1.2'
@@ -137,7 +142,7 @@ export default function App() {
                         <td>Карта МИР ВТБ</td>
                         <td>500 ₽</td>
                         <td>Молоко</td>
-                        <td>
+                        <td className='uk-text-center'>
                             <button
                                 className='uk-icon-link'
                                 data-uk-icon='icon: trash; ratio: 1.2'
@@ -150,7 +155,7 @@ export default function App() {
                         <td>Карта МИР ВТБ</td>
                         <td>500 ₽</td>
                         <td>Молоко</td>
-                        <td>
+                        <td className='uk-text-center'>
                             <button
                                 className='uk-icon-link'
                                 data-uk-icon='icon: trash; ratio: 1.2'
@@ -163,7 +168,7 @@ export default function App() {
                         <td>Карта МИР ВТБ</td>
                         <td>500 ₽</td>
                         <td>Молоко</td>
-                        <td>
+                        <td className='uk-text-center'>
                             <button
                                 className='uk-icon-link'
                                 data-uk-icon='icon: trash; ratio: 1.2'
@@ -176,7 +181,7 @@ export default function App() {
                         <td>Карта МИР ВТБ</td>
                         <td>500 ₽</td>
                         <td>Молоко</td>
-                        <td>
+                        <td className='uk-text-center'>
                             <button
                                 className='uk-icon-link'
                                 data-uk-icon='icon: trash; ratio: 1.2'
@@ -189,7 +194,7 @@ export default function App() {
                         <td>Карта МИР ВТБ</td>
                         <td>500 ₽</td>
                         <td>Молоко</td>
-                        <td>
+                        <td className='uk-text-center'>
                             <button
                                 className='uk-icon-link'
                                 data-uk-icon='icon: trash; ratio: 1.2'
@@ -202,7 +207,7 @@ export default function App() {
                         <td>Карта МИР ВТБ</td>
                         <td>500 ₽</td>
                         <td>Молоко</td>
-                        <td>
+                        <td className='uk-text-center'>
                             <button
                                 className='uk-icon-link'
                                 data-uk-icon='icon: trash; ratio: 1.2'
@@ -215,7 +220,7 @@ export default function App() {
                         <td>Карта МИР ВТБ</td>
                         <td>500 ₽</td>
                         <td>Молоко</td>
-                        <td>
+                        <td className='uk-text-center'>
                             <button
                                 className='uk-icon-link'
                                 data-uk-icon='icon: trash; ratio: 1.2'
@@ -314,7 +319,7 @@ export default function App() {
                             <tr>
                                 <td className='uk-text-large'>
                                     <input
-                                        className='account-input uk-input'
+                                        className='category-input uk-input'
                                         value='Продукты'
                                     />
                                 </td>
@@ -325,7 +330,7 @@ export default function App() {
                             <tr>
                                 <td className='uk-text-large'>
                                     <input
-                                        className='account-input uk-input'
+                                        className='category-input uk-input'
                                         value='Одежда'
                                     />
                                 </td>
@@ -363,17 +368,17 @@ export default function App() {
                 }}
             />
 
-            <div id="yearly-statistic" className="uk-modal-container" data-uk-modal>
-                <div className="uk-modal-dialog uk-modal-body">
-                    <button className="uk-modal-close-default" data-uk-close></button>
-                    <h2 className="uk-modal-title">Статистика за 2024 год</h2>
-                    <div className="uk-container uk-container-xsmall">
+            <div id='statistic' className='uk-modal-container' data-uk-modal>
+                <div className='uk-modal-dialog uk-modal-body'>
+                    <button className='uk-modal-close-default' data-uk-close></button>
+                    <h2 className='uk-modal-title'>Статистика за 2024 год</h2>
+                    <div className='uk-container uk-container-xsmall'>
                         <Doughnut
                             data={{
                                 labels: ['test1', 'test2'],
                                 datasets: [{
                                     data: [200, 400],
-                                    backgroundColor: ["#CB4335", "#1F618D", "#F1C40F", "#27AE60", "#884EA0", "#D35400"]
+                                    backgroundColor: ['#CB4335', '#1F618D', '#F1C40F', '#27AE60', '#884EA0', '#D35400']
                                 }]
                             }}
                             options={{
@@ -383,11 +388,11 @@ export default function App() {
                                 responsive: true,
                                 plugins: {
                                     legend: {
-                                        position: "bottom",
+                                        position: 'bottom',
                                         onHover: (evt, item, legend): void => {
                                             const backgroundColor = legend.chart.data.datasets[0].backgroundColor as string[];
                                             backgroundColor.forEach((color, index, colors) => {
-                                                colors[index] = index === item.index || color.length === 9 ? color : color + "4D";
+                                                colors[index] = index === item.index || color.length === 9 ? color : color + '4D';
                                             });
                                             legend.chart.update();
                                         },
@@ -404,17 +409,17 @@ export default function App() {
                         />
                     </div>
                     <hr></hr>
-                    <div className="uk-grid-small" data-uk-grid>
+                    <div className='uk-grid-small' data-uk-grid>
                         <div className='uk-width-expand uk-text-large' data-uk-leader>
                             Продукты
                         </div>
-                        <div className="uk-text-large">500</div>
+                        <div className='uk-text-large'>500</div>
                     </div>
-                    <div className="uk-grid-small" data-uk-grid>
+                    <div className='uk-grid-small' data-uk-grid>
                         <div className='uk-width-expand uk-text-large' data-uk-leader>
                             Одежда
                         </div>
-                        <div className="uk-text-large">500</div>
+                        <div className='uk-text-large'>500</div>
                     </div>
                 </div>
             </div>

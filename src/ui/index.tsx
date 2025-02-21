@@ -1,14 +1,15 @@
-import App from './components/App'
-import Icons from 'uikit/dist/js/uikit-icons'
-import UIkit from 'uikit'
+import App from './components/App';
+import Icons from 'uikit/dist/js/uikit-icons';
+import UIkit from 'uikit';
 
-import { createRoot } from 'react-dom/client'
+import { createRoot } from 'react-dom/client';
 
-import 'uikit/dist/css/uikit.css'
+import './styles.css';
+import 'uikit/dist/css/uikit.css';
 
-UIkit.use(Icons)
+UIkit.use(Icons);
 
-const root = createRoot(document.getElementById('root') as HTMLElement)
+const root = createRoot(document.getElementById('root') as HTMLElement);
 root.render(
     <App />
-)
+);
