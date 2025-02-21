@@ -1,8 +1,8 @@
-import path from "path"
+import path from 'path';
 
-import { app, BrowserWindow } from "electron"
+import { app, BrowserWindow } from 'electron';
 
-const isDev = !app.isPackaged
+const isDev = !app.isPackaged;
 
 function createWindow() {
     let win = new BrowserWindow({
@@ -11,24 +11,24 @@ function createWindow() {
         width: 1350,
         height: 800,
         webPreferences: {
-            preload: path.join(__dirname, "preload.js")
-        },
-    })
+            preload: path.join(__dirname, 'preload.js')
+        }
+    });
 
-    win.setTitle("Мои финансы")
-    // win.setMenu(null)
+    win.setTitle('Мои финансы');
+    // win.setMenu(null);
 
     if (isDev) {
-        win.loadFile("index.html")
+        win.loadFile('index.html');
     } else {
-        win.loadFile(path.join(app.getAppPath(), "/build/index.html"))
+        win.loadFile(path.join(app.getAppPath(), '/build/index.html'));
     }
 }
 
 app.whenReady().then(async () => {
-    createWindow()
-})
+    createWindow();
+});
 
 app.on('window-all-closed', () => {
-    if (process.platform !== 'darwin') app.quit()
-})
+    if (process.platform !== 'darwin') app.quit();
+});
