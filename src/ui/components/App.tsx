@@ -55,7 +55,13 @@ export default function App() {
                 </div>
             </div>
 
-            <h1 className='uk-heading-divider'><span>Транзакции</span></h1>
+            <h1 className='uk-heading-divider'>
+                <span>Транзакции</span>
+                <button
+                    className='uk-icon-link uk-margin-small-left'
+                    data-uk-icon='icon:  plus-circle; ratio: 2'
+                />
+            </h1>
 
             <div className='uk-margin-bottom' data-uk-grid>
                 <div>
@@ -95,12 +101,7 @@ export default function App() {
                         <th className='uk-text-secondary'>Адрес / Категория</th>
                         <th className='uk-text-secondary'>Сумма</th>
                         <th className='uk-text-secondary'>Примечание</th>
-                        <th>
-                            <button
-                                className='uk-icon-link'
-                                data-uk-icon='icon:  plus-circle; ratio: 1.2'
-                            />
-                        </th>
+                        <th></th>
                     </tr>
                 </thead>
                 <tbody>
@@ -242,76 +243,94 @@ export default function App() {
                 </ul>
             </nav>
 
-            <h1 className='uk-heading-divider'><span>Управление счетами / категориями</span></h1>
+            <h1 className='uk-heading-divider'>
+                <span>Счета</span>
+                <button
+                    className='uk-icon-link uk-margin-small-left'
+                    data-uk-icon='icon:  plus-circle; ratio: 2'
+                />
+            </h1>
+
+            <div className='uk-grid-column-small uk-grid-row-small uk-child-width-1-4@s' data-uk-grid>
+                <div>
+                    <div className='uk-card uk-card-default uk-card-primary uk-card-small uk-card-body'>
+                        <div className='uk-width-expand uk-text-right uk-margin-bottom-small'>
+                            <button
+                                className='uk-icon-link'
+                                data-uk-icon='icon: trash; ratio: 1.2'
+                            />
+                        </div>
+                        <input className='account-input uk-input uk-text-large' value='Карта МИР ВТБ' />
+                        <div className='uk-inline'>
+                            <span className='uk-form-icon uk-form-icon-flip uk-text-large'>₽</span>
+                            <input className='account-input uk-input uk-text-large' value='10 000 000' />
+                        </div>
+                    </div>
+                </div>
+                <div>
+                    <div className='uk-card uk-card-default uk-card-primary uk-card-small uk-card-body'>
+                        <div className='uk-width-expand uk-text-right uk-margin-bottom-small'>
+                            <button
+                                className='uk-icon-link'
+                                data-uk-icon='icon: trash; ratio: 1.2'
+                            />
+                        </div>
+                        <input className='account-input uk-input uk-text-large' value='Карта МИР ВТБ' />
+                        <div className='uk-inline'>
+                            <span className='uk-form-icon uk-form-icon-flip uk-text-large'>₽</span>
+                            <input className='account-input uk-input uk-text-large' value='10 000 000' />
+                        </div>
+                    </div>
+                </div>
+                <div>
+                    <div className='uk-card uk-card-default uk-card-primary uk-card-small uk-card-body'>
+                        <div className='uk-width-expand uk-text-right uk-margin-bottom-small'>
+                            <button
+                                className='uk-icon-link'
+                                data-uk-icon='icon: trash; ratio: 1.2'
+                            />
+                        </div>
+                        <input className='account-input uk-input uk-text-large' value='Карта МИР ВТБ' />
+                        <div className='uk-inline'>
+                            <span className='uk-form-icon uk-form-icon-flip uk-text-large'>₽</span>
+                            <input className='account-input uk-input uk-text-large' value='10 000 000' />
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <h1 className='uk-heading-divider'>
+                <span>Категории</span>
+                <button
+                    className='uk-icon-link uk-margin-small-left'
+                    data-uk-icon='icon:  plus-circle; ratio: 2'
+                />
+            </h1>
 
             <div className='uk-child-width-expand' data-uk-grid>
                 <div>
                     <table>
-                        <thead>
-                            <tr>
-                                <th className='uk-text-secondary' colSpan={2}>Счета</th>
-                                <th>
-                                    <button
-                                        className='uk-icon-link'
-                                        data-uk-icon='icon: plus-circle; ratio: 1.2'
-                                    />
-                                </th>
-                            </tr>
-                        </thead>
                         <tbody>
                             <tr>
-                                <td>Карта МИР ВТБ</td>
-                                <td>3000</td>
-                                <td>
-                                    <button
-                                        className='uk-icon-link'
-                                        data-uk-icon='icon: trash; ratio: 1.2'
+                                <td className='uk-text-large'>
+                                    <input
+                                        className='account-input uk-input'
+                                        value='Продукты'
                                     />
+                                </td>
+                                <td className='uk-text-large uk-text-center'>
+                                    <button className='uk-button uk-button-small uk-button-danger'>Удалить</button>
                                 </td>
                             </tr>
                             <tr>
-                                <td>Карта МИР ВТБ</td>
-                                <td>3000</td>
-                                <td>
-                                    <button
-                                        className='uk-icon-link'
-                                        data-uk-icon='icon: trash; ratio: 1.2'
+                                <td className='uk-text-large'>
+                                    <input
+                                        className='account-input uk-input'
+                                        value='Одежда'
                                     />
                                 </td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-                <div>
-                    <table>
-                        <thead>
-                            <tr>
-                                <th className='uk-text-secondary'>Категории</th>
-                                <th>
-                                    <button
-                                        className='uk-icon-link'
-                                        data-uk-icon='icon: plus-circle; ratio: 1.2'
-                                    />
-                                </th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td>Продукты</td>
-                                <td>
-                                    <button
-                                        className='uk-icon-link'
-                                        data-uk-icon='icon: trash; ratio: 1.2'
-                                    />
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>Одежда</td>
-                                <td>
-                                    <button
-                                        className='uk-icon-link'
-                                        data-uk-icon='icon: trash; ratio: 1.2'
-                                    />
+                                <td className='uk-text-large uk-text-center'>
+                                    <button className='uk-button uk-button-small uk-button-danger'>Удалить</button>
                                 </td>
                             </tr>
                         </tbody>
