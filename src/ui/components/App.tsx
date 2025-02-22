@@ -1,3 +1,4 @@
+import CurrencyInput from 'react-currency-input-field';
 import DatePicker from 'react-datepicker';
 
 import { Bar } from 'react-chartjs-2';
@@ -138,7 +139,17 @@ export default function App() {
                                 <option>Карта МИР ВТБ</option>
                             </select>
                         </td>
-                        <td>500 ₽</td>
+                        <td className='custom-input-cell'>
+                            <CurrencyInput
+                                className='custom-input uk-input currency-input'
+                                decimalSeparator='.'
+                                decimalsLimit={2}
+                                defaultValue={'0.00'}
+                                maxLength={15}
+                                onValueChange={(value, name, values) => console.log(value, name, values)}
+                                suffix=' ₽'
+                            />
+                        </td>
                         <td>Молоко</td>
                         <td className='uk-text-center'>
                             <button
@@ -171,7 +182,17 @@ export default function App() {
                                 <option>Карта МИР ВТБ</option>
                             </select>
                         </td>
-                        <td>500 ₽</td>
+                        <td className='custom-input-cell'>
+                            <CurrencyInput
+                                className='custom-input uk-input currency-input'
+                                decimalSeparator='.'
+                                decimalsLimit={2}
+                                defaultValue={'0.00'}
+                                maxLength={15}
+                                onValueChange={(value, name, values) => console.log(value, name, values)}
+                                suffix=' ₽'
+                            />
+                        </td>
                         <td>Молоко</td>
                         <td className='uk-text-center'>
                             <button
@@ -204,7 +225,17 @@ export default function App() {
                                 <option>Карта МИР ВТБ</option>
                             </select>
                         </td>
-                        <td>500 ₽</td>
+                        <td className='custom-input-cell'>
+                            <CurrencyInput
+                                className='custom-input uk-input currency-input'
+                                decimalSeparator='.'
+                                decimalsLimit={2}
+                                defaultValue={'0.00'}
+                                maxLength={15}
+                                onValueChange={(value, name, values) => console.log(value, name, values)}
+                                suffix=' ₽'
+                            />
+                        </td>
                         <td>Молоко</td>
                         <td className='uk-text-center'>
                             <button
@@ -242,7 +273,7 @@ export default function App() {
                 />
             </h1>
 
-            <div className='uk-grid-column-small uk-grid-row-small uk-child-width-1-4@s' data-uk-grid>
+            <div className='uk-grid-column-small uk-grid-row-small uk-child-width-1-3@s' data-uk-grid>
                 <div>
                     <div className='uk-card uk-card-default uk-card-primary uk-card-small uk-card-body'>
                         <div className='uk-width-expand uk-text-right uk-margin-bottom-small'>
@@ -252,10 +283,15 @@ export default function App() {
                             />
                         </div>
                         <input className='custom-input uk-input uk-text-large' value='Карта МИР ВТБ' />
-                        <div className='uk-inline'>
-                            <span className='uk-form-icon uk-form-icon-flip uk-text-large'>₽</span>
-                            <input className='custom-input uk-input uk-text-large' value='10 000 000' />
-                        </div>
+                        <CurrencyInput
+                            className='custom-input uk-input uk-text-large'
+                            decimalSeparator='.'
+                            decimalsLimit={2}
+                            defaultValue={'0.00'}
+                            maxLength={15}
+                            onValueChange={(value, name, values) => console.log(value, name, values)}
+                            suffix=' ₽'
+                        />
                     </div>
                 </div>
                 <div>
@@ -267,10 +303,15 @@ export default function App() {
                             />
                         </div>
                         <input className='custom-input uk-input uk-text-large' value='Карта МИР ВТБ' />
-                        <div className='uk-inline'>
-                            <span className='uk-form-icon uk-form-icon-flip uk-text-large'>₽</span>
-                            <input className='custom-input uk-input uk-text-large' value='10 000 000' />
-                        </div>
+                        <CurrencyInput
+                            className='custom-input uk-input uk-text-large'
+                            decimalSeparator='.'
+                            decimalsLimit={2}
+                            defaultValue={'0.00'}
+                            maxLength={15}
+                            onValueChange={(value, name, values) => console.log(value, name, values)}
+                            suffix=' ₽'
+                        />
                     </div>
                 </div>
                 <div>
@@ -282,10 +323,15 @@ export default function App() {
                             />
                         </div>
                         <input className='custom-input uk-input uk-text-large' value='Карта МИР ВТБ' />
-                        <div className='uk-inline'>
-                            <span className='uk-form-icon uk-form-icon-flip uk-text-large'>₽</span>
-                            <input className='custom-input uk-input uk-text-large' value='10 000 000' />
-                        </div>
+                        <CurrencyInput
+                            className='custom-input uk-input uk-text-large'
+                            decimalSeparator='.'
+                            decimalsLimit={2}
+                            defaultValue={'0.00'}
+                            maxLength={15}
+                            onValueChange={(value, name, values) => console.log(value, name, values)}
+                            suffix=' ₽'
+                        />
                     </div>
                 </div>
             </div>

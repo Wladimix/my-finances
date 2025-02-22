@@ -78,8 +78,19 @@ table tbody tr td:last-child {
     text-overflow: ellipsis;
 }
 
-.custom-select {
-    height: 23px;
+.custom-input-cell {
+    width: 200px;
+    padding: 9px;
+}
+
+.currency-input {
+    height: 15px !important;
+}
+
+input[type='number']::-webkit-inner-spin-button,
+input[type='number']::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
 }
 
 .react-datepicker-wrapper,
