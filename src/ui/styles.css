@@ -1,19 +1,23 @@
 * { user-select: none; }
 
-body {
+body,
+#note-modal {
     overflow-y: scroll;
 }
 
-body::-webkit-scrollbar {
+body::-webkit-scrollbar,
+#note-modal::-webkit-scrollbar {
     width: 10px;
     background-color: #f9f9fd;
 }
 
-body::-webkit-scrollbar-thumb {
+body::-webkit-scrollbar-thumb,
+#note-modal::-webkit-scrollbar-thumb {
     background-color: #32D296;
 }
 
-body::-webkit-scrollbar-track {
+body::-webkit-scrollbar-track,
+#note-modal::-webkit-scrollbar-track {
     -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.2);
     background-color: #f9f9fd;
 }
@@ -54,6 +58,14 @@ table tbody tr:nth-child(even){
     background: #f3f3f3;
 }
 
+table tbody tr:nth-child(odd) td:hover{
+    background: #f3f3f3;
+}
+
+table tbody tr:nth-child(even) td:hover{
+    background: #fff;
+}
+
 table tbody tr td:first-child {
     border-radius: 8px 0 0 8px;
 }
@@ -71,7 +83,7 @@ table tbody tr td.select-cell {
 }
 
 table tbody tr td.amount-cell {
-    width: 200px;
+    width: 140px;
 }
 
 .custom-input {
@@ -84,14 +96,16 @@ table tbody tr td.amount-cell {
 
 .custom-input.uk-select {
     padding-top: 1px !important;
+    cursor: pointer;
 }
 
 .note {
-    width: 340px;
+    width: 330px;
     padding-top: 8px;
     overflow: hidden;
     white-space: nowrap;
     text-overflow: ellipsis;
+    cursor: pointer;
 }
 
 .actions {
