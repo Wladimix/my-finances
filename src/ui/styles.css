@@ -28,9 +28,9 @@ table thead th {
     font-weight: bold;
     text-align: left;
     border: none;
-    padding: 10px 15px;
+    padding: 10px 8px;
     background: #d8d8d8;
-    font-size: 19px;
+    font-size: 17px;
 }
 
 table thead tr th:first-child {
@@ -45,18 +45,9 @@ table tbody td {
     text-align: left;
     justify-content: center;
     border: none;
-    padding: 10px 15px;
-    font-size: 19px;
+    padding: 10px 8px;
+    font-size: 17px;
     vertical-align: top;
-}
-
-table tbody td.datepicker-cell {
-    width: 160px;
-}
-
-table tbody td.select-cell {
-    width: 200px;
-    padding: 6.55px;
 }
 
 table tbody tr:nth-child(even){
@@ -71,33 +62,38 @@ table tbody tr td:last-child {
     border-radius: 0 8px 8px 0;
 }
 
-.custom-input,
-.custom-select {
+table tbody tr td.datepicker-cell {
+    width: 150px;
+}
+
+table tbody tr td.select-cell {
+    width: 210px;
+}
+
+table tbody tr td.amount-cell {
+    width: 200px;
+}
+
+.custom-input {
     border: none !important;
     background: none !important;
     text-overflow: ellipsis;
+    margin: 0px !important;
+    padding: 0px !important;
 }
 
-.custom-input-cell {
-    width: 200px;
-    padding: 9px;
+.custom-input.uk-select {
+    padding-top: 1px !important;
 }
 
-.currency-input {
-    height: 15px !important;
+.note {
+    width: 340px;
+    padding-top: 8px;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
 }
 
-input[type='number']::-webkit-inner-spin-button,
-input[type='number']::-webkit-outer-spin-button {
-    -webkit-appearance: none;
-    margin: 0;
-}
-
-.react-datepicker-wrapper,
-.react-datepicker__input-container,
-.react-datepicker__input-container input {
-    width: 153px;
-    height: 23px;
-    margin: 0px;
-    padding: 0px;
+.actions {
+    padding-top: 2px;
 }

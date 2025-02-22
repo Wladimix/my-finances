@@ -127,21 +127,24 @@ export default function App() {
                             />
                         </td>
                         <td className='select-cell'>
-                            <select className='custom-select uk-select'>
-                                <option>Карта МИР Открытие Карта МИР Открытие</option>
+                            <select className='custom-input uk-select'>
+                                <option>Карта МИР Открытие</option>
                                 <option>Карта МИР ВТБ</option>
                                 <option>Карта МИР Альфа банк</option>
                             </select>
                         </td>
                         <td className='select-cell'>
-                            <select className='custom-select uk-select'>
+                            <select className='custom-input uk-select'>
                                 <option>Карта МИР Открытие</option>
                                 <option>Карта МИР ВТБ</option>
+                                <option>Карта МИР Альфа банк</option>
+                                <option>Продукты</option>
+                                <option>Обустройство дома</option>
                             </select>
                         </td>
-                        <td className='custom-input-cell'>
+                        <td className='amount-cell'>
                             <CurrencyInput
-                                className='custom-input uk-input currency-input'
+                                className='custom-input uk-input'
                                 decimalSeparator='.'
                                 decimalsLimit={2}
                                 defaultValue={'0.00'}
@@ -150,16 +153,20 @@ export default function App() {
                                 suffix=' ₽'
                             />
                         </td>
-                        <td>Молоко</td>
+                        <td>
+                            <div className='note'>сырок глазированный из магазина "пятёрочка"</div>
+                        </td>
                         <td className='uk-text-center'>
-                            <button
-                                className='uk-icon-link'
-                                data-uk-icon='icon: trash; ratio: 1.2'
-                            />
+                            <div className='actions'>
+                                <button
+                                    className='uk-icon-link'
+                                    data-uk-icon='icon: trash; ratio: 1.2'
+                                />
+                            </div>
                         </td>
                     </tr>
                     <tr>
-                        <td className='datepicker'>
+                        <td className='datepicker-cell'>
                             <DatePicker
                                 className='custom-input uk-input'
                                 dateFormat='dd MMMM YYYY'
@@ -170,64 +177,24 @@ export default function App() {
                             />
                         </td>
                         <td className='select-cell'>
-                            <select className='custom-select uk-select'>
-                                <option>Карта МИР Открытие Карта МИР Открытие</option>
+                            <select className='custom-input uk-select'>
+                                <option>Карта МИР Открытие</option>
                                 <option>Карта МИР ВТБ</option>
                                 <option>Карта МИР Альфа банк</option>
                             </select>
                         </td>
                         <td className='select-cell'>
-                            <select className='custom-select uk-select'>
+                            <select className='custom-input uk-select'>
                                 <option>Карта МИР Открытие</option>
                                 <option>Карта МИР ВТБ</option>
+                                <option>Карта МИР Альфа банк</option>
+                                <option>Продукты</option>
+                                <option>Обустройство дома</option>
                             </select>
                         </td>
-                        <td className='custom-input-cell'>
+                        <td className='amount-cell'>
                             <CurrencyInput
-                                className='custom-input uk-input currency-input'
-                                decimalSeparator='.'
-                                decimalsLimit={2}
-                                defaultValue={'0.00'}
-                                maxLength={15}
-                                onValueChange={(value, name, values) => console.log(value, name, values)}
-                                suffix=' ₽'
-                            />
-                        </td>
-                        <td>Молоко</td>
-                        <td className='uk-text-center'>
-                            <button
-                                className='uk-icon-link'
-                                data-uk-icon='icon: trash; ratio: 1.2'
-                            />
-                        </td>
-                    </tr>
-                    <tr>
-                        <td className='datepicker'>
-                            <DatePicker
                                 className='custom-input uk-input'
-                                dateFormat='dd MMMM YYYY'
-                                locale={ru}
-                                onChange={() => {}}
-                                selected={new Date()}
-                                popperPlacement='bottom-end'
-                            />
-                        </td>
-                        <td className='select-cell'>
-                            <select className='custom-select uk-select'>
-                                <option>Карта МИР Открытие Карта МИР Открытие</option>
-                                <option>Карта МИР ВТБ</option>
-                                <option>Карта МИР Альфа банк</option>
-                            </select>
-                        </td>
-                        <td className='select-cell'>
-                            <select className='custom-select uk-select'>
-                                <option>Карта МИР Открытие</option>
-                                <option>Карта МИР ВТБ</option>
-                            </select>
-                        </td>
-                        <td className='custom-input-cell'>
-                            <CurrencyInput
-                                className='custom-input uk-input currency-input'
                                 decimalSeparator='.'
                                 decimalsLimit={2}
                                 defaultValue={'0.00'}
@@ -236,12 +203,16 @@ export default function App() {
                                 suffix=' ₽'
                             />
                         </td>
-                        <td>Молоко</td>
+                        <td>
+                            <div className='note'>сырок глазированный из магазина "пятёрочка"</div>
+                        </td>
                         <td className='uk-text-center'>
-                            <button
-                                className='uk-icon-link'
-                                data-uk-icon='icon: trash; ratio: 1.2'
-                            />
+                            <div className='actions'>
+                                <button
+                                    className='uk-icon-link'
+                                    data-uk-icon='icon: trash; ratio: 1.2'
+                                />
+                            </div>
                         </td>
                     </tr>
                 </tbody>
@@ -513,5 +484,5 @@ export default function App() {
             />
 
         </div>
-    )
+    );
 }
