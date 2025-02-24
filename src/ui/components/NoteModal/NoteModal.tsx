@@ -6,7 +6,7 @@ import InflationDiagram from './Diagrams/InflationDiagram';
 export default function NoteModal() {
     return(
         <div id='note-modal' className='uk-modal-container' data-uk-modal data-container='false'>
-            <div className='uk-modal-dialog uk-modal-body'>
+            <div className='note-modal-container uk-modal-dialog uk-modal-body' data-uk-overflow-auto>
 
                 <button className='uk-modal-close-default' data-uk-close></button>
 
