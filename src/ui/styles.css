@@ -100,14 +100,12 @@ table tbody tr td.amount-cell {
 }
 
 .note {
-    width: 330px;
     padding-top: 8px;
-    overflow: hidden;
-    white-space: nowrap;
-    text-overflow: ellipsis;
     cursor: pointer;
+    word-break: normal;
 }
 
 .actions {
+    width: 30px;
     padding-top: 2px;
 }

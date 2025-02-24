@@ -159,7 +159,7 @@ export default function App() {
                                     className='note'
                                     data-uk-toggle='target: #note-modal
                                 '>
-                                    сырок глазированный из магазина 'пятёрочка'
+                                    сырок глазированный из магазина 'пятёрочка' 'белая поляна'
                                 </div>
                             </td>
                             <td className='uk-text-center'>
@@ -214,7 +214,7 @@ export default function App() {
                                     className='note'
                                     data-uk-toggle='target: #note-modal
                                 '>
-                                    сырок глазированный из магазина 'пятёрочка'
+                                    сырок глазированный из магазина 'пятёрочка' 'белая поляна'
                                 </div>
                             </td>
                             <td className='uk-text-center'>
@@ -502,9 +502,11 @@ export default function App() {
                     <h2 className='uk-modal-title'>
                         <input
                             className='custom-input uk-input'
+                            placeholder='примечание отсутствует'
                             value='сырок глазированный из магазина "пятёрочка"'
                         />
                     </h2>
+                    <label><input className='uk-checkbox' type='checkbox' /> Рассчёт инфляции</label>
                     <h3 id='statistics' className='uk-heading-divider'><span>Стоимость за 2024 год</span></h3>
                     <Line
                         data={{
