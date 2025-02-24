@@ -58,14 +58,6 @@ table tbody tr:nth-child(even){
     background: #f3f3f3;
 }
 
-table tbody tr:nth-child(odd) td:hover{
-    background: #f3f3f3;
-}
-
-table tbody tr:nth-child(even) td:hover{
-    background: #fff;
-}
-
 table tbody tr td:first-child {
     border-radius: 8px 0 0 8px;
 }
