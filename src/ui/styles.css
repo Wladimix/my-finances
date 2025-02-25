@@ -54,6 +54,10 @@ table tbody td {
     vertical-align: top;
 }
 
+table tbody td:hover {
+    background-color: #d8d8d8;
+}
+
 table tbody tr:nth-child(even){
     background: #f3f3f3;
 }
