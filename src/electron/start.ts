@@ -38,5 +38,6 @@ export function createRouter(): void {
 
     ipcHandle('getAllAccounts', () => AccountController.getAllAccounts())
     ipcHandle('addAccount', () => AccountController.addAccount())
+    ipcHandle('editAccountName', (_, data) => AccountController.editAccountName(data))
 
 }

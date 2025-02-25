@@ -10,6 +10,7 @@ function ipcInvoke<Channel extends keyof EventPayloadMapping>(
 contextBridge.exposeInMainWorld('electron', {
 
     getAllAccounts: () => ipcInvoke('getAllAccounts'),
-    addAccount: () => ipcInvoke('addAccount')
+    addAccount: () => ipcInvoke('addAccount'),
+    editAccountName: (data: { id: number, name: string }) => ipcInvoke('editAccountName', data)
 
 } satisfies Window['electron']);

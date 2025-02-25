@@ -10,8 +10,8 @@ export default function AccountCard({ account }: IProps) {
                 <DeleteAccountButton />
             </div>
 
-            <AccountNameInput name={account.name} />
-            <AccountAmountInput amount={account.amount} />
+            <AccountNameInput account={account} />
+            <AccountAmountInput account={account} />
 
         </div>
     );

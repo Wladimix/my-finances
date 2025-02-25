@@ -10,7 +10,12 @@ export default function Accounts() {
 
     const displayAccounts = () => {
         return allAccounts.length
-            ? allAccounts.map(account => <div><AccountCard account={account} /></div>)
+
+            ? allAccounts.map(account =>
+                <div key={account.id}>
+                    <AccountCard account={account} />
+                </div>)
+
             : <NoAccaunts />;
     };
 

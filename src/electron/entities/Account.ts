@@ -4,20 +4,20 @@ import { NEW_ACCOUNT } from '../constants';
 
 export default class Account {
 
-    private id: number | null;
-    private name: string | null;
-    private amount: number | null;
-    private isDeleted: boolean;
+    id: number;
+    name: string;
+    amount: number;
+    isDeleted:  0 | 1;
 
     constructor(
         id: number | null = null,
         name: string | null = null,
         amount: number | null = null,
-        isDeleted: boolean = false
+        isDeleted:  0 | 1 = 0
     ) {
-        this.id = id;
-        this.name = name;
-        this.amount = amount;
+        this.id = id ?? 0;
+        this.name = name ?? '';
+        this.amount = amount ?? 0.00;
         this.isDeleted = isDeleted;
     }
 
@@ -33,6 +33,20 @@ export default class Account {
         }
 
         await AccountModel.add();
+    }
+
+    async editName(id: number, name: string): Promise<void> {
+        if (this.id) {
+
+            const existingAccount = await AccountModel.getOneByName(name);
+
+            if (existingAccount !== undefined) {
+                throw new Error('такой счёт уже существует');
+            }
+
+            await AccountModel.editNameById(id, name);
+
+        }
     }
 
 }

@@ -1,4 +1,4 @@
-export const NEW_ACCOUNT = 'НОВЫЙ СЧЁТ';
+export const NEW_ACCOUNT = 'Новый счёт';
 
 export enum TablesNames {
     ACCOUNT = 'account'

@@ -48,6 +48,29 @@ class AccountController {
         }
     }
 
+    async editAccountName({ id, name }: { id: number, name: string }): Promise<ResponceData<null>> {
+        try {
+
+            const account = new Account(id);
+            await account.editName(id, name);
+
+            return {
+                data: null,
+                error: null
+            };
+
+        } catch(error) {
+
+            const errorMessage = makeError(error as Error, 'ошибка редактирования счёта');
+
+            return {
+                data: null,
+                error: errorMessage
+            };
+
+        }
+    }
+
 }
 
 export default new AccountController();
