@@ -1,8 +1,12 @@
-export default function AccountNameInput() {
+export default function AccountNameInput({ name }: IProps) {
     return(
         <input
             className='custom-input uk-input uk-text-large'
-            value='Карта МИР ВТБ'
+            value={name}
         />
     );
+}
+
+interface IProps {
+    name: string
 }

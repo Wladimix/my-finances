@@ -21,6 +21,10 @@ export default class Account {
         this.isDeleted = isDeleted;
     }
 
+    async getAll(): Promise<IAccount[]> {
+        return await AccountModel.getAll();
+    }
+
     async add(): Promise<void> {
         const account = await AccountModel.getOneByName(NEW_ACCOUNT);
 

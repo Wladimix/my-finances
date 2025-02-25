@@ -3,6 +3,28 @@ import { makeError } from '../utils';
 
 class AccountController {
 
+    async getAllAccounts(): Promise<ResponceData<IAccount[]>> {
+        try {
+
+            const account = new Account();
+
+            return {
+                data: await account.getAll(),
+                error: null
+            };
+
+        } catch(error) {
+
+            const errorMessage = makeError(error as Error, 'ошибка получения счетов');
+
+            return {
+                data: null,
+                error: errorMessage
+            };
+
+        }
+    }
+
     async addAccount(): Promise<ResponceData<null>> {
         try {
 
@@ -12,7 +34,7 @@ class AccountController {
             return {
                 data: null,
                 error: null
-            }
+            };
 
         } catch(error) {
 
@@ -21,7 +43,7 @@ class AccountController {
             return {
                 data: null,
                 error: errorMessage
-            }
+            };
 
         }
     }

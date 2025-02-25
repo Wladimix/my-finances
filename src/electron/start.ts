@@ -36,6 +36,7 @@ export async function createTablesIfNotExist(): Promise<void> {
 
 export function createRouter(): void {
 
+    ipcHandle('getAllAccounts', () => AccountController.getAllAccounts())
     ipcHandle('addAccount', () => AccountController.addAccount())
 
 }

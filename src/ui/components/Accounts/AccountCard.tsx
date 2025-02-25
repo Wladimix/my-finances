@@ -2,7 +2,7 @@ import DeleteAccountButton from './Buttons/DeleteAccountButton';
 import AccountAmountInput from './Inputs/AccountAmountInput';
 import AccountNameInput from './Inputs/AccountNameInput';
 
-export default function AccountCard() {
+export default function AccountCard({ account }: IProps) {
     return(
         <div className='uk-card uk-card-default uk-card-primary uk-card-small uk-card-body'>
 
@@ -10,9 +10,13 @@ export default function AccountCard() {
                 <DeleteAccountButton />
             </div>
 
-            <AccountNameInput />
-            <AccountAmountInput />
+            <AccountNameInput name={account.name} />
+            <AccountAmountInput amount={account.amount} />
 
         </div>
     );
+}
+
+interface IProps {
+    account: IAccount
 }

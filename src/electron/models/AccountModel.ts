@@ -15,6 +15,13 @@ class AccountModel {
             });
     }
 
+    async getAll(): Promise<IAccount[]> {
+        return await knex
+            .select()
+            .from(TablesNames.ACCOUNT)
+            .orderBy('name', 'asc');
+    }
+
     async getOneByName(name: string): Promise<IAccount | undefined> {
         return await knex(TablesNames.ACCOUNT)
             .where({ name })

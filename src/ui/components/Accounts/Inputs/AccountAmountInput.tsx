@@ -1,6 +1,6 @@
 import CurrencyInput from 'react-currency-input-field';
 
-export default function AccountAmountInput() {
+export default function AccountAmountInput({ amount }: IProps) {
     return(
         <CurrencyInput
             className='custom-input uk-input uk-text-large'
@@ -10,6 +10,11 @@ export default function AccountAmountInput() {
             maxLength={15}
             onValueChange={(value, name, values) => console.log(value, name, values)}
             suffix=' ₽'
+            value={amount}
         />
     );
+}
+
+interface IProps {
+    amount: number
 }
