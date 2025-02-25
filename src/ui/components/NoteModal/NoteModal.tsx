@@ -1,5 +1,5 @@
+import NoteCheckboxes from './Checkboxes';
 import NoteInput from './NoteInput';
-import NoteCheckbox from './NoteCheckbox';
 import CostDiagram from './Diagrams/CostDiagram';
 import InflationDiagram from './Diagrams/InflationDiagram';
 
@@ -14,7 +14,7 @@ export default function NoteModal() {
                     <NoteInput />
                 </h2>
 
-                <NoteCheckbox />
+                <NoteCheckboxes />
 
                 <h3 className='uk-heading-divider'><span>Стоимость за 2024 год</span></h3>
                 <CostDiagram />
