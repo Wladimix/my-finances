@@ -10,7 +10,7 @@ export default function AccountNameInput({ account }: IProps) {
     const name = useUnit($name);
 
     const [localName, changeLocalName] = useState<string>(account.name);
-    const [inputFocus, setInputFocus] = useState<boolean>(false);
+    const [inputFocus, changeInputFocus] = useState<boolean>(false);
 
     const isEmptyName = localName === '';
     const accountAvailability = Boolean(allAccounts.find((account) => account.name === localName));
@@ -18,7 +18,7 @@ export default function AccountNameInput({ account }: IProps) {
 
     const blurHandler = () => {
 
-        setInputFocus(false);
+        changeInputFocus(false);
 
         if (editingCondition) {
             editAccountName({ id: account.id, name });
@@ -34,7 +34,7 @@ export default function AccountNameInput({ account }: IProps) {
     };
 
     const focusHandler = () => {
-        setInputFocus(true);
+        changeInputFocus(true);
     }
 
     const getDangerColor = () => {

@@ -10,24 +10,26 @@ type ResponceData<T> = {
     error: string | null
 };
 
-type getAllAccountsRes = Promise<ResponceData<IAccount[]>>;
-type addAccountRes = Promise<ResponceData<null>>;
-type editAccountNameRes = Promise<ResponceData<null>>;
-
 interface EventPayloadMapping {
 
-    getAllAccounts: [undefined, getAllAccountsRes]
-    addAccount: [undefined, addAccountRes]
-    editAccountName: [{ id: number, name: string }, editAccountNameRes]
+    getAllAccounts: [undefined, Promise<ResponceData<IAccount[]>>]
+    addAccount: [undefined, Promise<ResponceData<null>>]
+    editAccountName: [{ id: number, name: string }, Promise<ResponceData<null>>]
+    editAccountAmount: [{ id: number, amount: number }, Promise<ResponceData<null>>]
 
+}
+
+type test = {
+    id: number, amount: number
 }
 
 interface Window {
     electron: {
 
-        getAllAccounts: () => getAllAccountsRes
-        addAccount: () => addAccountRes
-        editAccountName: ({ id: number, name: string }) => editAccountNameRes
+        getAllAccounts: () => Promise<ResponceData<IAccount[]>>
+        addAccount: () => Promise<ResponceData<null>>
+        editAccountName: (data: { id: number, name: string }) => Promise<ResponceData<null>>
+        editAccountAmount: (data: { id: number, amount: number }) => Promise<ResponceData<null>>
 
     }
 }

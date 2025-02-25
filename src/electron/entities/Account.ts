@@ -49,4 +49,10 @@ export default class Account {
         }
     }
 
+    async editAmount(id: number, amount: number): Promise<void> {
+        if (this.id) {
+            await AccountModel.editAmountById(id, amount);
+        }
+    }
+
 }

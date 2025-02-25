@@ -11,6 +11,7 @@ contextBridge.exposeInMainWorld('electron', {
 
     getAllAccounts: () => ipcInvoke('getAllAccounts'),
     addAccount: () => ipcInvoke('addAccount'),
-    editAccountName: (data: { id: number, name: string }) => ipcInvoke('editAccountName', data)
+    editAccountName: (data: { id: number, name: string }) => ipcInvoke('editAccountName', data),
+    editAccountAmount: (data: { id: number, amount: number }) => ipcInvoke('editAccountAmount', data)
 
 } satisfies Window['electron']);

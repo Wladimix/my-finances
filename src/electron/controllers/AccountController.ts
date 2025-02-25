@@ -61,7 +61,30 @@ class AccountController {
 
         } catch(error) {
 
-            const errorMessage = makeError(error as Error, 'ошибка редактирования счёта');
+            const errorMessage = makeError(error as Error, 'ошибка редактирования названия счёта');
+
+            return {
+                data: null,
+                error: errorMessage
+            };
+
+        }
+    }
+
+    async editAccountAmount({ id, amount }: { id: number, amount: number }): Promise<ResponceData<null>> {
+        try {
+
+            const account = new Account(id);
+            await account.editAmount(id, amount);
+
+            return {
+                data: null,
+                error: null
+            };
+
+        } catch(error) {
+
+            const errorMessage = makeError(error as Error, 'ошибка редактирования суммы счёта');
 
             return {
                 data: null,

@@ -43,6 +43,12 @@ class AccountModel {
             .update({ name });
     }
 
+    async editAmountById(id: number, amount: number): Promise<void> {
+        await knex(TablesNames.ACCOUNT)
+            .where({ id })
+            .update({ amount });
+    }
+
 }
 
 export default new AccountModel();

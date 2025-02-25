@@ -30,3 +30,11 @@ export const editAccountNameFx = createEffect<{ id: number, name: string }, void
         showErrorNotification(result.error);
     }
 });
+
+export const editAccountAmountFx = createEffect<{ id: number, amount: number }, void>(async data => {
+    const result = await window.electron.editAccountAmount({ id: data.id, amount: data.amount })
+
+    if (result.error) {
+        showErrorNotification(result.error);
+    }
+});
