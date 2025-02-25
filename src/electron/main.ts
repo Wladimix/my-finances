@@ -1,6 +1,7 @@
 import path from 'path';
 
 import { app, BrowserWindow } from 'electron';
+import { createRouter, createTablesIfNotExist } from './start';
 
 const isDev = !app.isPackaged;
 
@@ -26,6 +27,8 @@ function createWindow() {
 }
 
 app.whenReady().then(async () => {
+    await createTablesIfNotExist();
+    createRouter();
     createWindow();
 });
 

@@ -1,3 +1,9 @@
+import AccountController from './controllers/AccountController';
+import AccountModel from './models/AccountModel';
+import fs from 'fs';
+import path from 'path';
+
+import { DATABASE_NAME, DATABASE_PATH } from './connectionDB';
 import { ipcMain } from 'electron';
 
 function ipcHandle<Channel extends keyof EventPayloadMapping>(
@@ -7,8 +13,29 @@ function ipcHandle<Channel extends keyof EventPayloadMapping>(
     ipcMain.handle(channel, listener);
 }
 
+export async function createTablesIfNotExist(): Promise<void> {
+    try {
+
+        if (!fs.existsSync(DATABASE_PATH)) {
+            fs.mkdirSync(DATABASE_PATH);
+        }
+
+        if (!fs.existsSync(path.join(DATABASE_PATH, DATABASE_NAME))) {
+
+            await AccountModel.createTable();
+
+        }
+
+    } catch(error) {
+
+        console.log('Ошибка при создании таблиц');
+        console.log((error as Error).message);
+
+    }
+}
+
 export function createRouter(): void {
 
-
+    ipcHandle('addAccount', () => AccountController.addAccount())
 
 }
