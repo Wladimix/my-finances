@@ -7,7 +7,7 @@ export default function AccountCard({ account }: IProps) {
         <div className='uk-card uk-card-default uk-card-primary uk-card-small uk-card-body'>
 
             <div className='uk-width-expand uk-text-right uk-margin-bottom-small'>
-                <DeleteAccountButton />
+                <DeleteAccountButton account={account} />
             </div>
 
             <AccountNameInput account={account} />

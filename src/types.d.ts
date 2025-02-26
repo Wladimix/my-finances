@@ -16,6 +16,7 @@ interface EventPayloadMapping {
     addAccount: [undefined, Promise<ResponceData<null>>]
     editAccountName: [{ id: number, name: string }, Promise<ResponceData<null>>]
     editAccountAmount: [{ id: number, amount: number }, Promise<ResponceData<null>>]
+    editAccountDeletionField: [{ id: number, isDeleted: 0 | 1 }, Promise<ResponceData<null>>]
 
 }
 
@@ -30,6 +31,7 @@ interface Window {
         addAccount: () => Promise<ResponceData<null>>
         editAccountName: (data: { id: number, name: string }) => Promise<ResponceData<null>>
         editAccountAmount: (data: { id: number, amount: number }) => Promise<ResponceData<null>>
+        editAccountDeletionField: (data: { id: number, isDeleted: 0 | 1 }) => Promise<ResponceData<null>>
 
     }
 }

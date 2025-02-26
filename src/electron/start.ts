@@ -40,5 +40,6 @@ export function createRouter(): void {
     ipcHandle('addAccount', () => AccountController.addAccount())
     ipcHandle('editAccountName', (_, data) => AccountController.editAccountName(data))
     ipcHandle('editAccountAmount', (_, data) => AccountController.editAccountAmount(data))
+    ipcHandle('editAccountDeletionField', (_, data) => AccountController.editAccountDeletionField(data))
 
 }

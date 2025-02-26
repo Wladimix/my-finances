@@ -55,4 +55,22 @@ export default class Account {
         }
     }
 
+    async editDeletionField(id: number, isDeleted: 0 | 1): Promise<void> {
+        if (this.id) {
+
+            const account = await AccountModel.getOneById(id);
+            const amount = account !== undefined ? account.amount : undefined;
+
+            if (amount) {
+                throw new Error('Нельзя удалить ненулевой счёт');
+            }
+
+            if (account) {
+                const name = account.name + `(удалено ${Date.now()})`;
+                await AccountModel.editDeletionFieldById(id, name, isDeleted);
+            }
+
+        }
+    }
+
 }

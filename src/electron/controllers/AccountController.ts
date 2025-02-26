@@ -94,6 +94,29 @@ class AccountController {
         }
     }
 
+    async editAccountDeletionField({ id, isDeleted }: { id: number, isDeleted: 0 | 1 }): Promise<ResponceData<null>> {
+        try {
+
+            const account = new Account(id);
+            await account.editDeletionField(id, isDeleted);
+
+            return {
+                data: null,
+                error: null
+            };
+
+        } catch(error) {
+
+            const errorMessage = makeError(error as Error, 'ошибка редактирования поля удаления счёта');
+
+            return {
+                data: null,
+                error: errorMessage
+            };
+
+        }
+    }
+
 }
 
 export default new AccountController();

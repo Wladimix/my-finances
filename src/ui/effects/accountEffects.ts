@@ -38,3 +38,11 @@ export const editAccountAmountFx = createEffect<{ id: number, amount: number }, 
         showErrorNotification(result.error);
     }
 });
+
+export const editAccountDeletionFieldFx = createEffect<{ id: number, isDeleted: 0 | 1 }, void>(async data => {
+    const result = await window.electron.editAccountDeletionField({ id: data.id, isDeleted: data.isDeleted })
+
+    if (result.error) {
+        showErrorNotification(result.error);
+    }
+});

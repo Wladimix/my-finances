@@ -13,7 +13,7 @@ export default function AccountAmountInput({ account }: IProps) {
 
     const blurHandler = () => {
 
-        if (!localAmount) {
+        if (!localAmount || localAmount === '0') {
             changeLocalAmount('0');
             editAccountAmount({ id: account.id, amount: 0 });
         } else {

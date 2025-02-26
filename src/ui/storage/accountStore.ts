@@ -1,4 +1,4 @@
-import { addAccountFx, editAccountAmountFx, editAccountNameFx, getAllAccountsFx } from '../effects/accountEffects';
+import { addAccountFx, editAccountAmountFx, editAccountDeletionFieldFx, editAccountNameFx, getAllAccountsFx } from '../effects/accountEffects';
 import { createEvent, createStore, sample } from 'effector';
 
 export const getAllAccounts = createEvent<void>();
@@ -6,6 +6,7 @@ export const addAccount = createEvent<void>();
 
 export const editAccountName = createEvent<{ id: number, name: string }>();
 export const editAccountAmount = createEvent<{ id: number, amount: number }>();
+export const editAccountDeletionField = createEvent<{ id: number, isDeleted: 0 | 1 }>();
 
 export const changeName = createEvent<string>();
 export const changeAmount = createEvent<number>();
@@ -61,6 +62,18 @@ sample({
 
 sample({
     clock: editAccountAmountFx.done,
+    target: getAllAccounts
+});
+// ---------------------------------------
+
+// editAccountDeletionField --------------
+sample({
+    clock: editAccountDeletionField,
+    target: editAccountDeletionFieldFx
+});
+
+sample({
+    clock: editAccountDeletionFieldFx.done,
     target: getAllAccounts
 });
 // ---------------------------------------

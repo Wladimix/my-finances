@@ -23,13 +23,22 @@ class AccountModel {
                 'amount',
                 'is_deleted as isDeleted'
             )
+            .whereNot({ is_deleted: true })
             .from(TablesNames.ACCOUNT)
             .orderBy('name', 'asc');
+    }
+
+    async getOneById(id: number): Promise<IAccount | undefined> {
+        return await knex(TablesNames.ACCOUNT)
+            .where({ id })
+            .whereNot({ is_deleted: true })
+            .first();
     }
 
     async getOneByName(name: string): Promise<IAccount | undefined> {
         return await knex(TablesNames.ACCOUNT)
             .where({ name })
+            .whereNot({ is_deleted: true })
             .first();
     }
 
@@ -47,6 +56,15 @@ class AccountModel {
         await knex(TablesNames.ACCOUNT)
             .where({ id })
             .update({ amount });
+    }
+
+    async editDeletionFieldById(id: number, name: string, isDeleted: 0 | 1): Promise<void> {
+        await knex(TablesNames.ACCOUNT)
+            .where({ id })
+            .update({
+                name,
+                is_deleted: isDeleted
+            });
     }
 
 }
