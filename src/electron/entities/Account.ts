@@ -1,6 +1,6 @@
 import AccountModel from '../models/AccountModel';
 
-import { NEW_ACCOUNT } from '../constants';
+import { NewEntities } from '../constants';
 
 export default class Account {
 
@@ -26,7 +26,7 @@ export default class Account {
     }
 
     async add(): Promise<void> {
-        const account = await AccountModel.getOneByName(NEW_ACCOUNT);
+        const account = await AccountModel.getOneByName(NewEntities.NEW_ACCOUNT);
 
         if (account !== undefined) {
             throw new Error('такой счёт уже существует');

@@ -1,6 +1,6 @@
 import knex from '../connectionDB';
 
-import { NEW_ACCOUNT, TablesNames } from '../constants';
+import { NewEntities, TablesNames } from '../constants';
 
 class AccountModel {
 
@@ -8,7 +8,7 @@ class AccountModel {
         await knex.schema
             .createTable(TablesNames.ACCOUNT, table => {
                 table.increments('id');
-                table.string('name', 50).notNullable().defaultTo(NEW_ACCOUNT);
+                table.string('name', 50).notNullable().defaultTo(NewEntities.NEW_ACCOUNT);
                 table.float('amount', 2).notNullable().defaultTo(0.00);
                 table.boolean('is_deleted').notNullable().defaultTo(0);
                 table.unique('name');
