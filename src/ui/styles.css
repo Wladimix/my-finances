@@ -54,7 +54,7 @@ table tbody td {
     vertical-align: top;
 }
 
-table tbody td:hover {
+table tbody td:hover:not(.not-hover) {
     background-color: #d8d8d8;
 }
 

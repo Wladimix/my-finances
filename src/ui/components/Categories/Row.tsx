@@ -1,16 +1,20 @@
 import DeleteCategoryButton from './Buttons/DeleteCategoryButton';
 import CategoryNameInput from './CategoryNameInput';
 
-export default function Row() {
+export default function Row({ category }: IProps) {
     return(
         <tr>
 
             <td className='uk-text-large'>
-                <CategoryNameInput />
+                <CategoryNameInput category={category} />
             </td>
 
-            <DeleteCategoryButton />
+            <DeleteCategoryButton category={category} />
 
         </tr>
     );
+}
+
+interface IProps {
+    category: ICategory
 }

@@ -1,7 +1,9 @@
 export enum NewEntities {
-    NEW_ACCOUNT = 'Новый счёт'
+    NEW_ACCOUNT = 'Новый счёт',
+    NEW_CATEGORY = 'Новая категория'
 }
 
 export enum TablesNames {
-    ACCOUNT = 'account'
+    ACCOUNTS = 'accounts',
+    CATEGORIES = 'categories'
 }

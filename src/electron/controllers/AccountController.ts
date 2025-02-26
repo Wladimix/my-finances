@@ -1,4 +1,5 @@
 import Account from '../entities/Account';
+
 import { makeError } from '../utils';
 
 class AccountController {

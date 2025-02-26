@@ -1,5 +1,7 @@
 import AccountController from './controllers/AccountController';
 import AccountModel from './models/AccountModel';
+import CategoryController from './controllers/CategoryController';
+import CategoryModel from './models/CategoryModel';
 import fs from 'fs';
 import path from 'path';
 
@@ -23,6 +25,7 @@ export async function createTablesIfNotExist(): Promise<void> {
         if (!fs.existsSync(path.join(DATABASE_PATH, DATABASE_NAME))) {
 
             await AccountModel.createTable();
+            await CategoryModel.createTable();
 
         }
 
@@ -41,5 +44,10 @@ export function createRouter(): void {
     ipcHandle('editAccountName', (_, data) => AccountController.editAccountName(data))
     ipcHandle('editAccountAmount', (_, data) => AccountController.editAccountAmount(data))
     ipcHandle('editAccountDeletionField', (_, data) => AccountController.editAccountDeletionField(data))
+
+    ipcHandle('getAllCategories', () => CategoryController.getAllCategories())
+    ipcHandle('addCategory', () => CategoryController.addCategory())
+    ipcHandle('editCategoryName', (_, data) => CategoryController.editCategoryName(data))
+    ipcHandle('editCategoryDeletionField', (_, data) => CategoryController.editCategoryDeletionField(data))
 
 }

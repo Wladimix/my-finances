@@ -2,64 +2,56 @@ import knex from '../connectionDB';
 
 import { NewEntities, TablesNames } from '../constants';
 
-class AccountModel {
+class CategoryModel {
 
     async createTable(): Promise<void> {
-        await knex.schema
-            .createTable(TablesNames.ACCOUNTS, table => {
+        return await knex.schema
+            .createTable(TablesNames.CATEGORIES, table => {
                 table.increments('id');
-                table.string('name', 50).notNullable().defaultTo(NewEntities.NEW_ACCOUNT);
-                table.float('amount', 2).notNullable().defaultTo(0.00);
-                table.boolean('is_deleted').notNullable().defaultTo(0);
+                table.string('name').notNullable().defaultTo(NewEntities.NEW_CATEGORY);;
+                table.boolean('is_deleted').notNullable().defaultTo(false);
                 table.unique('name');
             });
     }
 
-    async getAll(): Promise<IAccount[]> {
+    async getAll(): Promise<ICategory[]> {
         return await knex
             .select(
                 'id',
                 'name',
-                'amount',
                 'is_deleted as isDeleted'
             )
             .whereNot({ is_deleted: true })
-            .from(TablesNames.ACCOUNTS)
+            .from(TablesNames.CATEGORIES)
             .orderBy('name', 'asc');
     }
 
-    async getOneById(id: number): Promise<IAccount | undefined> {
-        return await knex(TablesNames.ACCOUNTS)
+    async getOneById(id: number): Promise<ICategory | undefined> {
+        return await knex(TablesNames.CATEGORIES)
             .where({ id })
             .whereNot({ is_deleted: true })
             .first();
     }
 
-    async getOneByName(name: string): Promise<IAccount | undefined> {
-        return await knex(TablesNames.ACCOUNTS)
+    async getOneByName(name: string): Promise<ICategory | undefined> {
+        return await knex(TablesNames.CATEGORIES)
             .where({ name })
             .whereNot({ is_deleted: true })
             .first();
     }
 
     async add(): Promise<void> {
-        await knex(TablesNames.ACCOUNTS).insert({});
+        await knex(TablesNames.CATEGORIES).insert({});
     }
 
     async editNameById(id: number, name: string): Promise<void> {
-        await knex(TablesNames.ACCOUNTS)
+        await knex(TablesNames.CATEGORIES)
             .where({ id })
             .update({ name });
     }
 
-    async editAmountById(id: number, amount: number): Promise<void> {
-        await knex(TablesNames.ACCOUNTS)
-            .where({ id })
-            .update({ amount });
-    }
-
     async editDeletionFieldById(id: number, name: string, isDeleted: 0 | 1): Promise<void> {
-        await knex(TablesNames.ACCOUNTS)
+        await knex(TablesNames.CATEGORIES)
             .where({ id })
             .update({
                 name,
@@ -69,4 +61,4 @@ class AccountModel {
 
 }
 
-export default new AccountModel();
+export default new CategoryModel();

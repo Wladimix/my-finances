@@ -9,23 +9,22 @@ export default function Accounts() {
     const allAccounts = useUnit($allAccounts);
 
     const displayAccounts = () => {
-        return allAccounts.length
-
-            ? allAccounts.map(account =>
-                <div key={account.id}>
-                    <AccountCard account={account} />
-                </div>)
-
-            : <NoAccaunts />;
+        return allAccounts.map(account =>
+            <div key={account.id}>
+                <AccountCard account={account} />
+            </div>);
     };
 
     return(
         <>
             <Heading />
-
-            <div className='uk-grid-column-small uk-grid-row-small uk-child-width-1-3@s' data-uk-grid>
-                { displayAccounts() }
-            </div>
+            {
+                allAccounts.length
+                    ? <div className='uk-grid-column-small uk-grid-row-small uk-child-width-1-3@s' data-uk-grid>
+                        { displayAccounts() }
+                    </div>
+                    : <NoAccaunts />
+            }
         </>
     );
 }

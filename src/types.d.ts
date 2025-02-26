@@ -5,6 +5,12 @@ interface IAccount {
     isDeleted: 0 | 1
 }
 
+interface ICategory {
+    id: number
+    name: string
+    isDeleted: 0 | 1
+}
+
 type ResponceData<T> = {
     data: T | null
     error: string | null
@@ -18,10 +24,11 @@ interface EventPayloadMapping {
     editAccountAmount: [{ id: number, amount: number }, Promise<ResponceData<null>>]
     editAccountDeletionField: [{ id: number, isDeleted: 0 | 1 }, Promise<ResponceData<null>>]
 
-}
+    getAllCategories: [undefined, Promise<ResponceData<ICategory[]>>]
+    addCategory: [undefined, Promise<ResponceData<null>>]
+    editCategoryName: [{ id: number, name: string }, Promise<ResponceData<null>>]
+    editCategoryDeletionField: [{ id: number, isDeleted: 0 | 1 }, Promise<ResponceData<null>>]
 
-type test = {
-    id: number, amount: number
 }
 
 interface Window {
@@ -33,5 +40,9 @@ interface Window {
         editAccountAmount: (data: { id: number, amount: number }) => Promise<ResponceData<null>>
         editAccountDeletionField: (data: { id: number, isDeleted: 0 | 1 }) => Promise<ResponceData<null>>
 
+        getAllCategories: () => Promise<ResponceData<ICategory[]>>
+        addCategory: () => Promise<ResponceData<null>>
+        editCategoryName: (data: { id: number, name: string }) => Promise<ResponceData<null>>
+        editCategoryDeletionField: (data: { id: number, isDeleted: 0 | 1 }) => Promise<ResponceData<null>>
     }
 }
