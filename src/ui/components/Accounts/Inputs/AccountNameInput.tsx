@@ -13,7 +13,7 @@ export default function AccountNameInput({ account }: IProps) {
     const [inputFocus, changeInputFocus] = useState<boolean>(false);
 
     const isEmptyName = localName === '';
-    const accountAvailability = Boolean(allAccounts.find((account) => account.name === localName));
+    const accountAvailability = Boolean(allAccounts.find(account => account.name === localName));
     const editingCondition = !isEmptyName && !accountAvailability;
 
     const blurHandler = () => {
