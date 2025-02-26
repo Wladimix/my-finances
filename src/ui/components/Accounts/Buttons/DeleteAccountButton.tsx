@@ -5,12 +5,24 @@ export default function DeleteAccountButton({ account }: IProps) {
         editAccountDeletionField({ id: account.id, isDeleted: 1 });
     };
 
+    const isZeroAccount = !account.amount;
+
     return(
-        <button
-            className='uk-icon-link'
-            data-uk-icon='icon: trash; ratio: 1.2'
-            onClick={handler}
-        />
+        <>
+            {
+                isZeroAccount
+                    ?   <button
+                            className='uk-icon-link'
+                            data-uk-icon='icon: trash; ratio: 1.2'
+                            onClick={handler}
+                        />
+                    :   <span
+                            className='uk-icon'
+                            data-uk-icon='icon: trash; ratio: 1.2'
+                        />
+            }
+        </>
+
     );
 }
 
