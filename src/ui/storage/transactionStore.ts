@@ -1,5 +1,6 @@
 import { addTransactionFx, editTransactionDateFx, getAllTransactionsFx } from '../effects/transactionEffects';
 import { createEvent, createStore, sample } from 'effector';
+import { getAllYears } from './dateStore';
 
 export const getAllTransations = createEvent();
 export const addTransaction = createEvent<Date>();
@@ -18,6 +19,11 @@ sample({
     clock: getAllTransactionsFx.doneData,
     target: $allTransactions
 });
+
+sample({
+    clock: getAllTransactionsFx.done,
+    target: getAllYears
+})
 // ---------------------------------------
 
 // addTransaction ------------------------

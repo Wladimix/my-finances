@@ -45,6 +45,23 @@ export default class Transaction {
         return await TransactionModel.getAll();
     }
 
+    async getYears(): Promise<number[]> {
+        const allDates = await TransactionModel.getAllDates();
+        const years: number[] = [];
+
+        allDates.forEach((elem: { date: number }) => {
+
+            const year = new Date(elem.date).getFullYear();
+
+            if (!years.includes(year)) {
+                years.push(year);
+            }
+
+        });
+
+        return years;
+    }
+
     async add(date: Date): Promise<void> {
         await TransactionModel.add(date);
     }

@@ -42,19 +42,20 @@ export async function createTablesIfNotExist(): Promise<void> {
 
 export function createRouter(): void {
 
-    ipcHandle('getAllAccounts', () => AccountController.getAllAccounts())
-    ipcHandle('addAccount', () => AccountController.addAccount())
-    ipcHandle('editAccountName', (_, data) => AccountController.editAccountName(data))
-    ipcHandle('editAccountAmount', (_, data) => AccountController.editAccountAmount(data))
-    ipcHandle('editAccountDeletionField', (_, data) => AccountController.editAccountDeletionField(data))
+    ipcHandle('getAllAccounts', () => AccountController.getAllAccounts());
+    ipcHandle('addAccount', () => AccountController.addAccount());
+    ipcHandle('editAccountName', (_, data) => AccountController.editAccountName(data));
+    ipcHandle('editAccountAmount', (_, data) => AccountController.editAccountAmount(data));
+    ipcHandle('editAccountDeletionField', (_, data) => AccountController.editAccountDeletionField(data));
 
-    ipcHandle('getAllCategories', () => CategoryController.getAllCategories())
-    ipcHandle('addCategory', () => CategoryController.addCategory())
-    ipcHandle('editCategoryName', (_, data) => CategoryController.editCategoryName(data))
-    ipcHandle('editCategoryDeletionField', (_, data) => CategoryController.editCategoryDeletionField(data))
+    ipcHandle('getAllCategories', () => CategoryController.getAllCategories());
+    ipcHandle('addCategory', () => CategoryController.addCategory());
+    ipcHandle('editCategoryName', (_, data) => CategoryController.editCategoryName(data));
+    ipcHandle('editCategoryDeletionField', (_, data) => CategoryController.editCategoryDeletionField(data));
 
-    ipcHandle('getAllTransactions', () => TransactionController.getAllTransactions())
-    ipcHandle('addTransaction', (_, date) => TransactionController.addTransaction(date))
-    ipcHandle('editTransactionDate', (_, data) => TransactionController.editTransactionDate(data))
+    ipcHandle('getAllTransactions', () => TransactionController.getAllTransactions());
+    ipcHandle('getAllYears', () => TransactionController.getAllYears());
+    ipcHandle('addTransaction', (_, date) => TransactionController.addTransaction(date));
+    ipcHandle('editTransactionDate', (_, data) => TransactionController.editTransactionDate(data));
 
 }

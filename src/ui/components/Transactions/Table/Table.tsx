@@ -13,6 +13,7 @@ export default function Table() {
             <Row key={transaction.id} transaction={transaction} />
         );
 
+    // TODO: удалить
     console.log(allTransactions);
 
     return(

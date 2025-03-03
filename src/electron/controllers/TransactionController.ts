@@ -1,3 +1,4 @@
+import { error } from 'console';
 import Transaction from '../entities/Transaction';
 
 import { makeError } from '../utils';
@@ -17,6 +18,28 @@ class TransactionController {
         } catch(error) {
 
             const errorMessage = makeError(error as Error, 'ошибка получения транзакций');
+
+            return {
+                data: null,
+                error: errorMessage
+            };
+
+        }
+    }
+
+    async getAllYears(): Promise<ResponceData<number[]>> {
+        try {
+
+            const transaction = new Transaction();
+
+            return {
+                data: await transaction.getYears(),
+                error: null
+            };
+
+        } catch(error) {
+
+            const errorMessage = makeError(error as Error, 'ошибка получения годов');
 
             return {
                 data: null,
