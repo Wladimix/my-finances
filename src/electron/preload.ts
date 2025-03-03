@@ -21,5 +21,6 @@ contextBridge.exposeInMainWorld('electron', {
     editCategoryDeletionField: (data: { id: number; isDeleted: 0 | 1; }) => ipcInvoke('editCategoryDeletionField', data),
 
     getAllTransactions: () => ipcInvoke('getAllTransactions'),
+    addTransaction: (date: Date) => ipcInvoke('addTransaction', date)
 
 } satisfies Window['electron']);

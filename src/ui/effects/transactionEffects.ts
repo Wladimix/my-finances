@@ -14,3 +14,11 @@ export const getAllTransactionsFx = createEffect<void, ITransaction[]>(async () 
 
     return result.data;
 });
+
+export const addTransactionFx = createEffect<Date, void>(async date => {
+    const result = await window.electron.addTransaction(date);
+
+    if (result.error) {
+        showErrorNotification(result.error);
+    }
+});

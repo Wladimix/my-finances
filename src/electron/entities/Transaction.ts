@@ -45,4 +45,8 @@ export default class Transaction {
         return await TransactionModel.getAll();
     }
 
+    async add(date: Date): Promise<void> {
+        const account = await TransactionModel.add(date);
+    }
+
 }

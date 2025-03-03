@@ -54,5 +54,6 @@ export function createRouter(): void {
     ipcHandle('editCategoryDeletionField', (_, data) => CategoryController.editCategoryDeletionField(data))
 
     ipcHandle('getAllTransactions', () => TransactionController.getAllTransactions())
+    ipcHandle('addTransaction', (_, date) => TransactionController.addTransaction(date))
 
 }

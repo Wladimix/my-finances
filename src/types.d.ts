@@ -45,6 +45,7 @@ interface EventPayloadMapping {
     editCategoryDeletionField: [{ id: number, isDeleted: 0 | 1 }, Promise<ResponceData<null>>]
 
     getAllTransactions: [undefined, Promise<ResponceData<ITransaction[]>>]
+    addTransaction: [Date, Promise<ResponceData<null>>]
 
 }
 
@@ -63,6 +64,7 @@ interface Window {
         editCategoryDeletionField: (data: { id: number, isDeleted: 0 | 1 }) => Promise<ResponceData<null>>
 
         getAllTransactions: () => Promise<ResponceData<ITransaction[]>>
+        addTransaction: (date: Date) => Promise<ResponceData<null>>
 
     }
 }

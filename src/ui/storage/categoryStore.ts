@@ -33,7 +33,7 @@ sample({
 });
 
 sample({
-    clock: addCategoryFx.doneData,
+    clock: addCategoryFx.done,
     target: getAllCategories
 });
 // ---------------------------------------

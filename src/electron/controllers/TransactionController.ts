@@ -26,6 +26,29 @@ class TransactionController {
         }
     }
 
+    async addTransaction(date: Date): Promise<ResponceData<null>> {
+        try {
+
+            const transaction = new Transaction();
+            await transaction.add(date);
+
+            return {
+                data: null,
+                error: null
+            };
+
+        } catch(error) {
+
+            const errorMessage = makeError(error as Error, 'ошибка добавления транзакции');
+
+            return {
+                data: null,
+                error: errorMessage
+            };
+
+        }
+    }
+
 }
 
 export default new TransactionController();

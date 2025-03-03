@@ -50,6 +50,10 @@ class TransactionModel {
             .orderBy(`${TablesNames.TRANSACTIONS}.id`, 'desc');
     }
 
+    async add(date: Date): Promise<void> {
+        await knex(TablesNames.TRANSACTIONS).insert({ date });
+    }
+
 }
 
 export default new TransactionModel();
