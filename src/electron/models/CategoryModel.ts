@@ -5,7 +5,7 @@ import { NewEntities, TablesNames } from '../constants';
 class CategoryModel {
 
     async createTable(): Promise<void> {
-        return await knex.schema
+        await knex.schema
             .createTable(TablesNames.CATEGORIES, table => {
                 table.increments('id');
                 table.string('name').notNullable().defaultTo(NewEntities.NEW_CATEGORY);;

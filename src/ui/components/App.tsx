@@ -8,6 +8,7 @@ import Transactions from './Transactions/Transactions';
 import { Chart, CategoryScale } from 'chart.js/auto';
 import { getAllAccounts } from '../storage/accountStore';
 import { getAllCategories } from '../storage/categoryStore';
+import { getAllTransations } from '../storage/tranctionStore';
 import { useEffect } from 'react';
 import { useUnit } from 'effector-react';
 
@@ -16,10 +17,12 @@ Chart.register(CategoryScale);
 export default function App() {
     const getAllAccountsEvent = useUnit(getAllAccounts);
     const getAllCategoriesEvent = useUnit(getAllCategories);
+    const getAllTransationsEvent = useUnit(getAllTransations);
 
     useEffect(() => {
         getAllAccountsEvent();
         getAllCategoriesEvent();
+        getAllTransationsEvent();
     }, []);
 
     return (

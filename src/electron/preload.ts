@@ -18,6 +18,8 @@ contextBridge.exposeInMainWorld('electron', {
     getAllCategories: () => ipcInvoke('getAllCategories'),
     addCategory: () => ipcInvoke('addCategory'),
     editCategoryName: (data: { id: number, name: string }) => ipcInvoke('editCategoryName', data),
-    editCategoryDeletionField: (data: { id: number; isDeleted: 0 | 1; }) => ipcInvoke('editCategoryDeletionField', data)
+    editCategoryDeletionField: (data: { id: number; isDeleted: 0 | 1; }) => ipcInvoke('editCategoryDeletionField', data),
+
+    getAllTransactions: () => ipcInvoke('getAllTransactions'),
 
 } satisfies Window['electron']);

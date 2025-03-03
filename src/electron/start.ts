@@ -4,6 +4,8 @@ import CategoryController from './controllers/CategoryController';
 import CategoryModel from './models/CategoryModel';
 import fs from 'fs';
 import path from 'path';
+import TransactionController from './controllers/TransactionController';
+import TransactionModel from './models/TransactionModel';
 
 import { DATABASE_NAME, DATABASE_PATH } from './connectionDB';
 import { ipcMain } from 'electron';
@@ -26,6 +28,7 @@ export async function createTablesIfNotExist(): Promise<void> {
 
             await AccountModel.createTable();
             await CategoryModel.createTable();
+            await TransactionModel.createTable();
 
         }
 
@@ -49,5 +52,7 @@ export function createRouter(): void {
     ipcHandle('addCategory', () => CategoryController.addCategory())
     ipcHandle('editCategoryName', (_, data) => CategoryController.editCategoryName(data))
     ipcHandle('editCategoryDeletionField', (_, data) => CategoryController.editCategoryDeletionField(data))
+
+    ipcHandle('getAllTransactions', () => TransactionController.getAllTransactions())
 
 }

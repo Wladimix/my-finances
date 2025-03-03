@@ -5,5 +5,6 @@ export enum NewEntities {
 
 export enum TablesNames {
     ACCOUNTS = 'accounts',
-    CATEGORIES = 'categories'
+    CATEGORIES = 'categories',
+    TRANSACTIONS = 'transactions'
 }

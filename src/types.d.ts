@@ -11,6 +11,21 @@ interface ICategory {
     isDeleted: 0 | 1
 }
 
+interface ITransaction {
+    id: number
+    date: string
+    sourceOfTransactionId: number
+    sourceOfTransactionName: string
+    sourceOfTransactionDeleted: 0 | 1
+    transactionAddressId: number
+    transactionAddressName: string
+    spendingCategoryId: number
+    spendingCategoryName: string
+    spendingCategoryDeleted: 0 | 1
+    amount: number
+    transactionType: string
+}
+
 type ResponceData<T> = {
     data: T | null
     error: string | null
@@ -29,6 +44,8 @@ interface EventPayloadMapping {
     editCategoryName: [{ id: number, name: string }, Promise<ResponceData<null>>]
     editCategoryDeletionField: [{ id: number, isDeleted: 0 | 1 }, Promise<ResponceData<null>>]
 
+    getAllTransactions: [undefined, Promise<ResponceData<ITransaction[]>>]
+
 }
 
 interface Window {
@@ -44,5 +61,8 @@ interface Window {
         addCategory: () => Promise<ResponceData<null>>
         editCategoryName: (data: { id: number, name: string }) => Promise<ResponceData<null>>
         editCategoryDeletionField: (data: { id: number, isDeleted: 0 | 1 }) => Promise<ResponceData<null>>
+
+        getAllTransactions: () => Promise<ResponceData<ITransaction[]>>
+
     }
 }
