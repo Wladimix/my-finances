@@ -54,6 +54,12 @@ class TransactionModel {
         await knex(TablesNames.TRANSACTIONS).insert({ date });
     }
 
+    async editDateById(id: number, date: Date): Promise<void> {
+        await knex(TablesNames.TRANSACTIONS)
+            .where({ id })
+            .update({ date });
+    }
+
 }
 
 export default new TransactionModel();

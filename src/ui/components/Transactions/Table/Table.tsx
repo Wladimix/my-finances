@@ -2,7 +2,7 @@ import Header from './Header';
 import NoTransactions from '../NoTransactions';
 import Row from './Row';
 
-import { $allTransactions } from '../../../storage/tranctionStore';
+import { $allTransactions } from '../../../storage/transactionStore';
 import { useUnit } from 'effector-react';
 
 export default function Table() {
@@ -10,7 +10,7 @@ export default function Table() {
 
     const displayTransactions = () =>
         allTransactions.map(transaction =>
-            <Row key={transaction.id} />
+            <Row key={transaction.id} transaction={transaction} />
         );
 
     console.log(allTransactions);

@@ -95,6 +95,11 @@ table tbody tr td.amount-cell {
     cursor: pointer;
 }
 
+.custom-input.datepicker {
+    caret-color: transparent;
+    cursor: pointer;
+}
+
 .note {
     padding-top: 8px;
     cursor: pointer;

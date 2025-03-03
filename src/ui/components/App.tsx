@@ -8,7 +8,7 @@ import Transactions from './Transactions/Transactions';
 import { Chart, CategoryScale } from 'chart.js/auto';
 import { getAllAccounts } from '../storage/accountStore';
 import { getAllCategories } from '../storage/categoryStore';
-import { getAllTransations } from '../storage/tranctionStore';
+import { getAllTransations } from '../storage/transactionStore';
 import { useEffect } from 'react';
 import { useUnit } from 'effector-react';
 

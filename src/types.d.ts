@@ -46,6 +46,7 @@ interface EventPayloadMapping {
 
     getAllTransactions: [undefined, Promise<ResponceData<ITransaction[]>>]
     addTransaction: [Date, Promise<ResponceData<null>>]
+    editTransactionDate: [{ id: number, date: Date }, Promise<ResponceData<null>>]
 
 }
 
@@ -65,6 +66,7 @@ interface Window {
 
         getAllTransactions: () => Promise<ResponceData<ITransaction[]>>
         addTransaction: (date: Date) => Promise<ResponceData<null>>
+        editTransactionDate: (data: { id: number, date: Date }) => Promise<ResponceData<null>>
 
     }
 }

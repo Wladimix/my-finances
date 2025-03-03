@@ -22,3 +22,11 @@ export const addTransactionFx = createEffect<Date, void>(async date => {
         showErrorNotification(result.error);
     }
 });
+
+export const editTransactionDateFx = createEffect<{ id: number, date: Date }, void>(async data => {
+    const result = await window.electron.editTransactionDate({ id: data.id, date: data.date })
+
+    if (result.error) {
+        showErrorNotification(result.error);
+    }
+});

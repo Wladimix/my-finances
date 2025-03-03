@@ -1,4 +1,4 @@
-import { addTransaction } from '../../../storage/tranctionStore';
+import { addTransaction } from '../../../storage/transactionStore';
 import { useUnit } from 'effector-react';
 
 export default function AddTransactionButton() {

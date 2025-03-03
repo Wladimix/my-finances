@@ -55,5 +55,6 @@ export function createRouter(): void {
 
     ipcHandle('getAllTransactions', () => TransactionController.getAllTransactions())
     ipcHandle('addTransaction', (_, date) => TransactionController.addTransaction(date))
+    ipcHandle('editTransactionDate', (_, data) => TransactionController.editTransactionDate(data))
 
 }

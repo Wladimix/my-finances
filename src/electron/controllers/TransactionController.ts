@@ -49,6 +49,29 @@ class TransactionController {
         }
     }
 
+    async editTransactionDate({ id, date }: { id: number, date: Date }) {
+        try {
+
+            const transaction = new Transaction(id);
+            await transaction.editDate(date);
+
+            return {
+                data: null,
+                error: null
+            };
+
+        } catch(error) {
+
+            const errorMessage = makeError(error as Error, 'ошибка редактирования даты транзакции');
+
+            return {
+                data: null,
+                error: errorMessage
+            };
+
+        }
+    }
+
 }
 
 export default new TransactionController();

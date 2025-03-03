@@ -46,7 +46,13 @@ export default class Transaction {
     }
 
     async add(date: Date): Promise<void> {
-        const account = await TransactionModel.add(date);
+        await TransactionModel.add(date);
+    }
+
+    async editDate(date: Date): Promise<void> {
+        if (this.id) {
+            await TransactionModel.editDateById(this.id, date)
+        }
     }
 
 }

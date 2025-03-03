@@ -5,11 +5,11 @@ import DeleteTransactionButton from './Buttons/DeleteTransactionButton';
 import OpenNoteButton from './Buttons/OpenNoteButton';
 import SourceTransactionSelect from './Inputs/SourceTransactionSelect';
 
-export default function Row() {
+export default function Row({ transaction }: IProps) {
     return(
         <tr>
             <td className='datepicker-cell'>
-                <DateInput />
+                <DateInput transaction={transaction} />
             </td>
             <td className='select-cell'>
                 <SourceTransactionSelect />
@@ -28,4 +28,8 @@ export default function Row() {
             </td>
         </tr>
     );
+}
+
+interface IProps {
+    transaction: ITransaction
 }
