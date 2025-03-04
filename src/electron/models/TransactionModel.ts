@@ -41,7 +41,7 @@ export default class TransactionModel {
                 // `${TablesNames.TRANSACTIONS}.to_calculate_inflation as toCalculateInflation`
             )
             .from(TablesNames.TRANSACTIONS)
-            .offset(page * 3).limit(3); // TODO: вернуть на 30
+            .offset(page * 30).limit(30);
 
         query
             .leftJoin(`${TablesNames.ACCOUNTS} as sources_of_transactions`, `${TablesNames.TRANSACTIONS}.source_of_transaction_id`, '=', 'sources_of_transactions.id')
