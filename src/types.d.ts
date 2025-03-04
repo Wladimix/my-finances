@@ -55,6 +55,7 @@ interface EventPayloadMapping {
     getNumberOfTransactions: [IFilter, Promise<ResponceData<number>>]
     addTransaction: [Date, Promise<ResponceData<null>>]
     editTransactionDate: [{ id: number, date: Date }, Promise<ResponceData<null>>]
+    editSourceOfTransaction: [{ id: number, sourceOfTransactionId: number | null }, Promise<ResponceData<null>> ]
     deleteTransaction: [number, Promise<ResponceData<null>>]
 
 }
@@ -78,6 +79,7 @@ interface Window {
         getNumberOfTransactions: (filter: IFilter) => Promise<ResponceData<number>>
         addTransaction: (date: Date) => Promise<ResponceData<null>>
         editTransactionDate: (data: { id: number, date: Date }) => Promise<ResponceData<null>>
+        editSourceOfTransaction: (data: { id: number, sourceOfTransactionId: number | null }) => Promise<ResponceData<null>>
         deleteTransaction: (id: number) => Promise<ResponceData<null>>
 
     }

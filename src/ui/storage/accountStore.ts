@@ -1,5 +1,6 @@
 import { addAccountFx, editAccountAmountFx, editAccountDeletionFieldFx, editAccountNameFx, getAllAccountsFx } from '../effects/accountEffects';
 import { createEvent, createStore, sample } from 'effector';
+import { getAllTransations } from './transactionStore';
 
 export const getAllAccounts = createEvent<void>();
 export const addAccount = createEvent<void>();
@@ -27,6 +28,11 @@ sample({
 sample({
     clock: getAllAccountsFx.doneData,
     target: $allAccounts
+});
+
+sample({
+    clock: getAllAccountsFx.done,
+    target: getAllTransations
 });
 // ---------------------------------------
 

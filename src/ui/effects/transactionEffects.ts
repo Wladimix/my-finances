@@ -65,6 +65,14 @@ export const editTransactionDateFx = createEffect<{ id: number, date: Date }, vo
     }
 });
 
+export const editSourceOfTransactionFx = createEffect<{ id: number, sourceOfTransactionId: number | null }, void>(async data => {
+    const result = await window.electron.editSourceOfTransaction({ id: data.id, sourceOfTransactionId: data.sourceOfTransactionId });
+
+    if (result.error) {
+        showErrorNotification(result.error);
+    }
+});
+
 export const deleteTransactionFx = createEffect<number, void>(async id => {
     const result = await window.electron.deleteTransaction(id);
 

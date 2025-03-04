@@ -1,5 +1,6 @@
 import { addCategoryFx, editCategoryDeletionFieldFx, editCategoryNameFx, getAllCategoriesFx } from '../effects/categoryEffects';
 import { createEvent, createStore, sample } from 'effector';
+import { getAllTransations } from './transactionStore';
 
 export const getAllCategories = createEvent<void>();
 export const addCategory = createEvent<void>();
@@ -23,6 +24,11 @@ sample({
 sample({
     clock: getAllCategoriesFx.doneData,
     target: $allCategories
+});
+
+sample({
+    clock: getAllCategoriesFx.done,
+    target: getAllTransations
 });
 // ---------------------------------------
 

@@ -25,6 +25,7 @@ contextBridge.exposeInMainWorld('electron', {
     getNumberOfTransactions: (filter: IFilter) => ipcInvoke('getNumberOfTransactions', filter),
     addTransaction: (date: Date) => ipcInvoke('addTransaction', date),
     editTransactionDate: (data: { id: number, date: Date }) => ipcInvoke('editTransactionDate', data),
+    editSourceOfTransaction: (data: { id: number, sourceOfTransactionId: number | null }) => ipcInvoke('editSourceOfTransaction', data),
     deleteTransaction: (id: number) => ipcInvoke('deleteTransaction', id)
 
 } satisfies Window['electron']);

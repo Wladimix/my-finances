@@ -83,6 +83,12 @@ export default class TransactionModel {
             .update({ date });
     }
 
+    static async editSourceOfTransactionId(id: number, sourceOfTransactionId: number | null): Promise<void> {
+        await knex(TablesNames.TRANSACTIONS)
+            .where({ id })
+            .update({ source_of_transaction_id: sourceOfTransactionId });
+    }
+
     static async deleteById(id: number): Promise<void> {
         await knex(TablesNames.TRANSACTIONS)
             .where({ id })

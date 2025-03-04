@@ -1,14 +1,15 @@
 import { $currentPage, $numberOfPages } from './paginationStore';
 import { $selectedMonth, $selectedYear, changeMonth, changeYear, getAllYears, resetYear } from './dateStore';
-import { addTransactionFx, deleteTransactionFx, editTransactionDateFx, getAllTransactionsFx, getNumberOfPagesFx } from '../effects/transactionEffects';
+import { addTransactionFx, deleteTransactionFx, editSourceOfTransactionFx, editTransactionDateFx, getAllTransactionsFx, getNumberOfPagesFx } from '../effects/transactionEffects';
 import { createEvent, createStore, sample } from 'effector';
 
 export const getAllTransations = createEvent();
 export const getNumberOfTransactions = createEvent();
 export const addTransaction = createEvent<Date>();
+export const deleteTransaction = createEvent<number>();
 
 export const editTransactionDate = createEvent<{ id: number, date: Date }>();
-export const deleteTransaction = createEvent<number>();
+export const editSourceOfTransaction = createEvent<{ id: number, sourceOfTransactionId: number | null }>();
 
 export const $allTransactions = createStore<ITransaction[]>([]);
 
@@ -66,6 +67,18 @@ sample({
 
 sample({
     clock: editTransactionDateFx.done,
+    target: getAllTransations
+});
+// ---------------------------------------
+
+// editSourceOfTransaction ---------------
+sample({
+    clock: editSourceOfTransaction,
+    target: editSourceOfTransactionFx
+});
+
+sample({
+    clock: editSourceOfTransactionFx.done,
     target: getAllTransations
 });
 // ---------------------------------------

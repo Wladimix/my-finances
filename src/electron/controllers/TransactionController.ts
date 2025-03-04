@@ -116,6 +116,29 @@ export default class TransactionController {
         }
     }
 
+    static async editSourceOfTransaction({ id, sourceOfTransactionId }: { id: number, sourceOfTransactionId: number | null }) {
+        try {
+
+            const transaction = new Transaction(id);
+            await transaction.editSourceOfTransactionId(sourceOfTransactionId);
+
+            return {
+                data: null,
+                error: null
+            };
+
+        } catch(error) {
+
+            const errorMessage = makeError(error as Error, 'ошибка редактирования даты транзакции');
+
+            return {
+                data: null,
+                error: errorMessage
+            };
+
+        }
+    }
+
     static async deleteTransaction(id: number) {
         try {
 

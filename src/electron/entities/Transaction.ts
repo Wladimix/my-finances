@@ -77,6 +77,12 @@ export default class Transaction {
         }
     }
 
+    async editSourceOfTransactionId(sourceOfTransactionId: number | null): Promise<void> {
+        if (this.id) {
+            await TransactionModel.editSourceOfTransactionId(this.id, sourceOfTransactionId)
+        }
+    }
+
     async delete(): Promise<void> {
         if (this.id) {
             await TransactionModel.deleteById(this.id);
