@@ -4,7 +4,7 @@ import { makeError } from '../utils';
 
 class TransactionController {
 
-    async getAllTransactions(filter: { year: string | null }): Promise<ResponceData<ITransaction[]>> {
+    async getAllTransactions(filter: { year: string | null, month: string | null }): Promise<ResponceData<ITransaction[]>> {
         try {
 
             // TODO: удалить

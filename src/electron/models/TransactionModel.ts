@@ -21,7 +21,7 @@ class TransactionModel {
             });
     }
 
-    static async getAll(year: string | null, month: string | null = null): Promise<ITransaction[]> {
+    static async getAll(year: string | null, month: string | null): Promise<ITransaction[]> {
 
         const query = knex
             .select(
@@ -62,7 +62,7 @@ class TransactionModel {
     private static makeDateSearchOptions(year: string | null, month: string | null): [Knex.DbColumn<Date>, Knex.DbColumn<Date>] {
         return [
             new Date(year ? Number(year) : 1970, month ? Number(month) : 0, 1, 0, 0, 0),
-            new Date(year ? Number(year) : 2999, month ? Number(month) : 11, getLastMonthDay(month), 23, 59, 59)
+            new Date(year ? Number(year) : 2970, month ? Number(month) : 11, getLastMonthDay(month), 23, 59, 59)
         ];
     }
 

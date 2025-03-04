@@ -5,12 +5,16 @@ export const getAllYears = createEvent();
 
 export const changeYear = createEvent<string | null>();
 export const resetYear = createEvent();
+export const changeMonth = createEvent<string | null>();
 
 export const $allYears = createStore<number[]>([]);
 export const $selectedYear = createStore<string | null>(null);
+export const $selectedMonth = createStore<string | null>(null);
 
 $selectedYear.on(changeYear, (_, newYear) => newYear);
 $selectedYear.reset(resetYear);
+
+$selectedMonth.on(changeMonth, (_, newMonth) => newMonth);
 
 // getAllYears ---------------------------
 sample({
