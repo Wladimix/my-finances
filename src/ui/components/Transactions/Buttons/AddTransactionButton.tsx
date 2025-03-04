@@ -1,6 +1,7 @@
 import { $selectedMonth, $selectedYear } from '../../../storage/dateStore';
 import { addTransaction } from '../../../storage/transactionStore';
 import { useUnit } from 'effector-react';
+import { getLastMonthDay } from '../../../utils';
 
 export default function AddTransactionButton() {
     const addTransactionEvent = useUnit(addTransaction);
@@ -16,8 +17,8 @@ export default function AddTransactionButton() {
 
         if (selectedYear) {
             year = Number(selectedYear);
-            month = selectedMonth ? Number(selectedMonth) : month;
-            day = 1;
+            month = selectedMonth ? Number(selectedMonth) : 11;
+            day = getLastMonthDay(month);
         }
 
         addTransactionEvent(new Date(year, month, day, 0, 0, 0));
