@@ -8,9 +8,6 @@ export default function YearSelect() {
     const allYears = useUnit($allYears);
     const selectedYear = useUnit($selectedYear);
 
-    // TODO: удалить
-    console.log(selectedYear);
-
     const displayYears = () =>
         allYears.map(year =>
             <option key={year}>

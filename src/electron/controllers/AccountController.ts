@@ -2,9 +2,9 @@ import Account from '../entities/Account';
 
 import { makeError } from '../utils';
 
-class AccountController {
+export default class AccountController {
 
-    async getAllAccounts(): Promise<ResponceData<IAccount[]>> {
+    static async getAllAccounts(): Promise<ResponceData<IAccount[]>> {
         try {
 
             const account = new Account();
@@ -26,7 +26,7 @@ class AccountController {
         }
     }
 
-    async addAccount(): Promise<ResponceData<null>> {
+    static async addAccount(): Promise<ResponceData<null>> {
         try {
 
             const account = new Account();
@@ -49,7 +49,7 @@ class AccountController {
         }
     }
 
-    async editAccountName({ id, name }: { id: number, name: string }): Promise<ResponceData<null>> {
+    static async editAccountName({ id, name }: { id: number, name: string }): Promise<ResponceData<null>> {
         try {
 
             const account = new Account(id);
@@ -72,7 +72,7 @@ class AccountController {
         }
     }
 
-    async editAccountAmount({ id, amount }: { id: number, amount: number }): Promise<ResponceData<null>> {
+    static async editAccountAmount({ id, amount }: { id: number, amount: number }): Promise<ResponceData<null>> {
         try {
 
             const account = new Account(id);
@@ -95,7 +95,7 @@ class AccountController {
         }
     }
 
-    async editAccountDeletionField({ id, isDeleted }: { id: number, isDeleted: 0 | 1 }): Promise<ResponceData<null>> {
+    static async editAccountDeletionField({ id, isDeleted }: { id: number, isDeleted: 0 | 1 }): Promise<ResponceData<null>> {
         try {
 
             const account = new Account(id);
@@ -119,5 +119,3 @@ class AccountController {
     }
 
 }
-
-export default new AccountController();

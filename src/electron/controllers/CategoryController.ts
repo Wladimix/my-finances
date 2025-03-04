@@ -2,9 +2,9 @@ import Category from '../entities/Category';
 
 import { makeError } from '../utils';
 
-class CategoryController {
+export default class CategoryController {
 
-    async getAllCategories(): Promise<ResponceData<ICategory[]>> {
+    static async getAllCategories(): Promise<ResponceData<ICategory[]>> {
         try {
 
             const category = new Category();
@@ -26,7 +26,7 @@ class CategoryController {
         }
     }
 
-    async addCategory(): Promise<ResponceData<null>> {
+    static async addCategory(): Promise<ResponceData<null>> {
         try {
 
             const category = new Category();
@@ -49,7 +49,7 @@ class CategoryController {
         }
     }
 
-    async editCategoryName({ id, name }: { id: number, name: string }): Promise<ResponceData<null>> {
+    static async editCategoryName({ id, name }: { id: number, name: string }): Promise<ResponceData<null>> {
         try {
 
             const category = new Category(id);
@@ -72,7 +72,7 @@ class CategoryController {
         }
     }
 
-    async editCategoryDeletionField({ id, isDeleted }: { id: number, isDeleted: 0 | 1 }): Promise<ResponceData<null>> {
+    static async editCategoryDeletionField({ id, isDeleted }: { id: number, isDeleted: 0 | 1 }): Promise<ResponceData<null>> {
         try {
 
             const category = new Category(id);
@@ -96,5 +96,3 @@ class CategoryController {
     }
 
 }
-
-export default new CategoryController();

@@ -4,7 +4,7 @@ import { getLastMonthDay } from '../utils';
 import { Knex } from 'knex';
 import { TablesNames } from '../constants';
 
-class TransactionModel {
+export default class TransactionModel {
 
     static async createTable(): Promise<void> {
         return await knex.schema
@@ -84,5 +84,3 @@ class TransactionModel {
     }
 
 }
-
-export default TransactionModel;

@@ -2,13 +2,10 @@ import Transaction from '../entities/Transaction';
 
 import { makeError } from '../utils';
 
-class TransactionController {
+export default class TransactionController {
 
-    async getAllTransactions(filter: { year: string | null, month: string | null }): Promise<ResponceData<ITransaction[]>> {
+    static async getAllTransactions(filter: { year: string | null, month: string | null }): Promise<ResponceData<ITransaction[]>> {
         try {
-
-            // TODO: удалить
-            console.log(filter);
 
             const transaction = new Transaction();
 
@@ -29,7 +26,7 @@ class TransactionController {
         }
     }
 
-    async getAllYears(): Promise<ResponceData<number[]>> {
+    static async getAllYears(): Promise<ResponceData<number[]>> {
         try {
 
             const transaction = new Transaction();
@@ -51,7 +48,7 @@ class TransactionController {
         }
     }
 
-    async addTransaction(date: Date): Promise<ResponceData<null>> {
+    static async addTransaction(date: Date): Promise<ResponceData<null>> {
         try {
 
             const transaction = new Transaction();
@@ -74,7 +71,7 @@ class TransactionController {
         }
     }
 
-    async editTransactionDate({ id, date }: { id: number, date: Date }) {
+    static async editTransactionDate({ id, date }: { id: number, date: Date }) {
         try {
 
             const transaction = new Transaction(id);
@@ -98,5 +95,3 @@ class TransactionController {
     }
 
 }
-
-export default new TransactionController();

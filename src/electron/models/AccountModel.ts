@@ -2,9 +2,9 @@ import knex from '../connectionDB';
 
 import { NewEntities, TablesNames } from '../constants';
 
-class AccountModel {
+export default class AccountModel {
 
-    async createTable(): Promise<void> {
+    static async createTable(): Promise<void> {
         await knex.schema
             .createTable(TablesNames.ACCOUNTS, table => {
                 table.increments('id');
@@ -15,7 +15,7 @@ class AccountModel {
             });
     }
 
-    async getAll(): Promise<IAccount[]> {
+    static async getAll(): Promise<IAccount[]> {
         return await knex
             .select(
                 'id',
@@ -28,37 +28,37 @@ class AccountModel {
             .orderBy('name', 'asc');
     }
 
-    async getOneById(id: number): Promise<IAccount | undefined> {
+    static async getOneById(id: number): Promise<IAccount | undefined> {
         return await knex(TablesNames.ACCOUNTS)
             .where({ id })
             .whereNot({ is_deleted: true })
             .first();
     }
 
-    async getOneByName(name: string): Promise<IAccount | undefined> {
+    static async getOneByName(name: string): Promise<IAccount | undefined> {
         return await knex(TablesNames.ACCOUNTS)
             .where({ name })
             .whereNot({ is_deleted: true })
             .first();
     }
 
-    async add(): Promise<void> {
+    static async add(): Promise<void> {
         await knex(TablesNames.ACCOUNTS).insert({});
     }
 
-    async editNameById(id: number, name: string): Promise<void> {
+    static async editNameById(id: number, name: string): Promise<void> {
         await knex(TablesNames.ACCOUNTS)
             .where({ id })
             .update({ name });
     }
 
-    async editAmountById(id: number, amount: number): Promise<void> {
+    static async editAmountById(id: number, amount: number): Promise<void> {
         await knex(TablesNames.ACCOUNTS)
             .where({ id })
             .update({ amount });
     }
 
-    async editDeletionFieldById(id: number, name: string, isDeleted: 0 | 1): Promise<void> {
+    static async editDeletionFieldById(id: number, name: string, isDeleted: 0 | 1): Promise<void> {
         await knex(TablesNames.ACCOUNTS)
             .where({ id })
             .update({
@@ -68,5 +68,3 @@ class AccountModel {
     }
 
 }
-
-export default new AccountModel();

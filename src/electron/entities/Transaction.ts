@@ -17,7 +17,7 @@ export default class Transaction {
 
     constructor (
         id: number | null = null,
-        date: string | null = null, // TODO: тип даты
+        date: string | null = null,
         sourceOfTransactionId: number | null = null,
         sourceOfTransactionName: string | null = null,
         sourceOfTransactionDeleted:  0 | 1 = 0,
@@ -29,7 +29,7 @@ export default class Transaction {
         amount: number | null = null
     ) {
         this.id = id ?? 0;
-        this.date = date ?? ''; // TODO: тип даты
+        this.date = date ?? '';
         this.sourceOfTransactionId = sourceOfTransactionId ?? 0;
         this.sourceOfTransactionName = sourceOfTransactionName ?? '';
         this.sourceOfTransactionDeleted = sourceOfTransactionDeleted;
