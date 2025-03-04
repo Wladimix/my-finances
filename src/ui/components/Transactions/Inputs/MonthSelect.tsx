@@ -1,4 +1,4 @@
-import { $selectedMonth, changeMonth } from '../../../storage/dateStore';
+import { $selectedMonth, $selectedYear, changeMonth } from '../../../storage/dateStore';
 import { unselectedElements } from '../../../constants';
 import { useUnit } from 'effector-react';
 
@@ -20,6 +20,7 @@ const months = [
 export default function MonthSelect() {
     const changeMonthEvent = useUnit(changeMonth);
 
+    const selectedYear = useUnit($selectedYear);
     const selectedMonth = useUnit($selectedMonth);
 
     const displayMonths = () =>
@@ -39,6 +40,7 @@ export default function MonthSelect() {
     return(
         <select
             className='uk-select'
+            disabled={!Boolean(selectedYear)}
             onChange={handler}
             value={makeSelectValue()}
         >
