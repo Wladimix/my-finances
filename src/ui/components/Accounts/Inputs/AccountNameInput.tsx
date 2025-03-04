@@ -53,6 +53,7 @@ export default function AccountNameInput({ account }: IProps) {
             onBlur={blurHandler}
             onChange={changeHandler}
             onFocus={focusHandler}
+            spellCheck={false}
             value={localName}
         />
     );

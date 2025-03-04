@@ -52,6 +52,7 @@ export default function CategoryNameInput({ category }: IProps) {
             onBlur={blurHandler}
             onChange={changeHandler}
             onFocus={focusHandler}
+            spellCheck={false}
             value={localName}
         />
     );

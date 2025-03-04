@@ -3,6 +3,7 @@ export default function NoteSearchInput() {
         <input
             className='uk-input'
             placeholder='поиск по примечанию'
+            spellCheck={false}
             type='text'
         />
     );
