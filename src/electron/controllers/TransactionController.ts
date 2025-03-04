@@ -116,4 +116,27 @@ export default class TransactionController {
         }
     }
 
+    static async deleteTransaction(id: number) {
+        try {
+
+            const transaction = new Transaction(id);
+            await transaction.delete();
+
+            return {
+                data: null,
+                error: null
+            };
+
+        } catch(error) {
+
+            const errorMessage = makeError(error as Error, 'ошибка удаления транзакции');
+
+            return {
+                data: null,
+                error: errorMessage
+            };
+
+        }
+    }
+
 }

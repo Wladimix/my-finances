@@ -79,8 +79,14 @@ export default class TransactionModel {
 
     static async editDateById(id: number, date: Date): Promise<void> {
         await knex(TablesNames.TRANSACTIONS)
-        .where({ id })
-        .update({ date });
+            .where({ id })
+            .update({ date });
+    }
+
+    static async deleteById(id: number): Promise<void> {
+        await knex(TablesNames.TRANSACTIONS)
+            .where({ id })
+            .del();
     }
 
     private static makeDateSearchOptions(year: string | null, month: string | null): [Knex.DbColumn<Date>, Knex.DbColumn<Date>] {

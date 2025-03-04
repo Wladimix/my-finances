@@ -64,3 +64,11 @@ export const editTransactionDateFx = createEffect<{ id: number, date: Date }, vo
         showErrorNotification(result.error);
     }
 });
+
+export const deleteTransactionFx = createEffect<number, void>(async id => {
+    const result = await window.electron.deleteTransaction(id);
+
+    if (result.error) {
+        showErrorNotification(result.error);
+    }
+});

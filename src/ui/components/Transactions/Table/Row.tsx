@@ -24,7 +24,7 @@ export default function Row({ transaction }: IProps) {
                 <OpenNoteButton />
             </td>
             <td className='uk-text-center'>
-                <DeleteTransactionButton />
+                <DeleteTransactionButton id={transaction.id} />
             </td>
         </tr>
     );

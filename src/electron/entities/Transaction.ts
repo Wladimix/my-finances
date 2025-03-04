@@ -77,4 +77,10 @@ export default class Transaction {
         }
     }
 
+    async delete(): Promise<void> {
+        if (this.id) {
+            await TransactionModel.deleteById(this.id);
+        }
+    }
+
 }

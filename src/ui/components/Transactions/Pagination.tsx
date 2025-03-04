@@ -27,9 +27,9 @@ export default function Pagination() {
                 pageCount={numberOfPages}
                 pageRangeDisplayed={5}
 
-                containerClassName="uk-pagination uk-flex-center"
-                activeClassName="uk-active"
-                breakLinkClassName="uk-disabled"
+                containerClassName='uk-pagination uk-flex-center'
+                activeClassName='uk-active'
+                breakLinkClassName='uk-disabled'
                 previousLabel={<span data-uk-pagination-previous />}
                 nextLabel={<span data-uk-pagination-next />}
 
