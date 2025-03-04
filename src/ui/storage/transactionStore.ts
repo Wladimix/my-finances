@@ -1,6 +1,6 @@
+import { $selectedYear, changeYear, getAllYears, resetYear } from './dateStore';
 import { addTransactionFx, editTransactionDateFx, getAllTransactionsFx } from '../effects/transactionEffects';
 import { createEvent, createStore, sample } from 'effector';
-import { getAllYears } from './dateStore';
 
 export const getAllTransations = createEvent();
 export const addTransaction = createEvent<Date>();
@@ -12,6 +12,7 @@ export const $allTransactions = createStore<ITransaction[]>([]);
 // getAllTransations ---------------------
 sample({
     clock: getAllTransations,
+    source: { year: $selectedYear },
     target: getAllTransactionsFx
 });
 
@@ -23,7 +24,7 @@ sample({
 sample({
     clock: getAllTransactionsFx.done,
     target: getAllYears
-})
+});
 // ---------------------------------------
 
 // addTransaction ------------------------
@@ -46,6 +47,20 @@ sample({
 
 sample({
     clock: editTransactionDateFx.done,
+    target: getAllTransations
+});
+// ---------------------------------------
+
+// changeYear ----------------------------
+sample({
+    clock: changeYear,
+    target: getAllTransations
+});
+// ---------------------------------------
+
+// resetYear -----------------------------
+sample({
+    clock: resetYear,
     target: getAllTransations
 });
 // ---------------------------------------

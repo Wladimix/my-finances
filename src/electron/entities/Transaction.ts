@@ -41,8 +41,8 @@ export default class Transaction {
         this.amount = amount ?? 0.00;
     }
 
-    async getAll(): Promise<ITransaction[]> {
-        return await TransactionModel.getAll();
+    async getAll(filter: { year: string | null }): Promise<ITransaction[]> {
+        return await TransactionModel.getAll(filter.year);
     }
 
     async getYears(): Promise<number[]> {

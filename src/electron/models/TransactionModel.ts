@@ -1,10 +1,12 @@
 import knex from '../connectionDB';
 
+import { getLastMonthDay } from '../utils';
+import { Knex } from 'knex';
 import { TablesNames } from '../constants';
 
 class TransactionModel {
 
-    async createTable(): Promise<void> {
+    static async createTable(): Promise<void> {
         return await knex.schema
             .createTable(TablesNames.TRANSACTIONS, table => {
                 table.increments('id');
@@ -19,8 +21,9 @@ class TransactionModel {
             });
     }
 
-    async getAll(): Promise<ITransaction[]> {
-        return await knex
+    static async getAll(year: string | null, month: string | null = null): Promise<ITransaction[]> {
+
+        const query = knex
             .select(
                 `${TablesNames.TRANSACTIONS}.id`,
                 `${TablesNames.TRANSACTIONS}.date`,
@@ -40,28 +43,41 @@ class TransactionModel {
             .from(TablesNames.TRANSACTIONS)
             // .offset(page * 30).limit(30)
 
+        query
             .leftJoin(`${TablesNames.ACCOUNTS} as sources_of_transactions`, `${TablesNames.TRANSACTIONS}.source_of_transaction_id`, '=', 'sources_of_transactions.id')
             .leftJoin(`${TablesNames.ACCOUNTS} as transactions_addresses`, `${TablesNames.TRANSACTIONS}.transaction_address_id`, '=', 'transactions_addresses.id')
             .leftJoin(TablesNames.CATEGORIES, `${TablesNames.TRANSACTIONS}.spending_category_id`, '=', `${TablesNames.CATEGORIES}.id`)
             // .join(TablesNames.NOTES_TABLE, `${TablesNames.FINANCIAL_TRANSACTIONS_TABLE_NAME}.note_id`, '=', `${TablesNames.NOTES_TABLE}.id`)
 
+        query
+            .whereBetween(`${TablesNames.TRANSACTIONS}.date`, this.makeDateSearchOptions(year, month))
             // .whereLike(`${TablesNames.NOTES_TABLE}.name`, `%${note}%`)
             .orderBy(`${TablesNames.TRANSACTIONS}.date`, 'desc')
             .orderBy(`${TablesNames.TRANSACTIONS}.id`, 'desc');
+
+        return await query;
+
     }
 
-    async getAllDates(): Promise<{ date: number }[]> {
+    private static makeDateSearchOptions(year: string | null, month: string | null): [Knex.DbColumn<Date>, Knex.DbColumn<Date>] {
+        return [
+            new Date(year ? Number(year) : 1970, month ? Number(month) : 0, 1, 0, 0, 0),
+            new Date(year ? Number(year) : 2999, month ? Number(month) : 11, getLastMonthDay(month), 23, 59, 59)
+        ];
+    }
+
+    static async getAllDates(): Promise<{ date: number }[]> {
         return await knex
             .select('date')
             .from(TablesNames.TRANSACTIONS)
-            .orderBy(`${TablesNames.TRANSACTIONS}.date`, 'asc');
+            .orderBy(`${TablesNames.TRANSACTIONS}.date`, 'desc');
     }
 
-    async add(date: Date): Promise<void> {
+    static async add(date: Date): Promise<void> {
         await knex(TablesNames.TRANSACTIONS).insert({ date });
     }
 
-    async editDateById(id: number, date: Date): Promise<void> {
+    static async editDateById(id: number, date: Date): Promise<void> {
         await knex(TablesNames.TRANSACTIONS)
             .where({ id })
             .update({ date });
@@ -69,4 +85,4 @@ class TransactionModel {
 
 }
 
-export default new TransactionModel();
+export default TransactionModel;

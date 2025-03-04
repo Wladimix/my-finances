@@ -1,8 +1,8 @@
 import { createEffect } from 'effector';
 import { showErrorNotification } from '../utils';
 
-export const getAllTransactionsFx = createEffect<void, ITransaction[]>(async () => {
-    const result = await window.electron.getAllTransactions();
+export const getAllTransactionsFx = createEffect<{ year: string | null }, ITransaction[]>(async data => {
+    const result = await window.electron.getAllTransactions({ year: data.year });
 
     if (result.error) {
         showErrorNotification(result.error);

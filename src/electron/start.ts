@@ -53,7 +53,7 @@ export function createRouter(): void {
     ipcHandle('editCategoryName', (_, data) => CategoryController.editCategoryName(data));
     ipcHandle('editCategoryDeletionField', (_, data) => CategoryController.editCategoryDeletionField(data));
 
-    ipcHandle('getAllTransactions', () => TransactionController.getAllTransactions());
+    ipcHandle('getAllTransactions', (_, filter) => TransactionController.getAllTransactions(filter));
     ipcHandle('getAllYears', () => TransactionController.getAllYears());
     ipcHandle('addTransaction', (_, date) => TransactionController.addTransaction(date));
     ipcHandle('editTransactionDate', (_, data) => TransactionController.editTransactionDate(data));

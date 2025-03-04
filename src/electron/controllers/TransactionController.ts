@@ -1,17 +1,19 @@
-import { error } from 'console';
 import Transaction from '../entities/Transaction';
 
 import { makeError } from '../utils';
 
 class TransactionController {
 
-    async getAllTransactions(): Promise<ResponceData<ITransaction[]>> {
+    async getAllTransactions(filter: { year: string | null }): Promise<ResponceData<ITransaction[]>> {
         try {
+
+            // TODO: удалить
+            console.log(filter);
 
             const transaction = new Transaction();
 
             return {
-                data: await transaction.getAll(),
+                data: await transaction.getAll(filter),
                 error: null
             };
 
