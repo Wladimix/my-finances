@@ -18,7 +18,7 @@ export default function AddTransactionButton() {
         if (selectedYear) {
             year = Number(selectedYear);
             month = selectedMonth ? Number(selectedMonth) : 11;
-            day = getLastMonthDay(month);
+            day = getLastMonthDay(year, month);
         }
 
         addTransactionEvent(new Date(year, month, day, 0, 0, 0));

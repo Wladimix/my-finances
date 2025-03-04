@@ -6,6 +6,6 @@ export function makeError(error: Error, customErrorMessage: string): string {
     return errorMessage;
 }
 
-export function getLastMonthDay(month: string | null): number {
-    return month ? new Date(1970, Number(month) + 1, 0).getDate() : 31;
+export function getLastMonthDay(year: string | null, month: string | null): number {
+    return month ? new Date(Number(year), Number(month) + 1, 0).getDate() : 31;
 }

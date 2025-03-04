@@ -7,6 +7,6 @@ export function showErrorNotification(message: string) {
     });
 }
 
-export function getLastMonthDay(month: number): number {
-    return month ? new Date(1970, month + 1, 0).getDate() : 31;
+export function getLastMonthDay(year: number, month: number): number {
+    return month ? new Date(year, month + 1, 0).getDate() : 31;
 }
