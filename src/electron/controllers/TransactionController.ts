@@ -4,7 +4,7 @@ import { makeError } from '../utils';
 
 export default class TransactionController {
 
-    static async getAllTransactions(filter: { year: string | null, month: string | null }): Promise<ResponceData<ITransaction[]>> {
+    static async getAllTransactions(filter: IFilter): Promise<ResponceData<ITransaction[]>> {
         try {
 
             const transaction = new Transaction();
@@ -39,6 +39,28 @@ export default class TransactionController {
         } catch(error) {
 
             const errorMessage = makeError(error as Error, 'ошибка получения годов');
+
+            return {
+                data: null,
+                error: errorMessage
+            };
+
+        }
+    }
+
+    static async getNumberOfTransactions(filter: IFilter): Promise<ResponceData<number>> {
+        try {
+
+            const transaction = new Transaction();
+
+            return {
+                data: await transaction.getCount(filter),
+                error: null
+            };
+
+        } catch(error) {
+
+            const errorMessage = makeError(error as Error, 'ошибка получения количества транзакций');
 
             return {
                 data: null,

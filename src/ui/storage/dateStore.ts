@@ -30,9 +30,7 @@ sample({
 sample({
     clock: getAllYearsFx.done,
     source: { allYears: $allYears, selectedYear: $selectedYear },
-    filter: ({ allYears, selectedYear }) => {
-        return selectedYear !== null && !allYears.includes(Number(selectedYear));
-    },
+    filter: ({ allYears, selectedYear }) => selectedYear !== null && !allYears.includes(Number(selectedYear)),
     target: resetYear
 });
 // ---------------------------------------

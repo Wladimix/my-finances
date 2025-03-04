@@ -21,7 +21,7 @@ export default class TransactionModel {
             });
     }
 
-    static async getAll(year: string | null, month: string | null): Promise<ITransaction[]> {
+    static async getAll(year: string | null, month: string | null, page: number): Promise<ITransaction[]> {
 
         const query = knex
             .select(
@@ -41,7 +41,7 @@ export default class TransactionModel {
                 // `${TablesNames.TRANSACTIONS}.to_calculate_inflation as toCalculateInflation`
             )
             .from(TablesNames.TRANSACTIONS)
-            // .offset(page * 30).limit(30)
+            .offset(page * 3).limit(3); // TODO: вернуть на 30
 
         query
             .leftJoin(`${TablesNames.ACCOUNTS} as sources_of_transactions`, `${TablesNames.TRANSACTIONS}.source_of_transaction_id`, '=', 'sources_of_transactions.id')
@@ -59,18 +59,18 @@ export default class TransactionModel {
 
     }
 
-    private static makeDateSearchOptions(year: string | null, month: string | null): [Knex.DbColumn<Date>, Knex.DbColumn<Date>] {
-        return [
-            new Date(year ? Number(year) : 1970, month ? Number(month) : 0, 1, 0, 0, 0),
-            new Date(year ? Number(year) : 2970, month ? Number(month) : 11, getLastMonthDay(month), 23, 59, 59)
-        ];
-    }
-
     static async getAllDates(): Promise<{ date: number }[]> {
         return await knex
             .select('date')
             .from(TablesNames.TRANSACTIONS)
             .orderBy(`${TablesNames.TRANSACTIONS}.date`, 'desc');
+    }
+
+    // TODO: не забыть про notes
+    static async getCount(year: string | null, month: string | null): Promise<string | number> {
+        return (await knex(TablesNames.TRANSACTIONS)
+            .count(`${TablesNames.TRANSACTIONS}.id as count`)
+            .whereBetween(`${TablesNames.TRANSACTIONS}.date`, this.makeDateSearchOptions(year, month)))[0].count;
     }
 
     static async add(date: Date): Promise<void> {
@@ -79,8 +79,15 @@ export default class TransactionModel {
 
     static async editDateById(id: number, date: Date): Promise<void> {
         await knex(TablesNames.TRANSACTIONS)
-            .where({ id })
-            .update({ date });
+        .where({ id })
+        .update({ date });
+    }
+
+    private static makeDateSearchOptions(year: string | null, month: string | null): [Knex.DbColumn<Date>, Knex.DbColumn<Date>] {
+        return [
+            new Date(year ? Number(year) : 1970, month ? Number(month) : 0, 1, 0, 0, 0),
+            new Date(year ? Number(year) : 2970, month ? Number(month) : 11, getLastMonthDay(month), 23, 59, 59)
+        ];
     }
 
 }

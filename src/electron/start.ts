@@ -55,6 +55,7 @@ export function createRouter(): void {
 
     ipcHandle('getAllTransactions', (_, filter) => TransactionController.getAllTransactions(filter));
     ipcHandle('getAllYears', () => TransactionController.getAllYears());
+    ipcHandle('getNumberOfTransactions', (_, filter) => TransactionController.getNumberOfTransactions(filter));
     ipcHandle('addTransaction', (_, date) => TransactionController.addTransaction(date));
     ipcHandle('editTransactionDate', (_, data) => TransactionController.editTransactionDate(data));
 

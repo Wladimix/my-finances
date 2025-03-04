@@ -20,8 +20,9 @@ contextBridge.exposeInMainWorld('electron', {
     editCategoryName: (data: { id: number, name: string }) => ipcInvoke('editCategoryName', data),
     editCategoryDeletionField: (data: { id: number; isDeleted: 0 | 1; }) => ipcInvoke('editCategoryDeletionField', data),
 
-    getAllTransactions: (filter: { year: string | null, month: string | null }) => ipcInvoke('getAllTransactions', filter),
+    getAllTransactions: (filter: IFilter) => ipcInvoke('getAllTransactions', filter),
     getAllYears: () => ipcInvoke('getAllYears'),
+    getNumberOfTransactions: (filter: IFilter) => ipcInvoke('getNumberOfTransactions', filter),
     addTransaction: (date: Date) => ipcInvoke('addTransaction', date),
     editTransactionDate: (data: { id: number, date: Date }) => ipcInvoke('editTransactionDate', data)
 

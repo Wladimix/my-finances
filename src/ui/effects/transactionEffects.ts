@@ -1,8 +1,12 @@
 import { createEffect } from 'effector';
 import { showErrorNotification } from '../utils';
 
-export const getAllTransactionsFx = createEffect<{ year: string | null, month: string | null }, ITransaction[]>(async data => {
-    const result = await window.electron.getAllTransactions({ year: data.year, month: data.month });
+export const getAllTransactionsFx = createEffect<IFilter, ITransaction[]>(async filter => {
+    const result = await window.electron.getAllTransactions({
+        year: filter.year,
+        month: filter.month,
+        page: filter.page !== undefined ? filter.page : 0
+    });
 
     if (result.error) {
         showErrorNotification(result.error);
@@ -27,6 +31,22 @@ export const getAllYearsFx = createEffect<void ,number[]>( async () => {
     }
 
     return result.data;
+});
+
+export const getNumberOfPagesFx = createEffect<IFilter, number>(async filter => {
+    const numberOfTransactions = await window.electron.getNumberOfTransactions({ year: filter.year, month: filter.month });
+
+    if (numberOfTransactions.error) {
+        showErrorNotification(numberOfTransactions.error);
+    }
+
+    if (!numberOfTransactions.data) {
+        return 1;
+    }
+
+    const numberOfPages = Math.ceil(numberOfTransactions.data / 3); // TODO: вернуть на 30
+
+    return numberOfPages;
 });
 
 export const addTransactionFx = createEffect<Date, void>(async date => {
