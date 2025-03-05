@@ -59,6 +59,7 @@ interface EventPayloadMapping {
     editSourceOfTransaction: [{ id: number, sourceOfTransactionId: number | null }, Promise<ResponceData<null>> ]
     editTransactionAddress: [{ id: number, transactionAddressId: number | null }, Promise<ResponceData<null>>]
     editSpendingCategory: [{ id: number, spendingCategoryId: number | null }, Promise<ResponceData<null>>]
+    editTransactionAmount: [{ id: number, amount: number }, Promise<ResponceData<null>>]
     deleteTransaction: [number, Promise<ResponceData<null>>]
 
 }
@@ -85,6 +86,7 @@ interface Window {
         editSourceOfTransaction: (data: { id: number, sourceOfTransactionId: number | null }) => Promise<ResponceData<null>>
         editTransactionAddress: (data: { id: number, transactionAddressId: number | null }) => Promise<ResponceData<null>>
         editSpendingCategory: (data: { id: number, spendingCategoryId: number | null }) => Promise<ResponceData<null>>
+        editTransactionAmount: (data: { id: number, amount: number }) => Promise<ResponceData<null>>
         deleteTransaction: (id: number) => Promise<ResponceData<null>>
 
     }

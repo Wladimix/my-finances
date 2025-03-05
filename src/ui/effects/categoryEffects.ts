@@ -24,7 +24,7 @@ export const addCategoryFx = createEffect<void, void>(async () => {
 });
 
 export const editCategoryNameFx = createEffect<{ id: number, name: string }, void>(async data => {
-    const result = await window.electron.editCategoryName({ id: data.id, name: data.name })
+    const result = await window.electron.editCategoryName({ id: data.id, name: data.name });
 
     if (result.error) {
         showErrorNotification(result.error);
@@ -32,7 +32,7 @@ export const editCategoryNameFx = createEffect<{ id: number, name: string }, voi
 });
 
 export const editCategoryDeletionFieldFx = createEffect<{ id: number, isDeleted: 0 | 1 }, void>(async data => {
-    const result = await window.electron.editCategoryDeletionField({ id: data.id, isDeleted: data.isDeleted })
+    const result = await window.electron.editCategoryDeletionField({ id: data.id, isDeleted: data.isDeleted });
 
     if (result.error) {
         showErrorNotification(result.error);

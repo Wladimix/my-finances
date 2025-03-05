@@ -61,6 +61,7 @@ export function createRouter(): void {
     ipcHandle('editSourceOfTransaction', (_, data) => TransactionController.editSourceOfTransaction(data));
     ipcHandle('editTransactionAddress', (_, data) => TransactionController.editTransactionAddress(data));
     ipcHandle('editSpendingCategory', (_, data) => TransactionController.editSpendingCategory(data));
+    ipcHandle('editTransactionAmount', (_, data) => TransactionController.editTransactionAmount(data));
     ipcHandle('deleteTransaction', (_, id) => TransactionController.deleteTransaction(id));
 
 }

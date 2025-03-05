@@ -110,6 +110,12 @@ export default class Transaction {
         }
     }
 
+    async editAmount(amount: number): Promise<void> {
+        if (this.id) {
+            await TransactionModel.editAmountById(this.id, amount);
+        }
+    }
+
     async delete(): Promise<void> {
         if (this.id) {
             await TransactionModel.deleteById(this.id);

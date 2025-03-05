@@ -46,7 +46,7 @@ export default function Row({ transaction }: IProps) {
                 {displayAddressTransactionSelectSelect()}
             </td>
             <td className='amount-cell'>
-                <AmountInput />
+                <AmountInput transaction={transaction} />
             </td>
             <td>
                 <OpenNoteButton />

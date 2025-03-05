@@ -185,6 +185,29 @@ export default class TransactionController {
         }
     }
 
+    static async editTransactionAmount({ id, amount }: { id: number, amount: number }): Promise<ResponceData<null>> {
+        try {
+
+            const transaction = new Transaction(id);
+            await transaction.editAmount(amount);
+
+            return {
+                data: null,
+                error: null
+            };
+
+        } catch(error) {
+
+            const errorMessage = makeError(error as Error, 'ошибка редактирования суммы транзакции');
+
+            return {
+                data: null,
+                error: errorMessage
+            };
+
+        }
+    }
+
     static async deleteTransaction(id: number) {
         try {
 

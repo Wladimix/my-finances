@@ -74,6 +74,13 @@ export default class TransactionModel {
             .whereBetween(`${TablesNames.TRANSACTIONS}.date`, this.makeDateSearchOptions(year, month)))[0].count;
     }
 
+    // TODO: будет применяться
+    // static async getOneById(id: number): Promise<ITransaction | undefined> {
+    //     return await knex(TablesNames.TRANSACTIONS)
+    //         .where({ id })
+    //         .first();
+    // }
+
     static async add(date: Date): Promise<void> {
         await knex(TablesNames.TRANSACTIONS).insert({ date });
     }
@@ -100,6 +107,12 @@ export default class TransactionModel {
         await knex(TablesNames.TRANSACTIONS)
             .where({ id })
             .update({ spending_category_id: spendingCategoryId });
+    }
+
+    static async editAmountById(id: number, amount: number): Promise<void> {
+        await knex(TablesNames.TRANSACTIONS)
+            .where({ id })
+            .update({ amount });
     }
 
     static async deleteById(id: number): Promise<void> {

@@ -89,6 +89,14 @@ export const editSpendingCategoryFx = createEffect<{ id: number, spendingCategor
     }
 });
 
+export const editTransactionAmountFx = createEffect<{ id: number, amount: number }, void>(async data => {
+    const result = await window.electron.editTransactionAmount({ id: data.id, amount: data.amount });
+
+    if (result.error) {
+        showErrorNotification(result.error);
+    }
+});
+
 export const deleteTransactionFx = createEffect<number, void>(async id => {
     const result = await window.electron.deleteTransaction(id);
 

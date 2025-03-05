@@ -1,6 +1,6 @@
 import { $currentPage, $numberOfPages } from './paginationStore';
 import { $selectedMonth, $selectedYear, changeMonth, changeYear, getAllYears, resetYear } from './dateStore';
-import { addTransactionFx, deleteTransactionFx, editSourceOfTransactionFx, editSpendingCategoryFx, editTransactionAddressFx, editTransactionDateFx, getAllTransactionsFx, getNumberOfPagesFx } from '../effects/transactionEffects';
+import { addTransactionFx, deleteTransactionFx, editSourceOfTransactionFx, editSpendingCategoryFx, editTransactionAddressFx, editTransactionAmountFx, editTransactionDateFx, getAllTransactionsFx, getNumberOfPagesFx } from '../effects/transactionEffects';
 import { createEvent, createStore, sample } from 'effector';
 
 export const getAllTransations = createEvent();
@@ -12,8 +12,14 @@ export const editTransactionDate = createEvent<{ id: number, date: Date }>();
 export const editSourceOfTransaction = createEvent<{ id: number, sourceOfTransactionId: number | null }>();
 export const editTransactionAddress = createEvent<{ id: number, transactionAddressId: number | null }>();
 export const editSpendingCategory = createEvent<{ id: number, spendingCategoryId: number | null }>();
+export const editTransactionAmount = createEvent<{ id: number, amount: number }>();
+
+export const changeAmount = createEvent<number>();
 
 export const $allTransactions = createStore<ITransaction[]>([]);
+export const $amount = createStore<number>(0.00);
+
+$amount.on(changeAmount, (_, newAmount) => newAmount);
 
 // getAllTransations ---------------------
 sample({
@@ -105,6 +111,18 @@ sample({
 
 sample({
     clock: editSpendingCategoryFx.done,
+    target: getAllTransations
+});
+// ---------------------------------------
+
+// editTransactionAmount -----------------
+sample({
+    clock: editTransactionAmount,
+    target: editTransactionAmountFx
+});
+
+sample({
+    clock: editTransactionAmountFx.done,
     target: getAllTransations
 });
 // ---------------------------------------
