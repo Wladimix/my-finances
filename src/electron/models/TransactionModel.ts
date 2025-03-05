@@ -32,6 +32,7 @@ export default class TransactionModel {
                 'sources_of_transactions.is_deleted as sourceOfTransactionDeleted',
                 'transactions_addresses.id as transactionAddressId',
                 'transactions_addresses.name as transactionAddressName',
+                'transactions_addresses.is_deleted as transactionAddressDeleted',
                 `${TablesNames.CATEGORIES}.id as spendingCategoryId`,
                 `${TablesNames.CATEGORIES}.name as spendingCategoryName`,
                 `${TablesNames.CATEGORIES}.is_deleted as spendingCategoryDeleted`,
@@ -83,10 +84,22 @@ export default class TransactionModel {
             .update({ date });
     }
 
-    static async editSourceOfTransactionId(id: number, sourceOfTransactionId: number | null): Promise<void> {
+    static async editSourceOfTransactionIdById(id: number, sourceOfTransactionId: number | null): Promise<void> {
         await knex(TablesNames.TRANSACTIONS)
             .where({ id })
             .update({ source_of_transaction_id: sourceOfTransactionId });
+    }
+
+    static async editTransactionAddressIdById(id: number, transactionAddressId: number | null): Promise<void> {
+        await knex(TablesNames.TRANSACTIONS)
+            .where({ id })
+            .update({ transaction_address_id: transactionAddressId });
+    }
+
+    static async editSpendingCategoryIdById(id: number, spendingCategoryId: number | null): Promise<void> {
+        await knex(TablesNames.TRANSACTIONS)
+            .where({ id })
+            .update({ spending_category_id: spendingCategoryId });
     }
 
     static async deleteById(id: number): Promise<void> {

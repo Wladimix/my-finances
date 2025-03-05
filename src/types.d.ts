@@ -19,6 +19,7 @@ interface ITransaction {
     sourceOfTransactionDeleted: 0 | 1
     transactionAddressId: number
     transactionAddressName: string
+    transactionAddressDeleted: 0 | 1
     spendingCategoryId: number
     spendingCategoryName: string
     spendingCategoryDeleted: 0 | 1
@@ -56,6 +57,8 @@ interface EventPayloadMapping {
     addTransaction: [Date, Promise<ResponceData<null>>]
     editTransactionDate: [{ id: number, date: Date }, Promise<ResponceData<null>>]
     editSourceOfTransaction: [{ id: number, sourceOfTransactionId: number | null }, Promise<ResponceData<null>> ]
+    editTransactionAddress: [{ id: number, transactionAddressId: number | null }, Promise<ResponceData<null>>]
+    editSpendingCategory: [{ id: number, spendingCategoryId: number | null }, Promise<ResponceData<null>>]
     deleteTransaction: [number, Promise<ResponceData<null>>]
 
 }
@@ -80,6 +83,8 @@ interface Window {
         addTransaction: (date: Date) => Promise<ResponceData<null>>
         editTransactionDate: (data: { id: number, date: Date }) => Promise<ResponceData<null>>
         editSourceOfTransaction: (data: { id: number, sourceOfTransactionId: number | null }) => Promise<ResponceData<null>>
+        editTransactionAddress: (data: { id: number, transactionAddressId: number | null }) => Promise<ResponceData<null>>
+        editSpendingCategory: (data: { id: number, spendingCategoryId: number | null }) => Promise<ResponceData<null>>
         deleteTransaction: (id: number) => Promise<ResponceData<null>>
 
     }

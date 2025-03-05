@@ -129,7 +129,53 @@ export default class TransactionController {
 
         } catch(error) {
 
-            const errorMessage = makeError(error as Error, 'ошибка редактирования даты транзакции');
+            const errorMessage = makeError(error as Error, 'ошибка редактирования источника транзакции');
+
+            return {
+                data: null,
+                error: errorMessage
+            };
+
+        }
+    }
+
+    static async editTransactionAddress({ id, transactionAddressId }: { id: number, transactionAddressId: number | null }) {
+        try {
+
+            const transaction = new Transaction(id);
+            await transaction.editTransactionAddressId(transactionAddressId);
+
+            return {
+                data: null,
+                error: null
+            };
+
+        } catch(error) {
+
+            const errorMessage = makeError(error as Error, 'ошибка редактирования адреса транзакции');
+
+            return {
+                data: null,
+                error: errorMessage
+            };
+
+        }
+    }
+
+    static async editSpendingCategory({ id, spendingCategoryId }: { id: number, spendingCategoryId: number | null }) {
+        try {
+
+            const transaction = new Transaction(id);
+            await transaction.editSpendingCategoryId(spendingCategoryId);
+
+            return {
+                data: null,
+                error: null
+            };
+
+        } catch(error) {
+
+            const errorMessage = makeError(error as Error, 'ошибка редактирования категории расхода транзакции');
 
             return {
                 data: null,

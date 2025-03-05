@@ -9,6 +9,7 @@ export default class Transaction {
     sourceOfTransactionDeleted: 0 | 1;
     transactionAddressId: number;
     transactionAddressName: string;
+    transactionAddressDeleted: 0 | 1;
     spendingCategoryId: number;
     spendingCategoryName: string;
     spendingCategoryDeleted: 0 | 1;
@@ -23,6 +24,7 @@ export default class Transaction {
         sourceOfTransactionDeleted:  0 | 1 = 0,
         transactionAddressId: number | null = null,
         transactionAddressName: string | null = null,
+        transactionAddressDeleted:  0 | 1 = 0,
         spendingCategoryId: number | null = null,
         spendingCategoryName: string | null = null,
         spendingCategoryDeleted: 0 | 1 = 0,
@@ -35,6 +37,7 @@ export default class Transaction {
         this.sourceOfTransactionDeleted = sourceOfTransactionDeleted;
         this.transactionAddressId = transactionAddressId ?? 0;
         this.transactionAddressName = transactionAddressName ?? '';
+        this.transactionAddressDeleted = transactionAddressDeleted ?? 0;
         this.spendingCategoryId = spendingCategoryId ?? 0;
         this.spendingCategoryName = spendingCategoryName ?? '';
         this.spendingCategoryDeleted = spendingCategoryDeleted;
@@ -73,13 +76,37 @@ export default class Transaction {
 
     async editDate(date: Date): Promise<void> {
         if (this.id) {
-            await TransactionModel.editDateById(this.id, date)
+            await TransactionModel.editDateById(this.id, date);
         }
     }
 
     async editSourceOfTransactionId(sourceOfTransactionId: number | null): Promise<void> {
         if (this.id) {
-            await TransactionModel.editSourceOfTransactionId(this.id, sourceOfTransactionId)
+            await TransactionModel.editSourceOfTransactionIdById(this.id, sourceOfTransactionId);
+        }
+    }
+
+    async editTransactionAddressId(transactionAddressId: number | null): Promise<void> {
+        if (this.id) {
+
+            if (transactionAddressId !== null) {
+                await this.editSpendingCategoryId(null);
+            }
+
+            await TransactionModel.editTransactionAddressIdById(this.id, transactionAddressId);
+
+        }
+    }
+
+    async editSpendingCategoryId(spendingCategoryId: number | null): Promise<void> {
+        if (this.id) {
+
+            if (spendingCategoryId !== null) {
+                await this.editTransactionAddressId(null);
+            }
+
+            await TransactionModel.editSpendingCategoryIdById(this.id, spendingCategoryId);
+
         }
     }
 

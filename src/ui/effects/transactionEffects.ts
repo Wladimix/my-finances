@@ -73,6 +73,22 @@ export const editSourceOfTransactionFx = createEffect<{ id: number, sourceOfTran
     }
 });
 
+export const editTransactionAddressFx = createEffect<{ id: number, transactionAddressId: number | null }, void>(async data => {
+    const result = await window.electron.editTransactionAddress({ id: data.id, transactionAddressId: data.transactionAddressId });
+
+    if (result.error) {
+        showErrorNotification(result.error);
+    }
+});
+
+export const editSpendingCategoryFx = createEffect<{ id: number, spendingCategoryId: number | null }, void>(async data => {
+    const result = await window.electron.editSpendingCategory({ id: data.id, spendingCategoryId: data.spendingCategoryId });
+
+    if (result.error) {
+        showErrorNotification(result.error);
+    }
+});
+
 export const deleteTransactionFx = createEffect<number, void>(async id => {
     const result = await window.electron.deleteTransaction(id);
 

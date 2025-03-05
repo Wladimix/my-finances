@@ -1,4 +1,4 @@
-export default function SelectForDeletedEntities({ transaction }: IProps) {
+export default function SelectForDeletedSources({ transaction }: IProps) {
     return(
         <select
             className='custom-input uk-select uk-text-danger'

@@ -3,7 +3,8 @@ import AmountInput from './Inputs/AmountInput';
 import DateInput from './Inputs/DateInput';
 import DeleteTransactionButton from './Buttons/DeleteTransactionButton';
 import OpenNoteButton from './Buttons/OpenNoteButton';
-import SelectForDeletedEntities from './Inputs/SelectForDeletedEntities';
+import SelectForDeletedAddresses from './Inputs/SelectsForDeletedEntities/SelectForDeletedAddresses';
+import SelectForDeletedSources from './Inputs/SelectsForDeletedEntities/SelectForDeletedSources';
 import SourceTransactionSelect from './Inputs/SourceTransactionSelect';
 
 export default function Row({ transaction }: IProps) {
@@ -15,10 +16,23 @@ export default function Row({ transaction }: IProps) {
         }
     };
 
+    const makeAddressTransactionClass = () => {
+        if (transaction.transactionAddressDeleted || transaction.spendingCategoryDeleted) {
+            return 'select-cell not-hover';
+        } else {
+            return 'select-cell';
+        }
+    };
+
     const displaySourceTransactionSelect = () =>
         transaction.sourceOfTransactionDeleted
-            ? <SelectForDeletedEntities transaction={transaction} />
+            ? <SelectForDeletedSources transaction={transaction} />
             : <SourceTransactionSelect transaction={transaction} />;
+
+    const displayAddressTransactionSelectSelect = () =>
+        transaction.transactionAddressDeleted || transaction.spendingCategoryDeleted
+            ? <SelectForDeletedAddresses transaction={transaction} />
+            : <AddressTransactionSelect transaction={transaction} />;
 
     return(
         <tr>
@@ -28,8 +42,8 @@ export default function Row({ transaction }: IProps) {
             <td className={makeSourceTransactionClass()}>
                 {displaySourceTransactionSelect()}
             </td>
-            <td className='select-cell'>
-                <AddressTransactionSelect />
+            <td className={makeAddressTransactionClass()}>
+                {displayAddressTransactionSelectSelect()}
             </td>
             <td className='amount-cell'>
                 <AmountInput />
