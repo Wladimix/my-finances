@@ -1,4 +1,5 @@
 import { $currentPage, $numberOfPages } from './paginationStore';
+import { $searchInputValue } from './noteStore';
 import { $selectedMonth, $selectedYear, changeMonth, changeYear, getAllYears, resetYear } from './dateStore';
 import { addTransactionFx, deleteTransactionFx, editTransactionNoteFx, editSpendingCategoryFx, editTransactionDateFx, getAllTransactionsFx, getNumberOfPagesFx } from '../effects/transactionEffects';
 import { createEvent, createStore, sample } from 'effector';
@@ -30,7 +31,7 @@ sample({
 
 sample({
     clock: getNumberOfTransactions,
-    source: { year: $selectedYear, month: $selectedMonth },
+    source: { year: $selectedYear, month: $selectedMonth, note: $searchInputValue },
     target: getNumberOfPagesFx
 });
 
@@ -41,7 +42,7 @@ sample({
 
 sample({
     clock: getNumberOfPagesFx.done,
-    source: { year: $selectedYear, month: $selectedMonth, page: $currentPage },
+    source: { year: $selectedYear, month: $selectedMonth, note: $searchInputValue, page: $currentPage },
     target: getAllTransactionsFx
 });
 

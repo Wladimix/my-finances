@@ -21,7 +21,7 @@ export default class TransactionModel {
             });
     }
 
-    static async getAll(year: string | null, month: string | null, page: number): Promise<ITransaction[]> {
+    static async getAll(year: string | null, month: string | null, note: string | null, page: number): Promise<ITransaction[]> {
 
         const query = knex
             .select(
@@ -42,7 +42,7 @@ export default class TransactionModel {
                 // `${TablesNames.TRANSACTIONS}.to_calculate_inflation as toCalculateInflation`
             )
             .from(TablesNames.TRANSACTIONS)
-            .offset(page * 30).limit(30);
+            .offset(page * 3).limit(3);
 
         query
             .leftJoin(`${TablesNames.ACCOUNTS} as sources_of_transactions`, `${TablesNames.TRANSACTIONS}.source_of_transaction_id`, '=', 'sources_of_transactions.id')
@@ -50,9 +50,12 @@ export default class TransactionModel {
             .leftJoin(TablesNames.CATEGORIES, `${TablesNames.TRANSACTIONS}.spending_category_id`, '=', `${TablesNames.CATEGORIES}.id`)
             .leftJoin(TablesNames.NOTES, `${TablesNames.TRANSACTIONS}.note_id`, '=', `${TablesNames.NOTES}.id`)
 
+        if (note !== null) {
+            query.whereLike(`${TablesNames.NOTES}.name`, `%${note}%`);
+        }
+
         query
             .whereBetween(`${TablesNames.TRANSACTIONS}.date`, this.makeDateSearchOptions(year, month))
-            // .whereLike(`${TablesNames.NOTES_TABLE}.name`, `%${note}%`)
             .orderBy(`${TablesNames.TRANSACTIONS}.date`, 'desc')
             .orderBy(`${TablesNames.TRANSACTIONS}.id`, 'desc');
 
@@ -74,11 +77,17 @@ export default class TransactionModel {
             .join(TablesNames.NOTES, `${TablesNames.TRANSACTIONS}.note_id`, "=", `${TablesNames.NOTES}.id`);
     }
 
-    // TODO: не забыть про notes
-    static async getCount(year: string | null, month: string | null): Promise<string | number> {
-        return (await knex(TablesNames.TRANSACTIONS)
+    static async getCount(year: string | null, month: string | null, note: string | null): Promise<string | number> {
+        const query = knex(TablesNames.TRANSACTIONS)
             .count(`${TablesNames.TRANSACTIONS}.id as count`)
-            .whereBetween(`${TablesNames.TRANSACTIONS}.date`, this.makeDateSearchOptions(year, month)))[0].count;
+            .whereBetween(`${TablesNames.TRANSACTIONS}.date`, this.makeDateSearchOptions(year, month))
+            .leftJoin(TablesNames.NOTES, `${TablesNames.TRANSACTIONS}.note_id`, '=', `${TablesNames.NOTES}.id`);
+
+        if (note !== null) {
+            query.whereLike(`${TablesNames.NOTES}.name`, `%${note}%`);
+        }
+
+        return (await query)[0].count;
     }
 
     static async getOneById(id: number): Promise<ITransaction | undefined> {

@@ -51,7 +51,7 @@ export default class Transaction {
 
     async getAll(filter: IFilter): Promise<ITransaction[]> {
         const page = filter.page !== undefined ? filter.page : 0;
-        return await TransactionModel.getAll(filter.year, filter.month, page);
+        return await TransactionModel.getAll(filter.year, filter.month, filter.note, page);
     }
 
     async getYears(): Promise<number[]> {
@@ -72,7 +72,7 @@ export default class Transaction {
     }
 
     async getCount(filter: IFilter): Promise<number> {
-        return await TransactionModel.getCount(filter.year, filter.month) as number;
+        return await TransactionModel.getCount(filter.year, filter.month, filter.note) as number;
     }
 
     async add(date: Date): Promise<void> {

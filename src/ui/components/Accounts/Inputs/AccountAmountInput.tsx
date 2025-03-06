@@ -11,8 +11,6 @@ export default function AccountAmountInput({ account }: IProps) {
     const amount = useUnit($amount);
 
     const [localAmount, changeLocalAmount] = useState<string | undefined>(String(account.amount));
-    console.log('localAmount');
-    console.log(localAmount);
 
     useEffect(() => {
         changeLocalAmount(String(account.amount));

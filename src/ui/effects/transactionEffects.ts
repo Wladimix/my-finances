@@ -5,6 +5,7 @@ export const getAllTransactionsFx = createEffect<IFilter, ITransaction[]>(async 
     const result = await window.electron.getAllTransactions({
         year: filter.year,
         month: filter.month,
+        note: filter.note,
         page: filter.page !== undefined ? filter.page : 0
     });
 
@@ -34,7 +35,11 @@ export const getAllYearsFx = createEffect<void ,number[]>( async () => {
 });
 
 export const getNumberOfPagesFx = createEffect<IFilter, number>(async filter => {
-    const numberOfTransactions = await window.electron.getNumberOfTransactions({ year: filter.year, month: filter.month });
+    const numberOfTransactions = await window.electron.getNumberOfTransactions({
+        year: filter.year,
+        month: filter.month,
+        note: filter.note
+    });
 
     if (numberOfTransactions.error) {
         showErrorNotification(numberOfTransactions.error);
@@ -44,7 +49,7 @@ export const getNumberOfPagesFx = createEffect<IFilter, number>(async filter => 
         return 1;
     }
 
-    const numberOfPages = Math.ceil(numberOfTransactions.data / 30);
+    const numberOfPages = Math.ceil(numberOfTransactions.data / 3);
 
     return numberOfPages;
 });

@@ -36,6 +36,7 @@ interface INote {
 interface IFilter {
     year: string | null,
     month: string | null,
+    note: string | null,
     page?: number
 }
 
