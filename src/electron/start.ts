@@ -3,6 +3,7 @@ import AccountModel from './models/AccountModel';
 import CategoryController from './controllers/CategoryController';
 import CategoryModel from './models/CategoryModel';
 import fs from 'fs';
+import NoteModel from './models/NoteModel';
 import path from 'path';
 import TransactionController from './controllers/TransactionController';
 import TransactionModel from './models/TransactionModel';
@@ -29,6 +30,7 @@ export async function createTablesIfNotExist(): Promise<void> {
             await AccountModel.createTable();
             await CategoryModel.createTable();
             await TransactionModel.createTable();
+            await NoteModel.createTable();
 
         }
 
@@ -61,6 +63,7 @@ export function createRouter(): void {
     ipcHandle('editSourceOfTransaction', (_, data) => TransactionController.editSourceOfTransaction(data));
     ipcHandle('editTransactionAddress', (_, data) => TransactionController.editTransactionAddress(data));
     ipcHandle('editSpendingCategory', (_, data) => TransactionController.editSpendingCategory(data));
+    ipcHandle('editTransactionNote', (_, data) => TransactionController.editTransactionNote(data));
     ipcHandle('editTransactionAmount', (_, data) => TransactionController.editTransactionAmount(data));
     ipcHandle('deleteTransaction', (_, id) => TransactionController.deleteTransaction(id));
 

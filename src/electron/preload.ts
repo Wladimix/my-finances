@@ -28,6 +28,7 @@ contextBridge.exposeInMainWorld('electron', {
     editSourceOfTransaction: (data: { id: number, sourceOfTransactionId: number | null }) => ipcInvoke('editSourceOfTransaction', data),
     editTransactionAddress: (data: { id: number, transactionAddressId: number | null }) => ipcInvoke('editTransactionAddress', data),
     editSpendingCategory: (data: { id: number, spendingCategoryId: number | null }) => ipcInvoke('editSpendingCategory', data),
+    editTransactionNote: (data: { id: number, note: string | null }) => ipcInvoke('editTransactionNote', data),
     editTransactionAmount: (data: { id: number, amount: number }) => ipcInvoke('editTransactionAmount', data),
     deleteTransaction: (id: number) => ipcInvoke('deleteTransaction', id)
 

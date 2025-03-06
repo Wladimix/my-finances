@@ -82,6 +82,10 @@ table tbody tr td.amount-cell {
     width: 140px;
 }
 
+table tbody tr td.actions-cell {
+    width: 40px;
+}
+
 .custom-input {
     border: none !important;
     background: none !important;
@@ -107,6 +111,5 @@ table tbody tr td.amount-cell {
 }
 
 .actions {
-    width: 60px;
     padding-top: 2px;
 }

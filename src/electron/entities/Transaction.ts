@@ -1,5 +1,6 @@
 import Account from './Account';
 import TransactionModel from '../models/TransactionModel';
+import Note from './Note';
 
 export default class Transaction {
 
@@ -14,6 +15,7 @@ export default class Transaction {
     spendingCategoryId: number;
     spendingCategoryName: string;
     spendingCategoryDeleted: 0 | 1;
+    note: string;
     amount: number;
     transactionType: string | null = null;
 
@@ -29,6 +31,7 @@ export default class Transaction {
         spendingCategoryId: number | null = null,
         spendingCategoryName: string | null = null,
         spendingCategoryDeleted: 0 | 1 = 0,
+        note: string | null = null,
         amount: number | null = null
     ) {
         this.id = id ?? 0;
@@ -42,6 +45,7 @@ export default class Transaction {
         this.spendingCategoryId = spendingCategoryId ?? 0;
         this.spendingCategoryName = spendingCategoryName ?? '';
         this.spendingCategoryDeleted = spendingCategoryDeleted;
+        this.note = note ?? '';
         this.amount = amount ?? 0.00;
     }
 
@@ -145,6 +149,39 @@ export default class Transaction {
             }
 
             await TransactionModel.editSpendingCategoryIdById(this.id, spendingCategoryId);
+
+        }
+    }
+
+    async editNote(noteName: string | null): Promise<void> {
+        if (this.id) {
+
+            const transaction = await TransactionModel.getOneById(this.id);
+            const oldNote = transaction?.note;
+
+            if (noteName === null) {
+                await TransactionModel.editNoteIdById(this.id, noteName);
+            } else {
+
+                let noteId: number;
+
+                const note = new Note(null, noteName);
+                await note.getOne();
+
+                if (note.id) {
+                    noteId = note.id;
+                } else {
+                    await note.add(noteName);
+                    noteId = note.id;
+                }
+
+                await TransactionModel.editNoteIdById(this.id, noteId);
+
+            }
+
+            if (oldNote !== undefined) {
+                await new Note(null, oldNote).deleteExtraNote(oldNote);
+            }
 
         }
     }

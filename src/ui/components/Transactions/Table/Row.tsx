@@ -49,9 +49,9 @@ export default function Row({ transaction }: IProps) {
                 <AmountInput transaction={transaction} />
             </td>
             <td>
-                <OpenNoteButton />
+                <OpenNoteButton transaction={transaction} />
             </td>
-            <td className='uk-text-center'>
+            <td className='actions-cell uk-text-center'>
                 <DeleteTransactionButton id={transaction.id} />
             </td>
         </tr>

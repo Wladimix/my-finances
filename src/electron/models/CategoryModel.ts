@@ -8,7 +8,7 @@ export default class CategoryModel {
         await knex.schema
             .createTable(TablesNames.CATEGORIES, table => {
                 table.increments('id');
-                table.string('name').notNullable().defaultTo(NewEntities.NEW_CATEGORY);;
+                table.string('name').notNullable().defaultTo(NewEntities.NEW_CATEGORY);
                 table.boolean('is_deleted').notNullable().defaultTo(false);
                 table.unique('name');
             });

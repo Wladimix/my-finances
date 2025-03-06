@@ -185,6 +185,29 @@ export default class TransactionController {
         }
     }
 
+    static async editTransactionNote({ id, note }: { id: number, note: string | null }): Promise<ResponceData<null>> {
+        try {
+
+            const transaction = new Transaction(id);
+            await transaction.editNote(note);
+
+            return {
+                data: null,
+                error: null
+            };
+
+        } catch(error) {
+
+            const errorMessage = makeError(error as Error, 'ошибка редактирования примечания транзакции');
+
+            return {
+                data: null,
+                error: errorMessage
+            };
+
+        }
+    }
+
     static async editTransactionAmount({ id, amount }: { id: number, amount: number }): Promise<ResponceData<null>> {
         try {
 
