@@ -58,8 +58,6 @@ export default class Account {
     async addAmount(amount: number): Promise<void> {
         if (this.id) {
 
-            console.log('+++');
-
             const account = await AccountModel.getOneById(this.id);
 
             if (account !== undefined) {
@@ -78,8 +76,6 @@ export default class Account {
 
     async subtractAmount(amount: number): Promise<void> {
         if (this.id) {
-
-            console.log('---');
 
             const account = await AccountModel.getOneById(this.id);
 

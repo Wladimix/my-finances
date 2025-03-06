@@ -83,12 +83,50 @@ export default class Transaction {
 
     async editSourceOfTransactionId(sourceOfTransactionId: number | null): Promise<void> {
         if (this.id) {
+
+            const transaction = await TransactionModel.getOneById(this.id);
+
+            if (transaction !== undefined) {
+
+                this.date = transaction.date;
+                this.sourceOfTransactionId = transaction.sourceOfTransactionId;
+                this.transactionAddressId = transaction.transactionAddressId;
+                this.spendingCategoryId = transaction.spendingCategoryId;
+                this.amount = transaction.amount;
+                this.transactionType = transaction.transactionType;
+
+                const oldAccount = new Account(this.sourceOfTransactionId);
+                const newAccount = new Account(sourceOfTransactionId);
+                oldAccount.addAmount(this.amount);
+                newAccount.subtractAmount(this.amount);
+
+            }
+
             await TransactionModel.editSourceOfTransactionIdById(this.id, sourceOfTransactionId);
+
         }
     }
 
     async editTransactionAddressId(transactionAddressId: number | null): Promise<void> {
         if (this.id) {
+
+            const transaction = await TransactionModel.getOneById(this.id);
+
+            if (transaction !== undefined) {
+
+                this.date = transaction.date;
+                this.sourceOfTransactionId = transaction.sourceOfTransactionId;
+                this.transactionAddressId = transaction.transactionAddressId;
+                this.spendingCategoryId = transaction.spendingCategoryId;
+                this.amount = transaction.amount;
+                this.transactionType = transaction.transactionType;
+
+                const oldAccount = new Account(this.transactionAddressId);
+                const newAccount = new Account(transactionAddressId);
+                oldAccount.subtractAmount(this.amount);
+                newAccount.addAmount(this.amount);
+
+            }
 
             if (transactionAddressId !== null) {
                 await this.editSpendingCategoryId(null);
@@ -117,8 +155,6 @@ export default class Transaction {
             const transaction = await TransactionModel.getOneById(this.id);
 
             if (transaction !== undefined) {
-
-                console.log(transaction);
 
                 this.date = transaction.date;
                 this.sourceOfTransactionId = transaction.sourceOfTransactionId;
