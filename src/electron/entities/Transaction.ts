@@ -2,6 +2,8 @@ import Account from './Account';
 import TransactionModel from '../models/TransactionModel';
 import Note from './Note';
 
+import { TransactionTypes } from '../constants';
+
 export default class Transaction {
 
     id: number;
@@ -86,6 +88,7 @@ export default class Transaction {
     }
 
     async editSourceOfTransactionId(sourceOfTransactionId: number | null): Promise<void> {
+
         if (this.id) {
 
             const transaction = await TransactionModel.getOneById(this.id);
@@ -96,6 +99,7 @@ export default class Transaction {
                 this.sourceOfTransactionId = transaction.sourceOfTransactionId;
                 this.transactionAddressId = transaction.transactionAddressId;
                 this.spendingCategoryId = transaction.spendingCategoryId;
+                this.note = transaction.note;
                 this.amount = transaction.amount;
                 this.transactionType = transaction.transactionType;
 
@@ -109,9 +113,13 @@ export default class Transaction {
             await TransactionModel.editSourceOfTransactionIdById(this.id, sourceOfTransactionId);
 
         }
+
+        await this.determineType();
+
     }
 
     async editTransactionAddressId(transactionAddressId: number | null): Promise<void> {
+
         if (this.id) {
 
             const transaction = await TransactionModel.getOneById(this.id);
@@ -122,6 +130,7 @@ export default class Transaction {
                 this.sourceOfTransactionId = transaction.sourceOfTransactionId;
                 this.transactionAddressId = transaction.transactionAddressId;
                 this.spendingCategoryId = transaction.spendingCategoryId;
+                this.note = transaction.note;
                 this.amount = transaction.amount;
                 this.transactionType = transaction.transactionType;
 
@@ -139,9 +148,13 @@ export default class Transaction {
             await TransactionModel.editTransactionAddressIdById(this.id, transactionAddressId);
 
         }
+
+        await this.determineType();
+
     }
 
     async editSpendingCategoryId(spendingCategoryId: number | null): Promise<void> {
+
         if (this.id) {
 
             if (spendingCategoryId !== null) {
@@ -151,9 +164,13 @@ export default class Transaction {
             await TransactionModel.editSpendingCategoryIdById(this.id, spendingCategoryId);
 
         }
+
+        await this.determineType();
+
     }
 
     async editNote(noteName: string | null): Promise<void> {
+
         if (this.id) {
 
             const transaction = await TransactionModel.getOneById(this.id);
@@ -184,6 +201,9 @@ export default class Transaction {
             }
 
         }
+
+        await this.determineType();
+
     }
 
     async editAmount(amount: number): Promise<void> {
@@ -197,6 +217,7 @@ export default class Transaction {
                 this.sourceOfTransactionId = transaction.sourceOfTransactionId;
                 this.transactionAddressId = transaction.transactionAddressId;
                 this.spendingCategoryId = transaction.spendingCategoryId;
+                this.note = transaction.note;
                 this.amount = transaction.amount;
                 this.transactionType = transaction.transactionType;
 
@@ -224,6 +245,31 @@ export default class Transaction {
     async delete(): Promise<void> {
         if (this.id) {
             await TransactionModel.deleteById(this.id);
+        }
+    }
+
+    private async determineType(): Promise<void> {
+        if (this.id) {
+
+            const transaction = await TransactionModel.getOneById(this.id) as ITransaction;
+
+            const incomeCondition = !transaction.sourceOfTransactionId && transaction.transactionAddressId && !transaction.spendingCategoryId;
+            const expenditureCondition = transaction.sourceOfTransactionId && !transaction.transactionAddressId && transaction.spendingCategoryId;
+            const translationCondition = transaction.sourceOfTransactionId && transaction.transactionAddressId && !transaction.spendingCategoryId;
+            const priceMonitoringCondition = !incomeCondition && !expenditureCondition && !translationCondition && transaction.note;
+
+            if (incomeCondition) {
+                await TransactionModel.editTransactionTypeById(this.id, TransactionTypes.INCOME);
+            } else if (expenditureCondition) {
+                await TransactionModel.editTransactionTypeById(this.id, TransactionTypes.EXPENDITURE);
+            } else if (translationCondition) {
+                await TransactionModel.editTransactionTypeById(this.id, TransactionTypes.TRANSLATION);
+            } else if (priceMonitoringCondition) {
+                await TransactionModel.editTransactionTypeById(this.id, TransactionTypes.PRICE_MONITORING);
+            } else {
+                await TransactionModel.editTransactionTypeById(this.id, null);
+            }
+
         }
     }
 

@@ -1,6 +1,7 @@
 import CurrencyInput, { CurrencyInputOnChangeValues } from 'react-currency-input-field';
 
 import { $amount, changeAmount, editTransactionAmount } from '../../../../storage/transactionStore';
+import { TransactionTypes } from '../../../../constants';
 import { useState } from 'react';
 import { useUnit } from 'effector-react';
 
@@ -11,6 +12,14 @@ export default function AmountInput({ transaction }: IProps) {
     const amount = useUnit($amount);
 
     const [localAmount, changeLocalAmount] = useState<string | undefined>(String(transaction.amount));
+
+    const HTMLClasses = {
+        [String(TransactionTypes.INCOME)]: 'custom-input uk-input uk-text-bold uk-text-success',
+        [String(TransactionTypes.EXPENDITURE)]: 'custom-input uk-input uk-text-bold uk-text-danger',
+        [String(TransactionTypes.TRANSLATION)]: 'custom-input uk-input uk-text-bold uk-text-warning',
+        [String(TransactionTypes.PRICE_MONITORING)]: 'custom-input uk-input uk-text-bold',
+        null: 'custom-input uk-input'
+    };
 
     const focusHandler = () => {
         if (localAmount && localAmount !== '0') {
@@ -46,7 +55,7 @@ export default function AmountInput({ transaction }: IProps) {
 
     return(
         <CurrencyInput
-            className='custom-input uk-input'
+            className={HTMLClasses[transaction.transactionType]}
             decimalSeparator='.'
             decimalsLimit={2}
             defaultValue={'0.00'}

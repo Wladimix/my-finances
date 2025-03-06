@@ -9,3 +9,10 @@ export enum TablesNames {
     TRANSACTIONS = 'transactions',
     NOTES = 'notes'
 }
+
+export enum TransactionTypes {
+    INCOME = 'доход',
+    EXPENDITURE = 'расход',
+    TRANSLATION = 'перевод',
+    PRICE_MONITORING = 'мониторинг цен'
+}

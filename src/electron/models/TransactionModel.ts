@@ -2,7 +2,7 @@ import knex from '../connectionDB';
 
 import { getLastMonthDay } from '../utils';
 import { Knex } from 'knex';
-import { TablesNames } from '../constants';
+import { TablesNames, TransactionTypes } from '../constants';
 
 export default class TransactionModel {
 
@@ -158,6 +158,12 @@ export default class TransactionModel {
         await knex(TablesNames.TRANSACTIONS)
             .where({ id })
             .update({ note_id: noteId });
+    }
+
+    static async editTransactionTypeById(id: number, type: TransactionTypes | null): Promise<void> {
+        await knex(TablesNames.TRANSACTIONS)
+            .where({ id })
+            .update({ transaction_type: type });
     }
 
     static async deleteById(id: number): Promise<void> {
