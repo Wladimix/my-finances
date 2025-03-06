@@ -76,7 +76,7 @@ export default class AccountController {
         try {
 
             const account = new Account(id);
-            await account.editAmount(id, amount);
+            await account.editAmount(amount);
 
             return {
                 data: null,
@@ -99,7 +99,7 @@ export default class AccountController {
         try {
 
             const account = new Account(id);
-            await account.editDeletionField(id, isDeleted);
+            await account.editDeletionField(isDeleted);
 
             return {
                 data: null,

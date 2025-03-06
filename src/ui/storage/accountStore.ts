@@ -1,6 +1,7 @@
 import { addAccountFx, editAccountAmountFx, editAccountDeletionFieldFx, editAccountNameFx, getAllAccountsFx } from '../effects/accountEffects';
 import { createEvent, createStore, sample } from 'effector';
-import { getAllTransations } from './transactionStore';
+import { editSourceOfTransaction, editTransactionAddress, editTransactionAmount, getAllTransations } from './transactionStore';
+import { editSourceOfTransactionFx, editTransactionAddressFx, editTransactionAmountFx } from '../effects/transactionEffects';
 
 export const getAllAccounts = createEvent<void>();
 export const addAccount = createEvent<void>();
@@ -80,6 +81,42 @@ sample({
 
 sample({
     clock: editAccountDeletionFieldFx.done,
+    target: getAllAccounts
+});
+// ---------------------------------------
+
+// editSourceOfTransaction ---------------
+sample({
+    clock: editSourceOfTransaction,
+    target: editSourceOfTransactionFx
+});
+
+sample({
+    clock: editSourceOfTransactionFx.done,
+    target: getAllAccounts
+});
+// ---------------------------------------
+
+// editTransactionAddress ----------------
+sample({
+    clock: editTransactionAddress,
+    target: editTransactionAddressFx
+});
+
+sample({
+    clock: editTransactionAddressFx.done,
+    target: getAllAccounts
+});
+// ---------------------------------------
+
+// editTransactionAmount -----------------
+sample({
+    clock: editTransactionAmount,
+    target: editTransactionAmountFx
+});
+
+sample({
+    clock: editTransactionAmountFx.done,
     target: getAllAccounts
 });
 // ---------------------------------------

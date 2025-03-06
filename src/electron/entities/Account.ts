@@ -49,16 +49,58 @@ export default class Account {
         }
     }
 
-    async editAmount(id: number, amount: number): Promise<void> {
+    async editAmount(amount: number): Promise<void> {
         if (this.id) {
-            await AccountModel.editAmountById(id, amount);
+            await AccountModel.editAmountById(this.id, amount);
         }
     }
 
-    async editDeletionField(id: number, isDeleted: 0 | 1): Promise<void> {
+    async addAmount(amount: number): Promise<void> {
         if (this.id) {
 
-            const account = await AccountModel.getOneById(id);
+            console.log('+++');
+
+            const account = await AccountModel.getOneById(this.id);
+
+            if (account !== undefined) {
+
+                this.name = account.name;
+                this.amount = account.amount;
+                this.isDeleted = account.isDeleted;
+
+            }
+
+            const newAmount = this.amount + amount;
+            await AccountModel.editAmountById(this.id, newAmount);
+
+        }
+    }
+
+    async subtractAmount(amount: number): Promise<void> {
+        if (this.id) {
+
+            console.log('---');
+
+            const account = await AccountModel.getOneById(this.id);
+
+            if (account !== undefined) {
+
+                this.name = account.name;
+                this.amount = account.amount;
+                this.isDeleted = account.isDeleted;
+
+            }
+
+            const newAmount = this.amount - amount;
+            await AccountModel.editAmountById(this.id, newAmount);
+
+        }
+    }
+
+    async editDeletionField(isDeleted: 0 | 1): Promise<void> {
+        if (this.id) {
+
+            const account = await AccountModel.getOneById(this.id);
             const amount = account !== undefined ? account.amount : undefined;
 
             if (amount) {
@@ -67,7 +109,7 @@ export default class Account {
 
             if (account) {
                 const name = account.name + `(удалено ${Date.now()})`;
-                await AccountModel.editDeletionFieldById(id, name, isDeleted);
+                await AccountModel.editDeletionFieldById(this.id, name, isDeleted);
             }
 
         }

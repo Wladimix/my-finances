@@ -79,30 +79,6 @@ sample({
 });
 // ---------------------------------------
 
-// editSourceOfTransaction ---------------
-sample({
-    clock: editSourceOfTransaction,
-    target: editSourceOfTransactionFx
-});
-
-sample({
-    clock: editSourceOfTransactionFx.done,
-    target: getAllTransations
-});
-// ---------------------------------------
-
-// editTransactionAddress ----------------
-sample({
-    clock: editTransactionAddress,
-    target: editTransactionAddressFx
-});
-
-sample({
-    clock: editTransactionAddressFx.done,
-    target: getAllTransations
-});
-// ---------------------------------------
-
 // editSpendingCategory ------------------
 sample({
     clock: editSpendingCategory,
@@ -111,18 +87,6 @@ sample({
 
 sample({
     clock: editSpendingCategoryFx.done,
-    target: getAllTransations
-});
-// ---------------------------------------
-
-// editTransactionAmount -----------------
-sample({
-    clock: editTransactionAmount,
-    target: editTransactionAmountFx
-});
-
-sample({
-    clock: editTransactionAmountFx.done,
     target: getAllTransations
 });
 // ---------------------------------------

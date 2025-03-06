@@ -2,7 +2,6 @@ import { $allAccounts, $name, changeName, editAccountName } from '../../../stora
 import { useState } from 'react';
 import { useUnit } from 'effector-react';
 
-
 export default function AccountNameInput({ account }: IProps) {
     const changeNameEvent = useUnit(changeName);
 

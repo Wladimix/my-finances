@@ -1,23 +1,37 @@
 import CurrencyInput, { CurrencyInputOnChangeValues } from 'react-currency-input-field';
 
 import { $amount, changeAmount, editAccountAmount } from '../../../storage/accountStore';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useUnit } from 'effector-react';
 
 export default function AccountAmountInput({ account }: IProps) {
+    const editAccountAmountEvent = useUnit(editAccountAmount);
     const changeAmountEvent = useUnit(changeAmount);
 
     const amount = useUnit($amount);
 
     const [localAmount, changeLocalAmount] = useState<string | undefined>(String(account.amount));
+    console.log('localAmount');
+    console.log(localAmount);
+
+    useEffect(() => {
+        changeLocalAmount(String(account.amount));
+    }, [account.amount]);
+
+    const focusHandler = () => {
+        if (localAmount && localAmount !== '0') {
+            changeAmountEvent(Number(localAmount));
+        }
+    };
 
     const blurHandler = () => {
 
         if (!localAmount || localAmount === '0') {
             changeLocalAmount('0');
-            editAccountAmount({ id: account.id, amount: 0 });
+            editAccountAmountEvent({ id: account.id, amount: 0 });
         } else {
-            editAccountAmount({ id: account.id, amount });
+            changeLocalAmount(String(amount));
+            editAccountAmountEvent({ id: account.id, amount });
         }
 
     };
@@ -43,6 +57,7 @@ export default function AccountAmountInput({ account }: IProps) {
             decimalsLimit={2}
             defaultValue={'0.00'}
             maxLength={15}
+            onFocus={focusHandler}
             onBlur={blurHandler}
             onValueChange={changeHandler}
             suffix=' ₽'

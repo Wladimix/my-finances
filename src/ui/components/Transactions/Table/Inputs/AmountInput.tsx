@@ -5,19 +5,27 @@ import { useState } from 'react';
 import { useUnit } from 'effector-react';
 
 export default function AmountInput({ transaction }: IProps) {
+    const editTransactionAmountEvent = useUnit(editTransactionAmount);
     const changeAmountEvent = useUnit(changeAmount);
 
     const amount = useUnit($amount);
 
     const [localAmount, changeLocalAmount] = useState<string | undefined>(String(transaction.amount));
 
+    const focusHandler = () => {
+        if (localAmount && localAmount !== '0') {
+            changeAmountEvent(Number(localAmount));
+        }
+    };
+
     const blurHandler = () => {
 
-        if (!localAmount || localAmount === '0') {
+        if (!localAmount || localAmount === '0' || Number(localAmount) < 0) {
             changeLocalAmount('0');
-            editTransactionAmount({ id: transaction.id, amount: 0 });
+            editTransactionAmountEvent({ id: transaction.id, amount: 0 });
         } else {
-            editTransactionAmount({ id: transaction.id, amount });
+            changeLocalAmount(String(amount));
+            editTransactionAmountEvent({ id: transaction.id, amount });
         }
 
     };
@@ -43,6 +51,7 @@ export default function AmountInput({ transaction }: IProps) {
             decimalsLimit={2}
             defaultValue={'0.00'}
             maxLength={10}
+            onFocus={focusHandler}
             onBlur={blurHandler}
             onValueChange={changeHandler}
             suffix=' ₽'

@@ -74,12 +74,35 @@ export default class TransactionModel {
             .whereBetween(`${TablesNames.TRANSACTIONS}.date`, this.makeDateSearchOptions(year, month)))[0].count;
     }
 
-    // TODO: будет применяться
-    // static async getOneById(id: number): Promise<ITransaction | undefined> {
-    //     return await knex(TablesNames.TRANSACTIONS)
-    //         .where({ id })
-    //         .first();
-    // }
+    static async getOneById(id: number): Promise<ITransaction | undefined> {
+        return await knex
+            .select(
+                `${TablesNames.TRANSACTIONS}.id`,
+                `${TablesNames.TRANSACTIONS}.date`,
+                'sources_of_transactions.id as sourceOfTransactionId',
+                'sources_of_transactions.name as sourceOfTransactionName',
+                'sources_of_transactions.is_deleted as sourceOfTransactionDeleted',
+                'transactions_addresses.id as transactionAddressId',
+                'transactions_addresses.name as transactionAddressName',
+                'transactions_addresses.is_deleted as transactionAddressDeleted',
+                `${TablesNames.CATEGORIES}.id as spendingCategoryId`,
+                `${TablesNames.CATEGORIES}.name as spendingCategoryName`,
+                `${TablesNames.CATEGORIES}.is_deleted as spendingCategoryDeleted`,
+                // `${TablesNames.NOTES_TABLE}.name as note`,
+                `${TablesNames.TRANSACTIONS}.amount`,
+                `${TablesNames.TRANSACTIONS}.transaction_type as transactionType`,
+                // `${TablesNames.TRANSACTIONS}.to_calculate_inflation as toCalculateInflation`
+            )
+            .from(TablesNames.TRANSACTIONS)
+
+            .leftJoin(`${TablesNames.ACCOUNTS} as sources_of_transactions`, `${TablesNames.TRANSACTIONS}.source_of_transaction_id`, '=', 'sources_of_transactions.id')
+            .leftJoin(`${TablesNames.ACCOUNTS} as transactions_addresses`, `${TablesNames.TRANSACTIONS}.transaction_address_id`, '=', 'transactions_addresses.id')
+            .leftJoin(TablesNames.CATEGORIES, `${TablesNames.TRANSACTIONS}.spending_category_id`, '=', `${TablesNames.CATEGORIES}.id`)
+            // .join(TablesNames.NOTES_TABLE, `${TablesNames.FINANCIAL_TRANSACTIONS_TABLE_NAME}.note_id`, '=', `${TablesNames.NOTES_TABLE}.id`)
+
+            .where({ [`${TablesNames.TRANSACTIONS}.id`]: id })
+            .first();
+    }
 
     static async add(date: Date): Promise<void> {
         await knex(TablesNames.TRANSACTIONS).insert({ date });
