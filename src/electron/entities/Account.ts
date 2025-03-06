@@ -69,7 +69,7 @@ export default class Account {
             }
 
             const newAmount = this.amount + amount;
-            await AccountModel.editAmountById(this.id, newAmount);
+            await AccountModel.editAmountById(this.id, +newAmount.toFixed(2));
 
         }
     }
@@ -88,7 +88,7 @@ export default class Account {
             }
 
             const newAmount = this.amount - amount;
-            await AccountModel.editAmountById(this.id, newAmount);
+            await AccountModel.editAmountById(this.id, +newAmount.toFixed(2));
 
         }
     }
