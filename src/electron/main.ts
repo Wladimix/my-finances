@@ -1,4 +1,5 @@
 import path from 'path';
+import seed from './seed';
 
 import { app, BrowserWindow } from 'electron';
 import { createRouter, createTablesIfNotExist } from './start';
@@ -29,6 +30,7 @@ function createWindow() {
 app.whenReady().then(async () => {
     await createTablesIfNotExist();
     createRouter();
+    if (process.env.SEED === 'true') await seed();
     createWindow();
 });
 
