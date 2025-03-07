@@ -3,6 +3,7 @@ import AccountModel from './models/AccountModel';
 import CategoryController from './controllers/CategoryController';
 import CategoryModel from './models/CategoryModel';
 import fs from 'fs';
+import NoteController from './controllers/NoteController';
 import NoteModel from './models/NoteModel';
 import path from 'path';
 import TransactionController from './controllers/TransactionController';
@@ -68,5 +69,7 @@ export function createRouter(): void {
     ipcHandle('changeCalculateStatisticFlag', (_, data) => TransactionController.changeCalculateStatisticFlag(data));
     ipcHandle('changeCalculateInflationFlag', (_, data) => TransactionController.changeCalculateInflationFlag(data));
     ipcHandle('deleteTransaction', (_, id) => TransactionController.deleteTransaction(id));
+
+    ipcHandle('getNotes', (_, substring) => NoteController.getNotes(substring));
 
 }

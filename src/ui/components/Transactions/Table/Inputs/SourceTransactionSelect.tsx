@@ -38,7 +38,7 @@ export default function SourceTransactionSelect({ transaction }: IProps) {
         <select
             className={makeSelectClass()}
             onChange={handler}
-            value={sourceOfTransactionId}
+            value={sourceOfTransactionId ?? ''}
         >
             <option className='uk-text-muted' value={0}>не выбрано</option>
             {displayAccounts()}

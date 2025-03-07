@@ -13,6 +13,14 @@ export default class NoteModel {
             });
     }
 
+    static async findMatches(name: string): Promise<INote[]> {
+        return await knex
+            .select()
+            .from(TablesNames.NOTES)
+            .whereLike('name', `%${name}%`)
+            .orderBy('name', 'asc');
+    }
+
     static async getOneByName(name: string): Promise<INote | undefined> {
         return await knex
             .select('*')

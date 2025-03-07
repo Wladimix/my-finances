@@ -74,6 +74,8 @@ interface EventPayloadMapping {
     changeCalculateInflationFlag: [ { id: number, flag: 0 | 1 }, Promise<ResponceData<null>> ]
     deleteTransaction: [ number, Promise<ResponceData<null>> ]
 
+    getNotes: [ string, Promise<ResponceData<INote[]>> ]
+
 }
 
 interface Window {
@@ -103,6 +105,8 @@ interface Window {
         changeCalculateStatisticFlag: (data: { id: number, flag: 0 | 1 }) => Promise<ResponceData<null>>
         changeCalculateInflationFlag: (data: { id: number, flag: 0 | 1 }) => Promise<ResponceData<null>>
         deleteTransaction: (id: number) => Promise<ResponceData<null>>
+
+        getNotes: (substring: string) => Promise<ResponceData<INote[]>>
 
     }
 }

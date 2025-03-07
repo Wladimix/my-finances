@@ -1,22 +1,30 @@
-import { $note, $transactionId, changeNote } from '../../storage/noteStore';
-import { editTransactionNote } from '../../storage/transactionStore';
+import { useState } from 'react';
+import { $note, changeNote, changeNotesList } from '../../storage/noteStore';
 import { useUnit } from 'effector-react';
 
 export default function NoteInput() {
-    const editTransactionNoteEvent = useUnit(editTransactionNote);
     const changeNoteEvent = useUnit(changeNote);
+    const changeNotesListEvent = useUnit(changeNotesList);
 
-    const transactionId = useUnit($transactionId);
     const note = useUnit($note);
 
+    const [timerId, setTimerId] = useState<any>();
+
     const changeHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
+
         const noteValue = e.target.value !== '' ? e.target.value.toLowerCase() : null;
         changeNoteEvent(noteValue);
+
+        clearTimeout(timerId);
+        setTimerId(setTimeout(() => {
+            changeNotesListEvent(noteValue ?? '');
+        }, 800));
+
     };
 
     const blurHandler = () => {
-        const noteValue = note !== '' ? note : null;
-        editTransactionNoteEvent({ id: transactionId, note: noteValue });
+        clearTimeout(timerId);
+        changeNotesListEvent('');
     };
 
     return(

@@ -32,6 +32,8 @@ contextBridge.exposeInMainWorld('electron', {
     changeCalculateStatisticFlag: (data: { id: number, flag: 0 | 1 }) => ipcInvoke('changeCalculateStatisticFlag', data),
     changeCalculateInflationFlag: (data: { id: number, flag: 0 | 1 }) => ipcInvoke('changeCalculateInflationFlag', data),
     editTransactionAmount: (data: { id: number, amount: number }) => ipcInvoke('editTransactionAmount', data),
-    deleteTransaction: (id: number) => ipcInvoke('deleteTransaction', id)
+    deleteTransaction: (id: number) => ipcInvoke('deleteTransaction', id),
+
+    getNotes: (substring: string) => ipcInvoke('getNotes', substring)
 
 } satisfies Window['electron']);

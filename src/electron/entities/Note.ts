@@ -14,6 +14,10 @@ export default class Note {
         this.name = name ?? '';
     }
 
+    async findMatches(substring: string): Promise<INote[]> {
+        return await NoteModel.findMatches(substring);
+    }
+
     async getOne(): Promise<void> {
 
         if (this.name) {

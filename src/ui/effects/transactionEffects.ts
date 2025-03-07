@@ -49,7 +49,7 @@ export const getNumberOfPagesFx = createEffect<IFilter, number>(async filter => 
         return 1;
     }
 
-    const numberOfPages = Math.ceil(numberOfTransactions.data / 3);
+    const numberOfPages = Math.ceil(numberOfTransactions.data / 30);
 
     return numberOfPages;
 });
