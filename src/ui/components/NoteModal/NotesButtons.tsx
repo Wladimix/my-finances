@@ -15,14 +15,18 @@ export default function NotesButtons() {
     };
 
     const displayNewNoteButton = () => {
-        return (
-            <div
-                className='uk-button uk-button-primary uk-margin-small-bottom uk-margin-small-right uk-modal-close'
-                onClick={() => { handler(currentNote) }}
-            >
-                {currentNote}
-            </div>
-        );
+        if (currentNote !== null) {
+            return (
+                <div
+                    className='uk-button uk-button-primary uk-margin-small-bottom uk-margin-small-right uk-modal-close'
+                    onClick={() => { handler(currentNote) }}
+                >
+                    <span className='uk-margin-remove' data-uk-icon='icon: plus-circle; ratio: 1.3'></span>
+                </div>
+            );
+        } else {
+            return '';
+        }
     };
 
     const displayNotes = () =>
