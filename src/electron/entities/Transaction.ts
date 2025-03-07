@@ -242,6 +242,18 @@ export default class Transaction {
         }
     }
 
+    async changeCalculateStatisticFlag(flag: 0 | 1): Promise<void> {
+        if (this.id) {
+            await TransactionModel.changeCalculateStatisticFlag(this.id, flag);
+        }
+    }
+
+    async changeCalculateInflationFlag(flag: 0 | 1): Promise<void> {
+        if (this.id) {
+            await TransactionModel.changeCalculateInflationFlag(this.id, flag);
+        }
+    }
+
     async delete(): Promise<void> {
         if (this.id) {
             await TransactionModel.deleteById(this.id);

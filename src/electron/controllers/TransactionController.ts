@@ -231,6 +231,52 @@ export default class TransactionController {
         }
     }
 
+    static async changeCalculateStatisticFlag({ id, flag }: { id: number, flag: 0 | 1 }): Promise<ResponceData<null>> {
+        try {
+
+            const transaction = new Transaction(id);
+            await transaction.changeCalculateStatisticFlag(flag);
+
+            return {
+                data: null,
+                error: null
+            };
+
+        } catch(error) {
+
+            const errorMessage = makeError(error as Error, 'ошибка изменения флага расчёта статистики');
+
+            return {
+                data: null,
+                error: errorMessage
+            };
+
+        }
+    }
+
+    static async changeCalculateInflationFlag({ id, flag }: { id: number, flag: 0 | 1 }): Promise<ResponceData<null>> {
+        try {
+
+            const transaction = new Transaction(id);
+            await transaction.changeCalculateInflationFlag(flag);
+
+            return {
+                data: null,
+                error: null
+            };
+
+        } catch(error) {
+
+            const errorMessage = makeError(error as Error, 'ошибка изменения флага расчёта инфляции');
+
+            return {
+                data: null,
+                error: errorMessage
+            };
+
+        }
+    }
+
     static async deleteTransaction(id: number) {
         try {
 

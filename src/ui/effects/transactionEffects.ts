@@ -110,6 +110,22 @@ export const editTransactionAmountFx = createEffect<{ id: number, amount: number
     }
 });
 
+export const editCalculateStatisticFlagFx = createEffect<{ id: number, flag: 0 | 1 }, void>(async data => {
+    const result = await window.electron.changeCalculateStatisticFlag({ id: data.id, flag: data.flag });
+
+    if (result.error) {
+        showErrorNotification(result.error);
+    }
+});
+
+export const editCalculateInflationFlagFx = createEffect<{ id: number, flag: 0 | 1 }, void>(async data => {
+    const result = await window.electron.changeCalculateInflationFlag({ id: data.id, flag: data.flag });
+
+    if (result.error) {
+        showErrorNotification(result.error);
+    }
+});
+
 export const deleteTransactionFx = createEffect<number, void>(async id => {
     const result = await window.electron.deleteTransaction(id);
 

@@ -1,7 +1,7 @@
 import { $currentPage, $numberOfPages } from './paginationStore';
 import { $searchInputValue } from './noteStore';
 import { $selectedMonth, $selectedYear, changeMonth, changeYear, getAllYears, resetYear } from './dateStore';
-import { addTransactionFx, deleteTransactionFx, editTransactionNoteFx, editSpendingCategoryFx, editTransactionDateFx, getAllTransactionsFx, getNumberOfPagesFx } from '../effects/transactionEffects';
+import { addTransactionFx, deleteTransactionFx, editTransactionNoteFx, editSpendingCategoryFx, editTransactionDateFx, getAllTransactionsFx, getNumberOfPagesFx, editCalculateStatisticFlagFx, editCalculateInflationFlagFx } from '../effects/transactionEffects';
 import { createEvent, createStore, sample } from 'effector';
 
 export const getAllTransations = createEvent();
@@ -15,6 +15,9 @@ export const editTransactionAddress = createEvent<{ id: number, transactionAddre
 export const editSpendingCategory = createEvent<{ id: number, spendingCategoryId: number | null }>();
 export const editTransactionNote = createEvent<{ id: number, note: string | null }>();
 export const editTransactionAmount = createEvent<{ id: number, amount: number }>();
+
+export const editCalculateStatisticFlag = createEvent<{ id: number, flag: 0 | 1 }>();
+export const editCalculateInflationFlag = createEvent<{ id: number, flag: 0 | 1 }>();
 
 export const changeAmount = createEvent<number>();
 
@@ -101,6 +104,30 @@ sample({
 
 sample({
     clock: editTransactionNoteFx.done,
+    target: getAllTransations
+});
+// ---------------------------------------
+
+// editCalculateStatisticFlag ------------
+sample({
+    clock: editCalculateStatisticFlag,
+    target: editCalculateStatisticFlagFx
+});
+
+sample({
+    clock: editCalculateStatisticFlagFx.done,
+    target: getAllTransations
+});
+// ---------------------------------------
+
+// editCalculateStatisticFlag ------------
+sample({
+    clock: editCalculateInflationFlag,
+    target: editCalculateInflationFlagFx
+});
+
+sample({
+    clock: editCalculateInflationFlagFx.done,
     target: getAllTransations
 });
 // ---------------------------------------

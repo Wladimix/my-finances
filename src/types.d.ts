@@ -26,6 +26,8 @@ interface ITransaction {
     note: string
     amount: number
     transactionType: string
+    toCalculateStatistic: 0 | 1
+    toCalculateInflation: 0 | 1
 }
 
 interface INote {
@@ -68,6 +70,8 @@ interface EventPayloadMapping {
     editSpendingCategory: [ { id: number, spendingCategoryId: number | null }, Promise<ResponceData<null>> ]
     editTransactionNote: [ { id: number, note: string | null }, Promise<ResponceData<null>> ]
     editTransactionAmount: [ { id: number, amount: number }, Promise<ResponceData<null>> ]
+    changeCalculateStatisticFlag: [ { id: number, flag: 0 | 1 }, Promise<ResponceData<null>> ]
+    changeCalculateInflationFlag: [ { id: number, flag: 0 | 1 }, Promise<ResponceData<null>> ]
     deleteTransaction: [ number, Promise<ResponceData<null>> ]
 
 }
@@ -96,6 +100,8 @@ interface Window {
         editSpendingCategory: (data: { id: number, spendingCategoryId: number | null }) => Promise<ResponceData<null>>
         editTransactionNote: (data: { id: number, note: string | null }) => Promise<ResponceData<null>>
         editTransactionAmount: (data: { id: number, amount: number }) => Promise<ResponceData<null>>
+        changeCalculateStatisticFlag: (data: { id: number, flag: 0 | 1 }) => Promise<ResponceData<null>>
+        changeCalculateInflationFlag: (data: { id: number, flag: 0 | 1 }) => Promise<ResponceData<null>>
         deleteTransaction: (id: number) => Promise<ResponceData<null>>
 
     }

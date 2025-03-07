@@ -17,7 +17,8 @@ export default class TransactionModel {
                 table.integer('note_id').references('id').inTable(TablesNames.NOTES);
                 table.float('amount', 2).notNullable().defaultTo(0.00);
                 table.string('transaction_type');
-                // table.boolean('to_calculate_inflation').notNullable().defaultTo(0);
+                table.boolean('to_calculate_statistic').notNullable().defaultTo(1);
+                table.boolean('to_calculate_inflation').notNullable().defaultTo(0);
             });
     }
 
@@ -39,7 +40,8 @@ export default class TransactionModel {
                 `${TablesNames.NOTES}.name as note`,
                 `${TablesNames.TRANSACTIONS}.amount`,
                 `${TablesNames.TRANSACTIONS}.transaction_type as transactionType`,
-                // `${TablesNames.TRANSACTIONS}.to_calculate_inflation as toCalculateInflation`
+                `${TablesNames.TRANSACTIONS}.to_calculate_statistic as toCalculateStatistic`,
+                `${TablesNames.TRANSACTIONS}.to_calculate_inflation as toCalculateInflation`
             )
             .from(TablesNames.TRANSACTIONS)
             .offset(page * 3).limit(3);
@@ -107,7 +109,6 @@ export default class TransactionModel {
                 `${TablesNames.NOTES}.name as note`,
                 `${TablesNames.TRANSACTIONS}.amount`,
                 `${TablesNames.TRANSACTIONS}.transaction_type as transactionType`,
-                // `${TablesNames.TRANSACTIONS}.to_calculate_inflation as toCalculateInflation`
             )
             .from(TablesNames.TRANSACTIONS)
 
@@ -164,6 +165,18 @@ export default class TransactionModel {
         await knex(TablesNames.TRANSACTIONS)
             .where({ id })
             .update({ transaction_type: type });
+    }
+
+    static async changeCalculateStatisticFlag(id: number, flag: 0 | 1): Promise<void> {
+        await knex(TablesNames.TRANSACTIONS)
+            .where({ id })
+            .update({ to_calculate_statistic: flag });
+    }
+
+    static async changeCalculateInflationFlag(id: number, flag: 0 | 1): Promise<void> {
+        await knex(TablesNames.TRANSACTIONS)
+            .where({ id })
+            .update({ to_calculate_inflation: flag });
     }
 
     static async deleteById(id: number): Promise<void> {
