@@ -1,4 +1,4 @@
-import { getTotalAmount } from '../services/statisticService';
+import { getStatisticsOnExpenses, getTotalAmount } from '../services/statisticService';
 import { makeError } from '../utils';
 
 export default class CalculationController {
@@ -16,6 +16,28 @@ export default class CalculationController {
         } catch(error) {
 
             const errorMessage = makeError(error as Error, 'ошибка получения общей статистики');
+
+            return {
+                data: null,
+                error: errorMessage
+            };
+
+        }
+    }
+
+    static async getStatisticsOnExpenses({ year, month }: { year: string, month: string | null }): Promise<ResponceData<IStatisticsOfExpenses[]>> {
+        try {
+
+            const statisticsOnExpenses = await getStatisticsOnExpenses(year, month);
+
+            return {
+                data: statisticsOnExpenses,
+                error: null
+            };
+
+        } catch(error) {
+
+            const errorMessage = makeError(error as Error, 'ошибка получения статистики по категориям');
 
             return {
                 data: null,

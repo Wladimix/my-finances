@@ -14,3 +14,7 @@ export async function getTotalAmount(year: string, month: string | null): Promis
     };
 
 }
+
+export async function getStatisticsOnExpenses(year: string, month: string | null): Promise<IStatisticsOfExpenses[]> {
+    return await TransactionModel.getAmountOfExpensesByCategories(year, month);
+}

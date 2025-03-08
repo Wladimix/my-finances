@@ -48,6 +48,11 @@ interface ITotalAmount {
     savings: number
 }
 
+interface IStatisticsOfExpenses {
+    purchase: string,
+    amount: number
+}
+
 type ResponceData<T> = {
     data: T | null
     error: string | null
@@ -83,6 +88,7 @@ interface EventPayloadMapping {
     getNotes: [ string, Promise<ResponceData<INote[]>> ]
 
     getTotalAmount: [ { year: string, month: string | null }, Promise<ResponceData<ITotalAmount>> ]
+    getStatisticsOnExpenses: [ { year: string, month: string | null }, Promise<ResponceData<IStatisticsOfExpenses[]>> ]
 
 }
 
@@ -117,6 +123,7 @@ interface Window {
         getNotes: (substring: string) => Promise<ResponceData<INote[]>>
 
         getTotalAmount: (data: { year: string, month: string | null }) => Promise<ResponceData<ITotalAmount>>
+        getStatisticsOnExpenses: (data: { year: string, month: string | null }) => Promise<ResponceData<IStatisticsOfExpenses[]>>
 
     }
 }

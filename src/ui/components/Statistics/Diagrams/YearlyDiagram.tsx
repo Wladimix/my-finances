@@ -1,12 +1,16 @@
+import { $yearlyStatisticsOnExpenses } from '../../../storage/calculationStore';
 import { Doughnut } from 'react-chartjs-2';
+import { useUnit } from 'effector-react';
 
 export default function YearlyDiagram() {
+    const yearlyStatisticsOnExpenses = useUnit($yearlyStatisticsOnExpenses);
+
     return(
         <Doughnut
             data={{
-                labels: ['test1', 'test2'],
+                labels: yearlyStatisticsOnExpenses.map(elem => elem.purchase.replace(/\(удалено.+\)/, '')),
                 datasets: [{
-                    data: [200, 400],
+                    data: yearlyStatisticsOnExpenses.map(elem => elem.amount),
                     backgroundColor: ['#CB4335', '#1F618D', '#F1C40F', '#27AE60', '#884EA0', '#D35400']
                 }]
             }}

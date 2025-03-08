@@ -194,6 +194,17 @@ export default class TransactionModel {
             .whereBetween(`${TablesNames.TRANSACTIONS}.date`, this.makeDateSearchOptions(year, month));
     }
 
+    static async getAmountOfExpensesByCategories(year: string, month: string | null): Promise<IStatisticsOfExpenses[]> {
+        return await knex
+            .select(`${TablesNames.CATEGORIES}.name as purchase`)
+            .sum({ amount: 'amount' })
+            .from(TablesNames.TRANSACTIONS)
+            .join(TablesNames.CATEGORIES, `${TablesNames.TRANSACTIONS}.spending_category_id`, '=', `${TablesNames.CATEGORIES}.id`)
+            .where({ transaction_type: TransactionTypes.EXPENDITURE })
+            .whereBetween(`${TablesNames.TRANSACTIONS}.date`, this.makeDateSearchOptions(year, month))
+            .groupBy('purchase');
+    }
+
     private static makeDateSearchOptions(year: string | null, month: string | null): [Knex.DbColumn<Date>, Knex.DbColumn<Date>] {
         return [
             new Date(year ? Number(year) : 1970, month ? Number(month) : 0, 1, 0, 0, 0),

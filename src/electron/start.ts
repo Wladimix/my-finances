@@ -74,5 +74,6 @@ export function createRouter(): void {
     ipcHandle('getNotes', (_, substring) => NoteController.getNotes(substring));
 
     ipcHandle('getTotalAmount', (_, data) => CalculationController.getTotalAmount(data));
+    ipcHandle('getStatisticsOnExpenses', (_, data) => CalculationController.getStatisticsOnExpenses(data));
 
 }

@@ -1,7 +1,7 @@
 import { createEffect } from 'effector';
 import { showErrorNotification } from '../utils';
 
-export const getYearlyTotalAmountFx = createEffect<{ year: string | null } ,ITotalAmount>( async data => {
+export const getYearlyTotalAmountFx = createEffect<{ year: string | null }, ITotalAmount>( async data => {
 
     const defaultValue = {
         totalIncomeAmount: 0,
@@ -27,7 +27,7 @@ export const getYearlyTotalAmountFx = createEffect<{ year: string | null } ,ITot
 
 });
 
-export const getMonthlyTotalAmountFx = createEffect<{ year: string | null, month: string | null } ,ITotalAmount>( async data => {
+export const getMonthlyTotalAmountFx = createEffect<{ year: string | null, month: string | null }, ITotalAmount>( async data => {
 
     const defaultValue = {
         totalIncomeAmount: 0,
@@ -47,6 +47,46 @@ export const getMonthlyTotalAmountFx = createEffect<{ year: string | null, month
 
     if (!result.data) {
         return defaultValue;
+    }
+
+    return result.data;
+
+});
+
+export const getYearlyStatisticsOnExpensesFx = createEffect<{ year: string | null }, IStatisticsOfExpenses[]>( async data => {
+
+    if (data.year === null) {
+        return [];
+    }
+
+    const result = await window.electron.getStatisticsOnExpenses({ year: data.year, month: null });
+
+    if (result.error) {
+        showErrorNotification(result.error);
+    }
+
+    if (!result.data) {
+        return [];
+    }
+
+    return result.data;
+
+});
+
+export const getMonthlyStatisticsOnExpensesFx = createEffect<{ year: string | null, month: string | null }, IStatisticsOfExpenses[]>( async data => {
+
+    if (data.year === null || data.month === null) {
+        return [];
+    }
+
+    const result = await window.electron.getStatisticsOnExpenses({ year: data.year, month: data.month });
+
+    if (result.error) {
+        showErrorNotification(result.error);
+    }
+
+    if (!result.data) {
+        return [];
     }
 
     return result.data;
