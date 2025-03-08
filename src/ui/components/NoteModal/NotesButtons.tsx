@@ -33,6 +33,7 @@ export default function NotesButtons() {
         notesList.map(note =>
             <div
                 className='uk-button uk-button-secondary uk-margin-small-bottom uk-margin-small-right uk-modal-close'
+                key={note.id}
                 onClick={() => { handler(note.name) }}
             >
                 {note.name}

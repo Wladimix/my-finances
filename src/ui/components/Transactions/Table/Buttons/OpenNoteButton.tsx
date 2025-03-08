@@ -1,6 +1,6 @@
 import NoteModal from '../../../NoteModal/NoteModal';
 
-import { changeCalculateInflationFlag, changeCalculateStatisticFlag, changeNote, changeTransactionId } from '../../../../storage/noteStore';
+import { changeCalculateInflationFlag, changeCalculateStatisticFlag, changeNote, changeNotesList, changeTransactionId } from '../../../../storage/noteStore';
 import { useUnit } from 'effector-react';
 
 export default function OpenNoteButton({ transaction }: IProps) {
@@ -8,6 +8,7 @@ export default function OpenNoteButton({ transaction }: IProps) {
     const changeNoteEvent = useUnit(changeNote);
     const changeCalculateStatisticFlagEvent = useUnit(changeCalculateStatisticFlag);
     const changeCalculateInflationFlagEvent = useUnit(changeCalculateInflationFlag);
+    const changeNotesListEvent = useUnit(changeNotesList);
 
     const makeClass = () =>
         transaction.note
@@ -19,6 +20,7 @@ export default function OpenNoteButton({ transaction }: IProps) {
         changeNoteEvent(transaction.note);
         changeCalculateStatisticFlagEvent(transaction.toCalculateStatistic);
         changeCalculateInflationFlagEvent(transaction.toCalculateInflation);
+        changeNotesListEvent('');
     };
 
     return(

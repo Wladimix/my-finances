@@ -24,7 +24,6 @@ export default function NoteInput() {
 
     const blurHandler = () => {
         clearTimeout(timerId);
-        changeNotesListEvent('');
     };
 
     return(
