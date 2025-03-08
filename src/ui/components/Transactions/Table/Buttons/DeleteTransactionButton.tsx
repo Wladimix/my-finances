@@ -13,7 +13,7 @@ export default function DeleteTransactionButton({ id }: IProps) {
             <button
                 className='uk-icon-link'
                 data-uk-icon='icon: trash; ratio: 1.2'
-                onClick={handler}
+                onDoubleClick={handler}
             />
         </div>
     );

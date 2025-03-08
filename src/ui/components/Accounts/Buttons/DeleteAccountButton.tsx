@@ -14,7 +14,7 @@ export default function DeleteAccountButton({ account }: IProps) {
                     ?   <button
                             className='uk-icon-link'
                             data-uk-icon='icon: trash; ratio: 1.2'
-                            onClick={handler}
+                            onDoubleClick={handler}
                         />
                     :   <span
                             className='uk-icon'

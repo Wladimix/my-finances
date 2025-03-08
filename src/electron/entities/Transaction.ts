@@ -255,9 +255,36 @@ export default class Transaction {
     }
 
     async delete(): Promise<void> {
+
         if (this.id) {
+
+            const transaction = await TransactionModel.getOneById(this.id);
+
+            if (transaction !== undefined) {
+
+                this.date = transaction.date;
+                this.sourceOfTransactionId = transaction.sourceOfTransactionId;
+                this.transactionAddressId = transaction.transactionAddressId;
+                this.spendingCategoryId = transaction.spendingCategoryId;
+                this.note = transaction.note;
+                this.amount = transaction.amount;
+                this.transactionType = transaction.transactionType;
+
+                if (this.sourceOfTransactionId !== null) {
+                    const account = new Account(this.sourceOfTransactionId);
+                    await account.addAmount(this.amount);
+                }
+
+                if (this.transactionAddressId !== null) {
+                    const account = new Account(this.transactionAddressId);
+                    await account.subtractAmount(this.amount);
+                }
+
+            }
+
             await TransactionModel.deleteById(this.id);
         }
+
     }
 
     private async determineType(): Promise<void> {
