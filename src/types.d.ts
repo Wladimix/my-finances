@@ -42,6 +42,12 @@ interface IFilter {
     page?: number
 }
 
+interface ITotalAmount {
+    totalIncomeAmount: number,
+    totalExpensditureAmount: number,
+    savings: number
+}
+
 type ResponceData<T> = {
     data: T | null
     error: string | null
@@ -76,6 +82,8 @@ interface EventPayloadMapping {
 
     getNotes: [ string, Promise<ResponceData<INote[]>> ]
 
+    getTotalAmount: [ { year: string, month: string | null }, Promise<ResponceData<ITotalAmount>> ]
+
 }
 
 interface Window {
@@ -107,6 +115,8 @@ interface Window {
         deleteTransaction: (id: number) => Promise<ResponceData<null>>
 
         getNotes: (substring: string) => Promise<ResponceData<INote[]>>
+
+        getTotalAmount: (data: { year: string, month: string | null }) => Promise<ResponceData<ITotalAmount>>
 
     }
 }

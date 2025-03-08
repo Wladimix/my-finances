@@ -185,6 +185,15 @@ export default class TransactionModel {
             .del();
     }
 
+    static async getTotalAmountByType(year: string, month: string | null, transactionType: TransactionTypes): Promise<{ amount: number }[]> {
+        return await knex
+            .select('amount')
+            .sum({ amount: 'amount' })
+            .from(TablesNames.TRANSACTIONS)
+            .where({ transaction_type: transactionType })
+            .whereBetween(`${TablesNames.TRANSACTIONS}.date`, this.makeDateSearchOptions(year, month));
+    }
+
     private static makeDateSearchOptions(year: string | null, month: string | null): [Knex.DbColumn<Date>, Knex.DbColumn<Date>] {
         return [
             new Date(year ? Number(year) : 1970, month ? Number(month) : 0, 1, 0, 0, 0),

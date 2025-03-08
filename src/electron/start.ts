@@ -1,5 +1,6 @@
 import AccountController from './controllers/AccountController';
 import AccountModel from './models/AccountModel';
+import CalculationController from './controllers/CalculationController';
 import CategoryController from './controllers/CategoryController';
 import CategoryModel from './models/CategoryModel';
 import fs from 'fs';
@@ -71,5 +72,7 @@ export function createRouter(): void {
     ipcHandle('deleteTransaction', (_, id) => TransactionController.deleteTransaction(id));
 
     ipcHandle('getNotes', (_, substring) => NoteController.getNotes(substring));
+
+    ipcHandle('getTotalAmount', (_, data) => CalculationController.getTotalAmount(data));
 
 }

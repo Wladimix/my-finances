@@ -34,6 +34,8 @@ contextBridge.exposeInMainWorld('electron', {
     editTransactionAmount: (data: { id: number, amount: number }) => ipcInvoke('editTransactionAmount', data),
     deleteTransaction: (id: number) => ipcInvoke('deleteTransaction', id),
 
-    getNotes: (substring: string) => ipcInvoke('getNotes', substring)
+    getNotes: (substring: string) => ipcInvoke('getNotes', substring),
+
+    getTotalAmount: (data: { year: string, month: string | null }) => ipcInvoke('getTotalAmount', data)
 
 } satisfies Window['electron']);
