@@ -1,5 +1,6 @@
 import { $monthlyTotalAmount } from '../../../storage/calculationStore';
 import { $selectedMonth, $selectedYear } from '../../../storage/dateStore';
+import { convertAmount } from '../../../utils';
 import { useUnit } from 'effector-react';
 
 const months = [
@@ -53,17 +54,17 @@ export default function MonthlyCard() {
 
             <div className='uk-margin-remove' data-uk-grid>
                 <div className='uk-width-expand uk-padding-remove uk-text-large uk-text-left'>Доходы</div>
-                <div className='uk-text-large'>{totalAmount.totalIncomeAmount ?? 0}</div>
+                <div className='uk-text-large'>{convertAmount(totalAmount.totalIncomeAmount ?? 0)}</div>
             </div>
 
             <div className='uk-margin-remove' data-uk-grid>
                 <div className='uk-width-expand uk-padding-remove uk-text-large'>Расходы</div>
-                <div className='uk-text-large'>{totalAmount.totalExpensditureAmount ?? 0}</div>
+                <div className='uk-text-large'>{convertAmount(totalAmount.totalExpensditureAmount ?? 0)}</div>
             </div>
 
             <div className='uk-margin-remove' data-uk-grid>
                 <div className='uk-width-expand uk-padding-remove uk-text-large'>Экономия</div>
-                <div className={makeSavingsClass()}>{totalAmount.savings}</div>
+                <div className={makeSavingsClass()}>{convertAmount(totalAmount.savings)}</div>
             </div>
 
         </div>
