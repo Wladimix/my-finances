@@ -29,6 +29,21 @@ export default function NotesButtons() {
         }
     };
 
+    const displayDeleteNoteButton = () => {
+        if (currentNote === null) {
+            return (
+                <div
+                    className='uk-button uk-button-danger uk-margin-small-bottom uk-margin-small-right uk-modal-close'
+                    onClick={() => { editTransactionNoteEvent({ id: transactionId, note: null }); }}
+                >
+                    <span className='uk-margin-remove' data-uk-icon='icon: minus-circle; ratio: 1.3'></span>
+                </div>
+            );
+        } else {
+            return '';
+        }
+    };
+
     const displayNotes = () =>
         notesList.map(note =>
             <div
@@ -43,6 +58,7 @@ export default function NotesButtons() {
     return(
         <div>
             {displayNewNoteButton()}
+            {displayDeleteNoteButton()}
             {displayNotes()}
         </div>
     );

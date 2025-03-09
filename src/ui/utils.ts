@@ -48,7 +48,7 @@ export function calcYearlyInflation(inflation: {
     }
 
     return monthsNumber
-        ? Math.round(sum / monthsNumber)
+        ? Number((sum / monthsNumber).toFixed(2))
         : null;
 
 }
@@ -67,7 +67,7 @@ export function calcMonthlyInflation(inflation: {
 
     const productsNumber = Object.values(inflation).filter(value => value !== null ).length;
     return productsNumber !== 0
-        ? Math.round(sum / productsNumber)
+        ? Number((sum / productsNumber).toFixed(2))
         : null;
 
 }
