@@ -53,6 +53,25 @@ interface IStatisticsOfExpenses {
     amount: number
 }
 
+interface IRecordForInflation {
+    date: number,
+    note: string,
+    amount: number
+}
+
+interface IInflationData {
+    averageCost: null,
+    inflation: {
+        [key: string]: {
+            [key: string]: number
+        }
+    }
+}
+
+interface IRecordsSortedByDate {
+    [key: string]: { note: string, amount: number }[]
+}
+
 type ResponceData<T> = {
     data: T | null
     error: string | null
@@ -89,6 +108,7 @@ interface EventPayloadMapping {
 
     getTotalAmount: [ { year: string, month: string | null }, Promise<ResponceData<ITotalAmount>> ]
     getStatisticsOnExpenses: [ { year: string, month: string | null }, Promise<ResponceData<IStatisticsOfExpenses[]>> ]
+    getInflation: [string, Promise<ResponceData<IInflationData>>]
 
 }
 
@@ -124,6 +144,7 @@ interface Window {
 
         getTotalAmount: (data: { year: string, month: string | null }) => Promise<ResponceData<ITotalAmount>>
         getStatisticsOnExpenses: (data: { year: string, month: string | null }) => Promise<ResponceData<IStatisticsOfExpenses[]>>
+        getInflation: (year: string) => Promise<ResponceData<IInflationData>>
 
     }
 }

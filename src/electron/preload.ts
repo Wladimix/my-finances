@@ -37,6 +37,7 @@ contextBridge.exposeInMainWorld('electron', {
     getNotes: (substring: string) => ipcInvoke('getNotes', substring),
 
     getTotalAmount: (data: { year: string, month: string | null }) => ipcInvoke('getTotalAmount', data),
-    getStatisticsOnExpenses: (data: { year: string, month: string | null }) => ipcInvoke('getStatisticsOnExpenses', data)
+    getStatisticsOnExpenses: (data: { year: string, month: string | null }) => ipcInvoke('getStatisticsOnExpenses', data),
+    getInflation: (year: string) => ipcInvoke('getInflation', year)
 
 } satisfies Window['electron']);

@@ -3,6 +3,7 @@ import { $searchInputValue } from './noteStore';
 import { $selectedMonth, $selectedYear, changeMonth, changeYear, getAllYears, resetYear } from './dateStore';
 import { addTransactionFx, editTransactionNoteFx, editSpendingCategoryFx, editTransactionDateFx, getAllTransactionsFx, getNumberOfPagesFx, editCalculateStatisticFlagFx, editCalculateInflationFlagFx } from '../effects/transactionEffects';
 import { createEvent, createStore, sample } from 'effector';
+import { getInflation } from './inflationStore';
 import { getMonthlyStatisticsOnExpenses, getMonthlyTotalAmount, getYearlyStatisticsOnExpenses, getYearlyTotalAmount } from './calculationStore';
 
 export const getAllTransations = createEvent();
@@ -78,6 +79,11 @@ sample({
 sample({
     clock: getAllTransactionsFx.done,
     target: getMonthlyStatisticsOnExpenses
+});
+
+sample({
+    clock: getAllTransactionsFx.done,
+    target: getInflation
 });
 // ---------------------------------------
 

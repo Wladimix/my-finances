@@ -8,7 +8,7 @@ export default function MonthlyDiagram() {
     const selectedYear = useUnit($selectedYear);
 
     return(
-        selectedYear && <Doughnut
+        selectedYear && monthlyStatisticsOnExpenses.length ? <Doughnut
             data={{
                 labels: selectedYear ? monthlyStatisticsOnExpenses.map(elem => elem.purchase.replace(/\(удалено.+\)/, '')) : [],
                 datasets: [{
@@ -41,6 +41,6 @@ export default function MonthlyDiagram() {
                     }
                 }
             }}
-        />
+        /> : ''
     );
 }

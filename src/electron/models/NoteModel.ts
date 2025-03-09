@@ -13,6 +13,13 @@ export default class NoteModel {
             });
     }
 
+    // TODO: убрать
+    // static async getAll(): Promise<INote[]> {
+    //     return await knex
+    //         .select('name')
+    //         .from(TablesNames.NOTES);
+    // }
+
     static async findMatches(name: string): Promise<INote[]> {
         return await knex
             .select()

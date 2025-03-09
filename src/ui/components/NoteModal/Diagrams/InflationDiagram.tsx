@@ -1,13 +1,56 @@
+import { $inflationData } from '../../../storage/inflationStore';
+import { $note } from '../../../storage/noteStore';
 import { Bar } from 'react-chartjs-2';
+import { useUnit } from 'effector-react';
+
+const months = [
+    'Январь',
+    'Февраль',
+    'Март',
+    'Апрель',
+    'Май',
+    'Июнь',
+    'Июль',
+    'Август',
+    'Сентябрь',
+    'Октябрь',
+    'Ноябрь',
+    'Декабрь',
+];
 
 export default function InflationDiagram() {
+    const inflationData = useUnit($inflationData);
+    const note = useUnit($note);
+
+    const makeMonthList = () => {
+
+        const monthList: { [key: string]: number } = {};
+
+        for (let elem in inflationData.inflation) {
+            if (note) {
+
+                const monthData = inflationData.inflation[elem];
+
+                if (monthData[note]) {
+                    monthList[months[Number(elem) - 1]] = monthData[note];
+                }
+
+            }
+        }
+
+        return monthList;
+
+    };
+
+    const diagramData = makeMonthList();
+
     return(
-        <Bar
+        Object.keys(diagramData).length ? <Bar
             data={{
-                labels: ['Янв', 'Фев', 'Мар', 'Апр', 'Май', 'Июн', 'Июл', 'Авг', 'Сен', 'Окт', 'Ноя', 'Дек',],
+                labels: Object.keys(diagramData),
                 datasets: [
                     {
-                        data: [1, 2, 2, 2, 4, 4, 3, 4, 4, 5, 5, 6],
+                        data: Object.values(diagramData),
                     }
                 ]
             }}
@@ -15,15 +58,14 @@ export default function InflationDiagram() {
                 plugins: {
                     legend: {
                         display: false
-                    },
-                    tooltip: {
-                        enabled: false
                     }
                 },
                 animation: {
                     duration: 0
                 }
             }}
-        />
+        /> : <div className='uk-alert-primary' data-uk-alert>
+                <h3>данные отсутствуют</h3>
+            </div>
     );
 }

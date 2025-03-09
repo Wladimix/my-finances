@@ -92,3 +92,29 @@ export const getMonthlyStatisticsOnExpensesFx = createEffect<{ year: string | nu
     return result.data;
 
 });
+
+export const getInflationFx = createEffect<string | null, IInflationData>(async year => {
+
+    if (!year) {
+        return {
+            averageCost: null,
+            inflation: {}
+        };
+    }
+
+    const result = await window.electron.getInflation(year);
+
+    if (result.error) {
+        showErrorNotification(result.error);
+    }
+
+    if (!result.data) {
+        return {
+            averageCost: null,
+            inflation: {}
+        };
+    }
+
+    return result.data;
+
+});

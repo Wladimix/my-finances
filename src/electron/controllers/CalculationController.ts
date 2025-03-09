@@ -1,3 +1,4 @@
+import { getInflationData } from '../services/inflationService';
 import { getStatisticsOnExpenses, getTotalAmount } from '../services/statisticService';
 import { makeError } from '../utils';
 
@@ -38,6 +39,28 @@ export default class CalculationController {
         } catch(error) {
 
             const errorMessage = makeError(error as Error, 'ошибка получения статистики по категориям');
+
+            return {
+                data: null,
+                error: errorMessage
+            };
+
+        }
+    }
+
+    static async getInflation(year: string): Promise<ResponceData<IInflationData>> {
+        try {
+
+            const inflationData = await getInflationData(year);
+
+            return {
+                data: inflationData,
+                error: null
+            };
+
+        } catch(error) {
+
+            const errorMessage = makeError(error as Error, 'ошибка получения инфляции');
 
             return {
                 data: null,

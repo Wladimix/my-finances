@@ -75,5 +75,6 @@ export function createRouter(): void {
 
     ipcHandle('getTotalAmount', (_, data) => CalculationController.getTotalAmount(data));
     ipcHandle('getStatisticsOnExpenses', (_, data) => CalculationController.getStatisticsOnExpenses(data));
+    ipcHandle('getInflation', (_, year) => CalculationController.getInflation(year));
 
 }

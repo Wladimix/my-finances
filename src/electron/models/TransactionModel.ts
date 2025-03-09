@@ -17,7 +17,7 @@ export default class TransactionModel {
                 table.integer('note_id').references('id').inTable(TablesNames.NOTES);
                 table.float('amount', 2).notNullable().defaultTo(0.00);
                 table.string('transaction_type');
-                table.boolean('to_calculate_statistic').notNullable().defaultTo(1);
+                table.boolean('to_calculate_statistic').notNullable().defaultTo(1); // TODO: не забыть про флажок
                 table.boolean('to_calculate_inflation').notNullable().defaultTo(0);
             });
     }
@@ -203,6 +203,27 @@ export default class TransactionModel {
             .where({ transaction_type: TransactionTypes.EXPENDITURE })
             .whereBetween(`${TablesNames.TRANSACTIONS}.date`, this.makeDateSearchOptions(year, month))
             .groupBy('purchase');
+    }
+
+    static async getRecordsForInflation(year: string): Promise<IRecordForInflation[]> {
+        return await knex
+            .select(
+                `${TablesNames.TRANSACTIONS}.date`,
+                `${TablesNames.NOTES}.name as note`,
+                `${TablesNames.TRANSACTIONS}.amount`
+            )
+            .from(TablesNames.TRANSACTIONS)
+            .join(TablesNames.NOTES, `${TablesNames.TRANSACTIONS}.note_id`, '=', `${TablesNames.NOTES}.id`)
+
+            .where({ to_calculate_inflation: true, transaction_type: TransactionTypes.EXPENDITURE })
+            .orWhere({ to_calculate_inflation: true, transaction_type: TransactionTypes.PRICE_MONITORING })
+            .andWhereBetween(`${TablesNames.TRANSACTIONS}.date`, [
+                new Date(Number(year) - 1, 11, 1, 0, 0, 0),
+                new Date(Number(year), 11, 31, 23, 59, 59)
+            ])
+
+            .orderBy(`${TablesNames.TRANSACTIONS}.date`, 'asc')
+            .orderBy(`${TablesNames.TRANSACTIONS}.id`, 'asc');
     }
 
     private static makeDateSearchOptions(year: string | null, month: string | null): [Knex.DbColumn<Date>, Knex.DbColumn<Date>] {

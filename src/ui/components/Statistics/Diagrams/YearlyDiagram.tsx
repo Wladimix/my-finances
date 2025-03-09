@@ -6,7 +6,7 @@ export default function YearlyDiagram() {
     const yearlyStatisticsOnExpenses = useUnit($yearlyStatisticsOnExpenses);
 
     return(
-        <Doughnut
+        yearlyStatisticsOnExpenses.length ? <Doughnut
             data={{
                 labels: yearlyStatisticsOnExpenses.map(elem => elem.purchase.replace(/\(удалено.+\)/, '')),
                 datasets: [{
@@ -39,6 +39,6 @@ export default function YearlyDiagram() {
                     }
                 }
             }}
-        />
+        /> : ''
     );
 }
