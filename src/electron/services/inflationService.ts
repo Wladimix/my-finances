@@ -46,7 +46,7 @@ export async function getInflationData(year: string): Promise<IInflationData> {
 
 }
 
-function getRecordsSortedByDate(recordsForInflation: IRecordForInflation[], year: string) {
+function getRecordsSortedByDate(recordsForInflation: IRecordForInflation[], year: string): IRecordsSortedByDate {
 
     const recordsSortedByDate: IRecordsSortedByDate = {};
 
@@ -82,7 +82,7 @@ function getAllRecords(recordsForInflation: IRecordForInflation[], year: string)
 
 }
 
-function getMonthlyInflationProductData(currentProduct: string, recordsSortedByDate: IRecordsSortedByDate, currentMonthIndex: keyof IInflationData) {
+function getMonthlyInflationProductData(currentProduct: string, recordsSortedByDate: IRecordsSortedByDate, currentMonthIndex: keyof IInflationData): IMonthlyInflationData {
 
     let inflationData: IMonthlyInflationData = {
         '1': null, '2': null, '3': null, '4': null,
@@ -165,12 +165,12 @@ function getMonthlyInflationProductData(currentProduct: string, recordsSortedByD
 
 }
 
-function calcAverageInflation(prevAmount: number, currAmount: number, numberOfMonths: number) {
+function calcAverageInflation(prevAmount: number, currAmount: number, numberOfMonths: number): number {
     const inflation = calcInflation(prevAmount, currAmount);
     return +((Math.pow((inflation / 100 + 1), (1 / numberOfMonths)) - 1) * 100).toFixed(2);
 }
 
-function calcInflation(prevAmount: number, currAmount: number) {
+function calcInflation(prevAmount: number, currAmount: number): number {
     return +(((currAmount * 100) / prevAmount) - 100).toFixed(2);
 }
 
