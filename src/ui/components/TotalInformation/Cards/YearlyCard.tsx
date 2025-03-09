@@ -1,9 +1,11 @@
+import { $inflationData } from '../../../storage/inflationStore';
 import { $selectedYear } from '../../../storage/dateStore';
 import { $yearlyTotalAmount } from '../../../storage/calculationStore';
+import { calcYearlyInflation, convertAmount } from '../../../utils';
 import { useUnit } from 'effector-react';
-import { convertAmount } from '../../../utils';
 
 export default function YearlyCard() {
+    const inflation = useUnit($inflationData).inflation;
     const selectedYear = useUnit($selectedYear);
     const totalAmount = useUnit($yearlyTotalAmount);
 
@@ -13,10 +15,12 @@ export default function YearlyCard() {
         if (totalAmount.savings < 0) return 'uk-text-large uk-text-danger';
     };
 
+    const yearlyInflation = selectedYear ? calcYearlyInflation(inflation) : '';
+
     return(
         <div className='uk-card uk-card-default uk-card-body uk-background-muted'>
 
-            <div className='uk-card-badge uk-label'>ИНФЛЯЦИЯ: 5%</div>
+            {selectedYear && yearlyInflation !== null && Object.keys(inflation).length !== 0 ? <div className='uk-card-badge uk-label'>ИНФЛЯЦИЯ: {yearlyInflation}%</div> : ''}
 
             <h2>{selectedYear ?? 'год не выбран'}</h2>
 

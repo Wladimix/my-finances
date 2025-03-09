@@ -254,6 +254,7 @@ export default class Transaction {
         }
     }
 
+    // TODO: при удалении не очищаются примечания
     async delete(): Promise<void> {
 
         if (this.id) {

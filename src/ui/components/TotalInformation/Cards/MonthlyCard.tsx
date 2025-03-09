@@ -1,6 +1,7 @@
+import { $inflationData } from '../../../storage/inflationStore';
 import { $monthlyTotalAmount } from '../../../storage/calculationStore';
 import { $selectedMonth, $selectedYear } from '../../../storage/dateStore';
-import { convertAmount } from '../../../utils';
+import { calcMonthlyInflation, convertAmount } from '../../../utils';
 import { useUnit } from 'effector-react';
 
 const months = [
@@ -19,6 +20,7 @@ const months = [
 ];
 
 export default function MonthlyCard() {
+    const inflation = useUnit($inflationData).inflation;
     const selectedYear = useUnit($selectedYear);
     const selectedMonth = useUnit($selectedMonth);
     const totalAmount = useUnit($monthlyTotalAmount);
@@ -45,10 +47,12 @@ export default function MonthlyCard() {
         if (totalAmount.savings < 0) return 'uk-text-large uk-text-danger';
     };
 
+    const monthlyInflation = selectedMonth ? calcMonthlyInflation(inflation[String(Number(selectedMonth) + 1)]) : '';
+
     return(
         <div className='uk-card uk-card-default uk-card-body uk-background-muted'>
 
-            <div className='uk-card-badge uk-label'>ИНФЛЯЦИЯ: 5%</div>
+            {selectedMonth && monthlyInflation !== null ? <div className='uk-card-badge uk-label'>ИНФЛЯЦИЯ: {monthlyInflation}%</div> : ''}
 
             <h2>{displayMonth()}</h2>
 

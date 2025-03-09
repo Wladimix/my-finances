@@ -25,3 +25,49 @@ export function convertAmount(amount: number): string {
         .join('');
     return result + ' ₽';
 }
+
+export function calcYearlyInflation(inflation: {
+    [key: string]: {
+        [key: string]: number;
+    };
+}) {
+
+    if (Object.keys(inflation).length === 0) {
+        return null;
+    }
+
+    let sum = 0;
+    let monthsNumber = 0;
+
+    for (let monthData in inflation) {
+        const monthInflation = calcMonthlyInflation(inflation[monthData]);
+        if (monthInflation !== null) {
+            sum += monthInflation;
+            monthsNumber++;
+        }
+    }
+
+    return monthsNumber
+        ? Math.round(sum / monthsNumber)
+        : null;
+
+}
+
+export function calcMonthlyInflation(inflation: {
+    [key: string]: number;
+}) {
+
+    if (!inflation) {
+        return null;
+    }
+
+    const sum = Object.keys(inflation).reduce((acc, curr) => {
+        return inflation[curr] !== null ? acc + inflation[curr] : acc;
+    }, 0);
+
+    const productsNumber = Object.values(inflation).filter(value => value !== null ).length;
+    return productsNumber !== 0
+        ? Math.round(sum / productsNumber)
+        : null;
+
+}
