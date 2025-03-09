@@ -254,12 +254,12 @@ export default class Transaction {
         }
     }
 
-    // TODO: при удалении не очищаются примечания
     async delete(): Promise<void> {
 
         if (this.id) {
 
             const transaction = await TransactionModel.getOneById(this.id);
+            const oldNote = transaction?.note;
 
             if (transaction !== undefined) {
 
@@ -284,6 +284,10 @@ export default class Transaction {
             }
 
             await TransactionModel.deleteById(this.id);
+
+            if (oldNote !== undefined) {
+                await new Note(null, oldNote).deleteExtraNote(oldNote);
+            }
         }
 
     }
