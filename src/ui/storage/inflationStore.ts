@@ -5,7 +5,7 @@ import { $selectedYear } from './dateStore';
 export const getInflation = createEvent();
 
 export const $inflationData = createStore<IInflationData>({
-    averageCost: null,
+    averageCost: {},
     inflation: {}
 });
 

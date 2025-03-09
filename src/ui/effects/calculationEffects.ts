@@ -97,7 +97,7 @@ export const getInflationFx = createEffect<string | null, IInflationData>(async 
 
     if (!year) {
         return {
-            averageCost: null,
+            averageCost: {},
             inflation: {}
         };
     }
@@ -110,7 +110,7 @@ export const getInflationFx = createEffect<string | null, IInflationData>(async 
 
     if (!result.data) {
         return {
-            averageCost: null,
+            averageCost: {},
             inflation: {}
         };
     }

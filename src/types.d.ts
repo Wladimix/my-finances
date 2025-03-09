@@ -60,7 +60,11 @@ interface IRecordForInflation {
 }
 
 interface IInflationData {
-    averageCost: null,
+    averageCost: {
+        [key: string]: {
+            [key: string]: number
+        }
+    },
     inflation: {
         [key: string]: {
             [key: string]: number

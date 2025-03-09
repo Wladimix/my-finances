@@ -40,9 +40,39 @@ export async function getInflationData(year: string): Promise<IInflationData> {
     }
 
     return {
-        averageCost: null,
+        averageCost: getAverageCostData(recordsSortedByDate, allRecords),
         inflation
     };
+
+}
+
+function getAverageCostData(recordsSortedByDate: IRecordsSortedByDate, allRecords: string[]): {[key: string]: { [key: string]: number }} {
+
+    const averageCost: {
+        [key: string]: {
+            [key: string]: number
+        }
+    } = {};
+
+    for (let month in recordsSortedByDate) {
+        allRecords.forEach(currentProduct => {
+
+            const products = recordsSortedByDate[month].filter(product => product.note === currentProduct);
+            const sumAmount = products.reduce((acc, curr) => acc + curr.amount, 0);
+            const count = products.length;
+
+            if (!averageCost[month]) {
+                averageCost[month] = {};
+            }
+
+            if (count) {
+                averageCost[month][currentProduct] = sumAmount / count;
+            }
+
+        });
+    }
+
+    return averageCost;
 
 }
 

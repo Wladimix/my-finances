@@ -19,17 +19,17 @@ const months = [
 ];
 
 export default function InflationDiagram() {
-    const inflationData = useUnit($inflationData);
+    const inflationData = useUnit($inflationData).inflation;
     const note = useUnit($note);
 
     const makeMonthList = () => {
 
         const monthList: { [key: string]: number } = {};
 
-        for (let elem in inflationData.inflation) {
+        for (let elem in inflationData) {
             if (note) {
 
-                const monthData = inflationData.inflation[elem];
+                const monthData = inflationData[elem];
 
                 if (monthData[note]) {
                     monthList[months[Number(elem) - 1]] = monthData[note];
@@ -50,7 +50,7 @@ export default function InflationDiagram() {
                 labels: Object.keys(diagramData),
                 datasets: [
                     {
-                        data: Object.values(diagramData),
+                        data: Object.values(diagramData)
                     }
                 ]
             }}
