@@ -23,21 +23,7 @@ export default function MonthlyDiagram() {
                 responsive: true,
                 plugins: {
                     legend: {
-                        position: 'bottom',
-                        onHover: (evt, item, legend): void => {
-                            const backgroundColor = legend.chart.data.datasets[0].backgroundColor as string[];
-                            backgroundColor.forEach((color, index, colors) => {
-                                colors[index] = index === item.index || color.length === 9 ? color : color + '4D';
-                            });
-                            legend.chart.update();
-                        },
-                        onLeave: (evt, item, legend): void => {
-                            const backgroundColor = legend.chart.data.datasets[0].backgroundColor as string[];
-                            backgroundColor.forEach((color, index, colors) => {
-                                colors[index] = color.length === 9 ? color.slice(0, -2) : color;
-                            });
-                            legend.chart.update();
-                        }
+                        position: 'bottom'
                     }
                 }
             }}
