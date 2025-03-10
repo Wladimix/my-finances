@@ -17,7 +17,7 @@ export default class TransactionModel {
                 table.integer('note_id').references('id').inTable(TablesNames.NOTES);
                 table.float('amount', 2).notNullable().defaultTo(0.00);
                 table.string('transaction_type');
-                table.boolean('to_calculate_statistic').notNullable().defaultTo(1); // TODO: не забыть про флажок
+                table.boolean('to_calculate_statistic').notNullable().defaultTo(1);
                 table.boolean('to_calculate_inflation').notNullable().defaultTo(0);
             });
     }
