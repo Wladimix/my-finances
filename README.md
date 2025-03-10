@@ -19,7 +19,7 @@
 
 | Инструмент | Описание |
 | :--- | :--- |
-| [React-chartjs-2](https://react-chartjs-2.js.org/) | Готорые react-компоненты библиотеки [Chart.js](https://www.chartjs.org/) для отрисовки диаграмм.  |
+| [React-chartjs-2](https://react-chartjs-2.js.org/) | Готовые react-компоненты библиотеки [Chart.js](https://www.chartjs.org/) для отрисовки диаграмм.  |
 | [React-currency-input-field](https://github.com/cchanxzy/react-currency-input-field/) | Поля для заполнения денежных значений. |
 | [React-datepicker](https://reactdatepicker.com/) | Поле ввода даты. |
 | [React-paginate](https://github.com/AdeleD/react-paginate/) | Логика и отрисовка пагинатора. |
