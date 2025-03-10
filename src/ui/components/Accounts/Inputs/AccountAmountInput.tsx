@@ -57,6 +57,7 @@ export default function AccountAmountInput({ account }: IProps) {
             maxLength={15}
             onFocus={focusHandler}
             onBlur={blurHandler}
+            onKeyDown={e => e.key === 'Enter' && e.currentTarget.blur()}
             onValueChange={changeHandler}
             suffix=' ₽'
             value={localAmount}

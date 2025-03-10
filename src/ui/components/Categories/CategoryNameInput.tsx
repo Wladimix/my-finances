@@ -52,6 +52,7 @@ export default function CategoryNameInput({ category }: IProps) {
             onBlur={blurHandler}
             onChange={changeHandler}
             onFocus={focusHandler}
+            onKeyDown={e => e.key === 'Enter' && e.currentTarget.blur()}
             spellCheck={false}
             value={localName}
         />
