@@ -9,7 +9,7 @@ export default function DeleteCategoryButton({ category }: IProps) {
         <td className='uk-text-large uk-text-center'>
             <button
                 className='uk-button uk-button-small uk-button-danger'
-                onClick={handler}
+                onDoubleClick={handler}
             >
                 Удалить
             </button>
