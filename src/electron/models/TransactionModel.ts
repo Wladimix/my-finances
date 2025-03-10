@@ -190,7 +190,7 @@ export default class TransactionModel {
             .select('amount')
             .sum({ amount: 'amount' })
             .from(TablesNames.TRANSACTIONS)
-            .where({ transaction_type: transactionType })
+            .where({ to_calculate_statistic: 1, transaction_type: transactionType })
             .whereBetween(`${TablesNames.TRANSACTIONS}.date`, this.makeDateSearchOptions(year, month));
     }
 
@@ -200,7 +200,7 @@ export default class TransactionModel {
             .sum({ amount: 'amount' })
             .from(TablesNames.TRANSACTIONS)
             .join(TablesNames.CATEGORIES, `${TablesNames.TRANSACTIONS}.spending_category_id`, '=', `${TablesNames.CATEGORIES}.id`)
-            .where({ transaction_type: TransactionTypes.EXPENDITURE })
+            .where({ to_calculate_statistic: 1, transaction_type: TransactionTypes.EXPENDITURE })
             .whereBetween(`${TablesNames.TRANSACTIONS}.date`, this.makeDateSearchOptions(year, month))
             .groupBy('purchase');
     }
