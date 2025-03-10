@@ -10,10 +10,19 @@ export default function OpenNoteButton({ transaction }: IProps) {
     const changeCalculateInflationFlagEvent = useUnit(changeCalculateInflationFlag);
     const changeNotesListEvent = useUnit(changeNotesList);
 
-    const makeClass = () =>
-        transaction.note
-            ? 'note'
-            : 'note uk-text-muted';
+    const makeClass = () => {
+
+        if (transaction.note && transaction.toCalculateInflation) {
+            return 'note uk-text-primary';
+        }
+
+        if (transaction.note && !transaction.toCalculateInflation) {
+            return 'note uk-text';
+        }
+
+        return 'note';
+
+    };
 
     const handler = () => {
         changeTransactionIdEvent(transaction.id);
